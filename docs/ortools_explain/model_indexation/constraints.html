@@ -1,0 +1,2375 @@
+<!doctype html>
+<html lang="en">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1, minimum-scale=1" />
+<meta name="generator" content="pdoc 0.10.0" />
+<title>ortools_explain.model_indexation.constraints API documentation</title>
+<meta name="description" content="Module defining different private classes that enable us to track constraints" />
+<link rel="preload stylesheet" as="style" href="https://cdnjs.cloudflare.com/ajax/libs/10up-sanitize.css/11.0.1/sanitize.min.css" integrity="sha256-PK9q560IAAa6WVRRh76LtCaI8pjTJ2z11v0miyNNjrs=" crossorigin>
+<link rel="preload stylesheet" as="style" href="https://cdnjs.cloudflare.com/ajax/libs/10up-sanitize.css/11.0.1/typography.min.css" integrity="sha256-7l/o7C8jubJiy74VsKTidCy1yBkRtiUGbVkYBylBqUg=" crossorigin>
+<link rel="stylesheet preload" as="style" href="https://cdnjs.cloudflare.com/ajax/libs/highlight.js/10.1.1/styles/github.min.css" crossorigin>
+<style>:root{--highlight-color:#fe9}.flex{display:flex !important}body{line-height:1.5em}#content{padding:20px}#sidebar{padding:30px;overflow:hidden}#sidebar > *:last-child{margin-bottom:2cm}.http-server-breadcrumbs{font-size:130%;margin:0 0 15px 0}#footer{font-size:.75em;padding:5px 30px;border-top:1px solid #ddd;text-align:right}#footer p{margin:0 0 0 1em;display:inline-block}#footer p:last-child{margin-right:30px}h1,h2,h3,h4,h5{font-weight:300}h1{font-size:2.5em;line-height:1.1em}h2{font-size:1.75em;margin:1em 0 .50em 0}h3{font-size:1.4em;margin:25px 0 10px 0}h4{margin:0;font-size:105%}h1:target,h2:target,h3:target,h4:target,h5:target,h6:target{background:var(--highlight-color);padding:.2em 0}a{color:#058;text-decoration:none;transition:color .3s ease-in-out}a:hover{color:#e82}.title code{font-weight:bold}h2[id^="header-"]{margin-top:2em}.ident{color:#900}pre code{background:#f8f8f8;font-size:.8em;line-height:1.4em}code{background:#f2f2f1;padding:1px 4px;overflow-wrap:break-word}h1 code{background:transparent}pre{background:#f8f8f8;border:0;border-top:1px solid #ccc;border-bottom:1px solid #ccc;margin:1em 0;padding:1ex}#http-server-module-list{display:flex;flex-flow:column}#http-server-module-list div{display:flex}#http-server-module-list dt{min-width:10%}#http-server-module-list p{margin-top:0}.toc ul,#index{list-style-type:none;margin:0;padding:0}#index code{background:transparent}#index h3{border-bottom:1px solid #ddd}#index ul{padding:0}#index h4{margin-top:.6em;font-weight:bold}@media (min-width:200ex){#index .two-column{column-count:2}}@media (min-width:300ex){#index .two-column{column-count:3}}dl{margin-bottom:2em}dl dl:last-child{margin-bottom:4em}dd{margin:0 0 1em 3em}#header-classes + dl > dd{margin-bottom:3em}dd dd{margin-left:2em}dd p{margin:10px 0}.name{background:#eee;font-weight:bold;font-size:.85em;padding:5px 10px;display:inline-block;min-width:40%}.name:hover{background:#e0e0e0}dt:target .name{background:var(--highlight-color)}.name > span:first-child{white-space:nowrap}.name.class > span:nth-child(2){margin-left:.4em}.inherited{color:#999;border-left:5px solid #eee;padding-left:1em}.inheritance em{font-style:normal;font-weight:bold}.desc h2{font-weight:400;font-size:1.25em}.desc h3{font-size:1em}.desc dt code{background:inherit}.source summary,.git-link-div{color:#666;text-align:right;font-weight:400;font-size:.8em;text-transform:uppercase}.source summary > *{white-space:nowrap;cursor:pointer}.git-link{color:inherit;margin-left:1em}.source pre{max-height:500px;overflow:auto;margin:0}.source pre code{font-size:12px;overflow:visible}.hlist{list-style:none}.hlist li{display:inline}.hlist li:after{content:',\2002'}.hlist li:last-child:after{content:none}.hlist .hlist{display:inline;padding-left:1em}img{max-width:100%}td{padding:0 .5em}.admonition{padding:.1em .5em;margin-bottom:1em}.admonition-title{font-weight:bold}.admonition.note,.admonition.info,.admonition.important{background:#aef}.admonition.todo,.admonition.versionadded,.admonition.tip,.admonition.hint{background:#dfd}.admonition.warning,.admonition.versionchanged,.admonition.deprecated{background:#fd4}.admonition.error,.admonition.danger,.admonition.caution{background:lightpink}</style>
+<style media="screen and (min-width: 700px)">@media screen and (min-width:700px){#sidebar{width:30%;height:100vh;overflow:auto;position:sticky;top:0}#content{width:70%;max-width:100ch;padding:3em 4em;border-left:1px solid #ddd}pre code{font-size:1em}.item .name{font-size:1em}main{display:flex;flex-direction:row-reverse;justify-content:flex-end}.toc ul ul,#index ul{padding-left:1.5em}.toc > ul > li{margin-top:.5em}}</style>
+<style media="print">@media print{#sidebar h1{page-break-before:always}.source{display:none}}@media print{*{background:transparent !important;color:#000 !important;box-shadow:none !important;text-shadow:none !important}a[href]:after{content:" (" attr(href) ")";font-size:90%}a[href][title]:after{content:none}abbr[title]:after{content:" (" attr(title) ")"}.ir a:after,a[href^="javascript:"]:after,a[href^="#"]:after{content:""}pre,blockquote{border:1px solid #999;page-break-inside:avoid}thead{display:table-header-group}tr,img{page-break-inside:avoid}img{max-width:100% !important}@page{margin:0.5cm}p,h2,h3{orphans:3;widows:3}h1,h2,h3,h4,h5,h6{page-break-after:avoid}}</style>
+<script defer src="https://cdnjs.cloudflare.com/ajax/libs/highlight.js/10.1.1/highlight.min.js" integrity="sha256-Uv3H6lx7dJmRfRvH8TH6kJD1TSK1aFcwgx+mdg3epi8=" crossorigin></script>
+<script>window.addEventListener('DOMContentLoaded', () => hljs.initHighlighting())</script>
+</head>
+<body>
+<main>
+<article id="content">
+<header>
+<h1 class="title">Module <code>ortools_explain.model_indexation.constraints</code></h1>
+</header>
+<section id="section-intro">
+<p>Module defining different private classes that enable us to track constraints</p>
+<details class="source">
+<summary>
+<span>Expand source code</span>
+</summary>
+<pre><code class="python">&#34;&#34;&#34;
+Module defining different private classes that enable us to track constraints
+&#34;&#34;&#34;
+from abc import ABC, abstractmethod
+from functools import total_ordering
+from typing import *
+
+import logging
+
+logger = logging.getLogger(__name__)
+DEBUG_EXPLAINATIONS = False
+
+
+class ModelisationError(Exception):
+    &#34;&#34;&#34;Raised when the user makes a mistake while creating a ModelWithIndexing&#34;&#34;&#34;
+    pass
+
+
+@total_ordering
+class ElementaryConstraint (ABC):
+    &#34;&#34;&#34;
+    Class defining the smallest possible constraint for the model.
+
+    An Elementary Constraint can encompass several actual constraints, but these constraints will always be enforced or relaxed as a set
+    (at any given time, they are either all relaxed or all enforced)
+
+    It contains :
+
+    **constraint**: the name of the general type of constraint
+
+    **dict_dimensions**: the dimensions of the constraint block (dimension key and value on this dimension)
+    &#34;&#34;&#34;
+
+    def __init__(self, constraint, idx, **dict_dimensions):
+        &#34;&#34;&#34;
+        &#34;&#34;&#34;
+        self._constraint = constraint
+        self._dict_dimensions = dict_dimensions
+        self._dimensions = sorted(list(dict_dimensions.keys()))
+        self._first_id = idx
+
+    def dimensions(self):
+        return self._dimensions
+
+    def name_macroblock(self):
+        return self._constraint
+
+    def dim_value(self, dimension):
+        return self._dict_dimensions[dimension]
+
+    def __str__(self):
+        if not self._dimensions:
+            return self._constraint
+        else:
+            return (
+                    self._constraint + &#34;(&#34;
+                    + &#34;, &#34;.join([&#34;%s = %s&#34; % (k, str(self._dict_dimensions[k])) for k in self._dimensions]) + &#34;)&#34;
+            )
+
+    def __lt__(self, other):
+        # First we sort by name
+        if self.name_macroblock() != other.name_macroblock():
+            return self.name_macroblock() &lt; other.name_macroblock()
+        # If they have the same name then they have the same dimensions
+        for d in self.dimensions():
+            if self.dim_value(d) != other.dim_value(d):
+                return self.dim_value(d) &lt; other.dim_value(d)
+
+    def __hash__(self):
+        return hash(str(self))
+
+    def __eq__(self, other):
+        return hash(self) == hash(other)
+
+    def __repr__(self):
+        return str(self)
+
+    def first_id(self) -&gt; int:
+        return self._first_id
+
+    @abstractmethod
+    def list_idx(self) -&gt; List[int]:
+        pass
+
+    def size(self) -&gt; int:
+        return len(self.list_idx())
+
+
+class UsualConstraint(ElementaryConstraint):
+    &#34;&#34;&#34;
+    Class defining a single constraint
+    The constraint is of the usual type (eg. model.Add(x + y &lt; 2))
+    &#34;&#34;&#34;
+
+    def __init__(self, constraint, idx, **dict_dimensions):
+        super().__init__(constraint, idx, **dict_dimensions)
+        self._idx = [idx]
+
+    def add_id(self, idx):
+        self._idx.append(idx)
+
+    def list_idx(self) -&gt; List[int]:
+        return self._idx
+
+
+class ConstantConstraint(ElementaryConstraint):
+    &#34;&#34;&#34;
+    Class defining a single &#34;constant&#34; constraint
+    The constraint is in fact a constant (eg. x = model.NewConstant(1))
+    &#34;&#34;&#34;
+
+    def __init__(self, constraint, idx, default_value, default_range, **dict_dimensions):
+        super().__init__(constraint, idx, **dict_dimensions)
+        self._idx = {idx: {&#34;value&#34;: default_value, &#34;range&#34;: default_range}}
+
+    def def_value(self, idx):
+        return self._idx[idx][&#34;value&#34;]
+
+    def def_range(self, idx):
+        return self._idx[idx][&#34;range&#34;]
+
+    def add_id(self, idx, default_value, default_range):
+        self._idx[idx] = {&#34;value&#34;: default_value, &#34;range&#34;: default_range}
+
+    def print_specifique(self):
+        return str(self)
+
+    def list_idx(self) -&gt; List[int]:
+        return list(self._idx.keys())
+
+
+class MacroBlock:
+    &#34;&#34;&#34;
+    Class defining a set of elementary constraints (eg. pos)
+    It contains a set of BlocElementaryConstraint
+    A bloc can be projected on various dimensions
+    &#34;&#34;&#34;
+
+    def __init__(self, name, firstConstraint: ElementaryConstraint, is_constraint):
+        self._name = name
+        self._dimensions = firstConstraint.dimensions()
+        if not self._dimensions:
+            self._dimensions = []
+        if len(self._dimensions) == 0:
+            clef = &#34;&#34;
+        else:
+            clef = tuple([firstConstraint.dim_value(d) for d in self.dimensions()])
+        self.list_ec = {clef: firstConstraint}
+        self._is_true_constraint = is_constraint  # True if true constraint, False if constant
+        self._explanations = dict()
+        self._dim_a_ignorer = []
+
+    def contenu(self) -&gt; [ElementaryConstraint]:
+        return list(self.list_ec.values())
+
+    def to_named_block(self):
+        dim_peut_split = [d for d in self.dimensions() if d not in self._dim_a_ignorer]
+        return NamedBlock(self, [], dim_peut_split, list(self.list_ec.values()), self._is_true_constraint)
+
+    def name(self) -&gt; str:
+        return self._name
+
+    def dimensions(self) -&gt; [str]:
+        return self._dimensions
+
+    def do_not_split_on(self, *dim):
+        &#34;&#34;&#34;Indicates that we must not split on this dimension because it does not mean anything for the user&#34;&#34;&#34;
+        for d in dim:
+            if d in self.dimensions() and d not in self._dim_a_ignorer:
+                self._dim_a_ignorer.append(d)
+
+    def size(self) -&gt; int:
+        return sum(ec.size() for ec in self.list_ec.values())
+
+    def is_true_constraint(self):
+        return self._is_true_constraint
+
+    def __repr__(self):
+        if self.is_true_constraint():
+            return &#34;{} -- dim: {} -- size: {}&#34;.format(self.name(), self.dimensions(), self.size())
+        else:
+            return &#34;{} (CONSTANTES) -- dim: {} -- size: {}&#34;.format(self.name(), self.dimensions(), self.size())
+
+    def ajoute_ec(self, nouvelleContrainte: ElementaryConstraint) -&gt; ElementaryConstraint:
+        &#34;&#34;&#34;
+        Adds a new constraint to the block after checking that the model is consistent
+        &#34;&#34;&#34;
+        # Raises an error if is_true_constraint is not consistent
+        if self.is_true_constraint() and isinstance(nouvelleContrainte, ConstantConstraint):
+            raise ModelisationError(&#34;Le nom {} est utilisé à la fois pour des contraintes et des constantes&#34;.format(self.name()))
+        if not self.is_true_constraint() and isinstance(nouvelleContrainte, UsualConstraint):
+            raise ModelisationError(&#34;Le nom {} est utilisé à la fois pour des contraintes et des constantes&#34;.format(self.name()))
+
+        # Raises an error if dimensions are not consistent throughout the model for the same block name
+        if nouvelleContrainte.dimensions() != self.dimensions():
+            raise ModelisationError(&#34;Erreur de cohérence sur les dimensions de la contrainte {}. Le modèle a rencontré {} puis {}&#34;.format(self.name(),
+                                                                                                                                          self.dimensions(), nouvelleContrainte.dimensions()))
+
+        # Overloads the existing constraint if it exists with the same dimensions
+        clef = tuple([nouvelleContrainte.dim_value(d) for d in self.dimensions()])
+        if clef in self.list_ec:
+            vieilleContrainte = self.list_ec[clef]
+            if isinstance(vieilleContrainte, UsualConstraint):
+                vieilleContrainte.add_id(nouvelleContrainte.first_id())
+                return vieilleContrainte
+            elif isinstance(vieilleContrainte, ConstantConstraint):
+                assert isinstance(nouvelleContrainte, ConstantConstraint)
+                new_id = nouvelleContrainte.first_id()
+                new_val = nouvelleContrainte.def_value(new_id)
+                new_range = nouvelleContrainte.def_range(new_id)
+                vieilleContrainte.add_id(new_id, new_val, new_range)
+                return vieilleContrainte
+            # raise ModelisationError(&#34;La contrainte {} pour les dimensions {} est définie deux fois.&#34;.format(self.name(), clef))
+        else:
+            self.list_ec[clef] = nouvelleContrainte
+            return nouvelleContrainte
+
+    def project_on_dimensions(self, **dimensions) -&gt; [ElementaryConstraint]:
+        &#34;&#34;&#34;Returns the list of BlocKElementaryConstraints that match the given dimensions&#34;&#34;&#34;
+        if len(dimensions.keys()) == 0:
+            return [ec for ec in self.list_ec.values()]
+
+        for k in dimensions.keys():
+            if k not in self._dimensions:
+                logger.info(&#34;La dimension {} n&#39;existe pas. Les dimensions existantes sont {}.&#34;.format(k, self._dimensions))
+                return []
+
+        ma_liste = []
+        for ec in self.list_ec.values():
+            on_garde = True
+            for (k, v) in dimensions.items():
+                if ec.dim_value(k) != v:
+                    on_garde = False
+                    pass
+                if on_garde:
+                    ma_liste.append(ec)
+        return ma_liste
+
+    def add_explanations(self, *sentences):
+        &#34;&#34;&#34;
+        Adds explanations to the macroblock in natural language
+        &#34;&#34;&#34;
+        for s in sentences:
+            dimensions_utilisees = []
+            for d in self.dimensions():
+                clef = &#39;{&#39; + d + &#39;}&#39;
+                if clef in s:
+                    dimensions_utilisees.append(d)
+            mes_dim = &#39;-&#39;
+            for d in sorted(dimensions_utilisees):
+                mes_dim = mes_dim + d + &#39;-&#39;
+            self._explanations[mes_dim] = s
+
+    def get_explanation_for_key(self, key):
+        if key in self._explanations:
+            return self._explanations[key]
+        else:
+            return None
+
+
+@total_ordering
+class NamedBlock:
+    &#34;&#34;&#34;
+    Class which contains a list of elementary constraints
+    The main interest of this class is to be able to name easily this list
+    NamedBlock can have different granularities (from entire macroblock to single elementary constraint)
+    &#34;&#34;&#34;
+
+    def __init__(self, mon_macro_block, dim_already_split: [str], dim_not_yet_split: [str], contenu: [ElementaryConstraint], is_true_constraint):
+        self._macro_bloc = mon_macro_block
+        self._type_bloc = mon_macro_block.name()
+        self._dim_already_split = dim_already_split
+        self._dim_not_yet_split = dim_not_yet_split
+        self._contenu = contenu
+        self._is_true_constraint = is_true_constraint  # True if true constraint, False if constant
+
+    def __lt__(self, other):
+        # First we sort by name
+        if self.type_bloc() != other.type_bloc():
+            return self.type_bloc() &lt; other.type_bloc()
+        # Then we sort on how precise they have
+        if len(self.dimensions()) != len(other.dimensions()):
+            return self.dimensions() &lt; other.dimensions()
+        # Then we split on the sentence
+        return self.elegant_name() &lt; other.elegant_name()
+
+    def __hash__(self):
+        return hash(self.name())
+
+    def name(self):
+        if len(self.contenu()) == 0:
+            return &#39;Bloc vide&#39;
+        if len(self._dim_already_split) == 0:
+            return self.type_bloc()
+        ec = self.contenu()[0]
+        key = None
+        for d in self._dim_already_split:
+            if key:
+                key = &#34;{}, {} = {}&#34;.format(key, d, ec.dim_value(d))
+            else:
+                key = &#34;{} = {}&#34;.format(d, ec.dim_value(d))
+        return &#34;{} ({})&#34;.format(self.type_bloc(), key)
+
+    def contenu(self) -&gt; [ElementaryConstraint]:
+        return self._contenu
+
+    def type_bloc(self):
+        return self._type_bloc
+
+    def dimensions(self):
+        return self._dim_already_split
+
+    def size(self):
+        return sum(ec.size() for ec in self._contenu)
+
+    def is_true_constraint(self):
+        return self._is_true_constraint
+
+    def can_be_split(self) -&gt; bool:
+        return len(self._dim_not_yet_split) &gt; 0
+
+    def to_dict(self) -&gt; Dict:
+        &#34;&#34;&#34;Used for returning a dictionary instead of a NamedBlock object&#34;&#34;&#34;
+        my_dimensions = {}
+        example = self.contenu()[0]
+        for d in self._dim_already_split:
+            my_dimensions[d] = example.dim_value(d)
+        return {&#34;sentence&#34;: self.elegant_name(),
+                &#34;type&#34;: self._type_bloc,
+                &#34;dimensions&#34;: my_dimensions}
+
+    def elegant_name(self):
+        if DEBUG_EXPLAINATIONS:
+            return &#39;{} ({})&#39;.format(self.name(), self.size())
+
+        if len(self.contenu()) == 0:
+            return &#39;Bloc vide&#39;
+        example = self.contenu()[0]
+        mes_dim_actuelles = {}
+        for d in self._dim_already_split:
+            mes_dim_actuelles[d] = example.dim_value(d)
+        ma_clef = &#39;-&#39;
+        for d in sorted(list(mes_dim_actuelles.keys())):
+            ma_clef = ma_clef + d + &#39;-&#39;
+
+        my_sentence = self._macro_bloc.get_explanation_for_key(ma_clef)
+        if not my_sentence:
+            return self.name()
+
+        for d in mes_dim_actuelles:
+            dim_key = &#39;{&#39; + d + &#39;}&#39;
+            my_sentence = my_sentence.replace(dim_key, str(mes_dim_actuelles[d]))
+
+        return my_sentence
+
+    def __repr__(self):
+        # return self.name()
+        # return &#39;{} ({})&#39;.format(self._name, self.size())
+        return self.elegant_name()
+
+    def remove_dim_to_split(self):
+        self._dim_not_yet_split = [c for c in self._dim_not_yet_split[1:]]
+
+    def split_on_next_dimension(self):
+        &#34;&#34;&#34;
+        Returns this block split in several blocks with smaller granularity
+        &#34;&#34;&#34;
+        if len(self._dim_not_yet_split) == 0:
+            return None
+
+        nouv_dim = self._dim_not_yet_split[0]
+        logger.info(&#39;On scinde {} sur la dimension {}&#39;.format(self.name(), nouv_dim))
+        dimensions = [d for d in self._dim_already_split] + [nouv_dim]
+        remaining_dim = [d for d in self._dim_not_yet_split if d != nouv_dim]
+
+        dico_val = {}
+        for ec in self.contenu():
+            assert isinstance(ec, ElementaryConstraint)
+            key = None
+            for d in dimensions:
+                if key:
+                    key = &#34;{}, {} = {}&#34;.format(key, d, ec.dim_value(d))
+                else:
+                    key = &#34;{} = {}&#34;.format(d, ec.dim_value(d))
+
+            if key in dico_val:
+                dico_val[key].append(ec)
+            else:
+                dico_val[key] = [ec]
+
+        liste_blocks_res = []
+        for key in dico_val:
+            b = NamedBlock(self._macro_bloc, dimensions, remaining_dim, dico_val[key], self._is_true_constraint)
+            liste_blocks_res.append(b)
+
+        return liste_blocks_res
+
+
+class DictIndexConstraints:
+    &#34;&#34;&#34;
+    Class for managing the granularity of constraint blocks
+    It contains dictionaries that enable us to convert idx into elementary constraint and vice versa
+    It keeps in memory the granularity of the model
+    &#34;&#34;&#34;
+
+    def __init__(self):
+        self._dict_usual_constraints: Dict[int, UsualConstraint] = dict()
+        self._dict_constant_constraints: Dict[int, ConstantConstraint] = dict()
+        self._dict_variables = dict()
+
+        self._list_blocks = dict()
+        self._unmovable_usual_constraints = []
+        self._unmovable_constant_constraints = []
+
+    def print_status(self):
+        print(&#39;{} contraintes constantes&#39;.format(len(self._dict_constant_constraints.keys())))
+        for cc in self._dict_constant_constraints.values():
+            print(cc.print_specifique())
+        print(&#39;{} contraintes usuelles&#39;.format(len(self._dict_usual_constraints.keys())))
+        for uc in self._dict_usual_constraints.values():
+            print(uc)
+
+    def add_variable(self, variable, variable_idx: int):
+        &#34;&#34;&#34;Remembers a given variable, so that if later we define it as a constant, we know where it is in our Proto
+        &#34;&#34;&#34;
+        self._dict_variables[variable] = variable_idx
+
+    def get_variable_idx(self, variable):
+        &#34;&#34;&#34;Returns the idx of a variable in the Proto. Returns -1 if it does not exist.&#34;&#34;&#34;
+        if variable in self._dict_variables:
+            return self._dict_variables[variable]
+        return -1
+
+    def get_list_variables(self):
+        return self._dict_variables.keys()
+
+    def add_usual_constraint(self, block: UsualConstraint, constraint_idx: int):
+        &#34;&#34;&#34;
+        Function that is called when the model is being created
+        Associates a block to an OR-TOOLS id
+        Updates the list of blocks within the model
+        :param block: constraint that must be added
+        :param constraint_idx: id of the constraints
+        &#34;&#34;&#34;
+        # Looks whether this constraint has already been defined
+        name_set = block.name_macroblock()
+        if name_set not in self._list_blocks:
+            self._list_blocks[name_set] = MacroBlock(name_set, block, True)
+        else:
+            block = self._list_blocks[name_set].ajoute_ec(block)
+
+        # Keeps in memory the link between the elementary constraint and the idx
+        self._dict_usual_constraints[constraint_idx] = block
+
+    def add_constant_constraint(self, block: ConstantConstraint, constraint_idx: int):
+        &#34;&#34;&#34;
+        Function that is called when the model is being created
+        Associates a block to an OR-TOOLS id
+        Updates the list of blocks within the model
+        Function that associates to a block the OR-TOOLS constraint &#34;constraint_idx&#34;
+        :param block: a single constraint
+        :param constraint_idx: index of the constraint in the OR-Tools proto
+        &#34;&#34;&#34;
+        # Updates the list of blocs
+        name_set = block.name_macroblock()
+        if name_set not in self._list_blocks:
+            self._list_blocks[name_set] = MacroBlock(name_set, block, False)
+        else:
+            block = self._list_blocks[name_set].ajoute_ec(block)
+
+        self._dict_constant_constraints[constraint_idx] = block
+
+    def list_usual_constraints(self) -&gt; [UsualConstraint]:
+        return list(self._dict_usual_constraints.values())
+
+    def list_constant_constraints(self) -&gt; [ConstantConstraint]:
+        res = []
+        for mb in self.list_all_macro_blocks():
+            if not mb.is_true_constraint():
+                res = res + mb.contenu()
+        return res
+
+    def list_all_macro_blocks(self) -&gt; [MacroBlock]:
+        &#34;&#34;&#34;Returns the list of macro blocks (eg: &#34;pos&#34;, &#34;line&#34;, &#34;col&#34;, &#34;square&#34; for sudoku)&#34;&#34;&#34;
+        return list(set(self._list_blocks.values()))
+
+    def list_macro_block_names(self) -&gt; [str]:
+        &#34;&#34;&#34;Returns the list of block names&#34;&#34;&#34;
+        # return list(set(b.name_associated_constraint() for b in self.list_elementary_blocks()))
+        return list(self._list_blocks.keys())
+
+    def get_mb(self, name) -&gt; MacroBlock:
+        return self._list_blocks[name]
+
+    def has_mb(self, name) -&gt; bool:
+        return name in self._list_blocks
+
+    def has_constant_block(self, idx: int):
+        return idx in self._dict_constant_constraints
+
+    def get_constant_block(self, idx: int) -&gt; ConstantConstraint:
+        &#34;&#34;&#34;Converts from constraint to id&#34;&#34;&#34;
+        return self._dict_constant_constraints[idx]
+
+    def get_usual_block(self, idx: int) -&gt; UsualConstraint:
+        &#34;&#34;&#34;Converts from constraint to id&#34;&#34;&#34;
+        return self._dict_usual_constraints[idx]
+
+    def define_as_unamovible(self, name: str, **dict_dimensions):
+        &#34;&#34;&#34;Remembers that some constraints cannot be touched&#34;&#34;&#34;
+        if name not in self.list_macro_block_names():
+            logger.info(&#34;Le bloc de contraintes {} n&#39;existe pas dans notre modèle&#34;.format(name))
+            return
+        else:
+            ma_liste = self._list_blocks[name].project_on_dimensions(dict_dimensions)
+            is_true_constraint = self._list_blocks[name].is_true_constraint()
+
+            if is_true_constraint:
+                for elt in ma_liste:
+                    idx = elt.list_idx()
+                    if idx not in self._unmovable_usual_constraints:
+                        self._unmovable_usual_constraints.append(idx)
+            else:
+                for elt in ma_liste:
+                    idx = elt.list_idx()
+                    if idx not in self._unmovable_constant_constraints:
+                        self._unmovable_constant_constraints.append(idx)
+
+    def reset_unamovible(self):
+        &#34;&#34;&#34;Resets the entire list of unamovible constraints&#34;&#34;&#34;
+        self._unmovable_usual_constraints.clear()
+        self._unmovable_constant_constraints.clear()
+
+    def define_as_amovible(self, name: str, **dict_dimensions):
+        &#34;&#34;&#34;Removes the indication that one constraint cannot be touched&#34;&#34;&#34;
+        if name not in self.list_macro_block_names():
+            logger.info(&#34;Le bloc de contraintes {} n&#39;existe pas dans notre modèle&#34;.format(name))
+            return
+        else:
+            ma_liste = self._list_blocks[name].project_on_dimensions(dict_dimensions)
+            is_true_constraint = self._list_blocks[name].is_true_constraint()
+
+            if is_true_constraint:
+                for elt in ma_liste:
+                    idx = elt.list_idx()
+                    if idx in self._unmovable_usual_constraints:
+                        self._unmovable_usual_constraints.remove(idx)
+            else:
+                for elt in ma_liste:
+                    idx = elt.list_idx()
+                    if idx in self._unmovable_constant_constraints:
+                        self._unmovable_constant_constraints.remove(idx)
+
+    def get_list_usual_inamovible(self):
+        return self._unmovable_usual_constraints
+
+    def get_list_constant_inamovible(self):
+        return self._unmovable_constant_constraints
+
+    def return_all_blocks_as_named(self) -&gt; [NamedBlock]:
+        return [b.to_named_block() for b in self.list_all_macro_blocks()]
+
+    def print(self):
+        print(&#34;Mes blocs de contraintes : &#34;)
+        for b in self._list_blocks.values():
+            print(&#39;-- &#39; + str(b))</code></pre>
+</details>
+</section>
+<section>
+</section>
+<section>
+</section>
+<section>
+</section>
+<section>
+<h2 class="section-title" id="header-classes">Classes</h2>
+<dl>
+<dt id="ortools_explain.model_indexation.constraints.ConstantConstraint"><code class="flex name class">
+<span>class <span class="ident">ConstantConstraint</span></span>
+<span>(</span><span>constraint, idx, default_value, default_range, **dict_dimensions)</span>
+</code></dt>
+<dd>
+<div class="desc"><p>Class defining a single "constant" constraint
+The constraint is in fact a constant (eg. x = model.NewConstant(1))</p></div>
+<details class="source">
+<summary>
+<span>Expand source code</span>
+</summary>
+<pre><code class="python">class ConstantConstraint(ElementaryConstraint):
+    &#34;&#34;&#34;
+    Class defining a single &#34;constant&#34; constraint
+    The constraint is in fact a constant (eg. x = model.NewConstant(1))
+    &#34;&#34;&#34;
+
+    def __init__(self, constraint, idx, default_value, default_range, **dict_dimensions):
+        super().__init__(constraint, idx, **dict_dimensions)
+        self._idx = {idx: {&#34;value&#34;: default_value, &#34;range&#34;: default_range}}
+
+    def def_value(self, idx):
+        return self._idx[idx][&#34;value&#34;]
+
+    def def_range(self, idx):
+        return self._idx[idx][&#34;range&#34;]
+
+    def add_id(self, idx, default_value, default_range):
+        self._idx[idx] = {&#34;value&#34;: default_value, &#34;range&#34;: default_range}
+
+    def print_specifique(self):
+        return str(self)
+
+    def list_idx(self) -&gt; List[int]:
+        return list(self._idx.keys())</code></pre>
+</details>
+<h3>Ancestors</h3>
+<ul class="hlist">
+<li><a title="ortools_explain.model_indexation.constraints.ElementaryConstraint" href="#ortools_explain.model_indexation.constraints.ElementaryConstraint">ElementaryConstraint</a></li>
+<li>abc.ABC</li>
+</ul>
+<h3>Methods</h3>
+<dl>
+<dt id="ortools_explain.model_indexation.constraints.ConstantConstraint.add_id"><code class="name flex">
+<span>def <span class="ident">add_id</span></span>(<span>self, idx, default_value, default_range)</span>
+</code></dt>
+<dd>
+<div class="desc"></div>
+<details class="source">
+<summary>
+<span>Expand source code</span>
+</summary>
+<pre><code class="python">def add_id(self, idx, default_value, default_range):
+    self._idx[idx] = {&#34;value&#34;: default_value, &#34;range&#34;: default_range}</code></pre>
+</details>
+</dd>
+<dt id="ortools_explain.model_indexation.constraints.ConstantConstraint.def_range"><code class="name flex">
+<span>def <span class="ident">def_range</span></span>(<span>self, idx)</span>
+</code></dt>
+<dd>
+<div class="desc"></div>
+<details class="source">
+<summary>
+<span>Expand source code</span>
+</summary>
+<pre><code class="python">def def_range(self, idx):
+    return self._idx[idx][&#34;range&#34;]</code></pre>
+</details>
+</dd>
+<dt id="ortools_explain.model_indexation.constraints.ConstantConstraint.def_value"><code class="name flex">
+<span>def <span class="ident">def_value</span></span>(<span>self, idx)</span>
+</code></dt>
+<dd>
+<div class="desc"></div>
+<details class="source">
+<summary>
+<span>Expand source code</span>
+</summary>
+<pre><code class="python">def def_value(self, idx):
+    return self._idx[idx][&#34;value&#34;]</code></pre>
+</details>
+</dd>
+<dt id="ortools_explain.model_indexation.constraints.ConstantConstraint.list_idx"><code class="name flex">
+<span>def <span class="ident">list_idx</span></span>(<span>self) ‑> List[int]</span>
+</code></dt>
+<dd>
+<div class="desc"></div>
+<details class="source">
+<summary>
+<span>Expand source code</span>
+</summary>
+<pre><code class="python">def list_idx(self) -&gt; List[int]:
+    return list(self._idx.keys())</code></pre>
+</details>
+</dd>
+<dt id="ortools_explain.model_indexation.constraints.ConstantConstraint.print_specifique"><code class="name flex">
+<span>def <span class="ident">print_specifique</span></span>(<span>self)</span>
+</code></dt>
+<dd>
+<div class="desc"></div>
+<details class="source">
+<summary>
+<span>Expand source code</span>
+</summary>
+<pre><code class="python">def print_specifique(self):
+    return str(self)</code></pre>
+</details>
+</dd>
+</dl>
+</dd>
+<dt id="ortools_explain.model_indexation.constraints.DictIndexConstraints"><code class="flex name class">
+<span>class <span class="ident">DictIndexConstraints</span></span>
+</code></dt>
+<dd>
+<div class="desc"><p>Class for managing the granularity of constraint blocks
+It contains dictionaries that enable us to convert idx into elementary constraint and vice versa
+It keeps in memory the granularity of the model</p></div>
+<details class="source">
+<summary>
+<span>Expand source code</span>
+</summary>
+<pre><code class="python">class DictIndexConstraints:
+    &#34;&#34;&#34;
+    Class for managing the granularity of constraint blocks
+    It contains dictionaries that enable us to convert idx into elementary constraint and vice versa
+    It keeps in memory the granularity of the model
+    &#34;&#34;&#34;
+
+    def __init__(self):
+        self._dict_usual_constraints: Dict[int, UsualConstraint] = dict()
+        self._dict_constant_constraints: Dict[int, ConstantConstraint] = dict()
+        self._dict_variables = dict()
+
+        self._list_blocks = dict()
+        self._unmovable_usual_constraints = []
+        self._unmovable_constant_constraints = []
+
+    def print_status(self):
+        print(&#39;{} contraintes constantes&#39;.format(len(self._dict_constant_constraints.keys())))
+        for cc in self._dict_constant_constraints.values():
+            print(cc.print_specifique())
+        print(&#39;{} contraintes usuelles&#39;.format(len(self._dict_usual_constraints.keys())))
+        for uc in self._dict_usual_constraints.values():
+            print(uc)
+
+    def add_variable(self, variable, variable_idx: int):
+        &#34;&#34;&#34;Remembers a given variable, so that if later we define it as a constant, we know where it is in our Proto
+        &#34;&#34;&#34;
+        self._dict_variables[variable] = variable_idx
+
+    def get_variable_idx(self, variable):
+        &#34;&#34;&#34;Returns the idx of a variable in the Proto. Returns -1 if it does not exist.&#34;&#34;&#34;
+        if variable in self._dict_variables:
+            return self._dict_variables[variable]
+        return -1
+
+    def get_list_variables(self):
+        return self._dict_variables.keys()
+
+    def add_usual_constraint(self, block: UsualConstraint, constraint_idx: int):
+        &#34;&#34;&#34;
+        Function that is called when the model is being created
+        Associates a block to an OR-TOOLS id
+        Updates the list of blocks within the model
+        :param block: constraint that must be added
+        :param constraint_idx: id of the constraints
+        &#34;&#34;&#34;
+        # Looks whether this constraint has already been defined
+        name_set = block.name_macroblock()
+        if name_set not in self._list_blocks:
+            self._list_blocks[name_set] = MacroBlock(name_set, block, True)
+        else:
+            block = self._list_blocks[name_set].ajoute_ec(block)
+
+        # Keeps in memory the link between the elementary constraint and the idx
+        self._dict_usual_constraints[constraint_idx] = block
+
+    def add_constant_constraint(self, block: ConstantConstraint, constraint_idx: int):
+        &#34;&#34;&#34;
+        Function that is called when the model is being created
+        Associates a block to an OR-TOOLS id
+        Updates the list of blocks within the model
+        Function that associates to a block the OR-TOOLS constraint &#34;constraint_idx&#34;
+        :param block: a single constraint
+        :param constraint_idx: index of the constraint in the OR-Tools proto
+        &#34;&#34;&#34;
+        # Updates the list of blocs
+        name_set = block.name_macroblock()
+        if name_set not in self._list_blocks:
+            self._list_blocks[name_set] = MacroBlock(name_set, block, False)
+        else:
+            block = self._list_blocks[name_set].ajoute_ec(block)
+
+        self._dict_constant_constraints[constraint_idx] = block
+
+    def list_usual_constraints(self) -&gt; [UsualConstraint]:
+        return list(self._dict_usual_constraints.values())
+
+    def list_constant_constraints(self) -&gt; [ConstantConstraint]:
+        res = []
+        for mb in self.list_all_macro_blocks():
+            if not mb.is_true_constraint():
+                res = res + mb.contenu()
+        return res
+
+    def list_all_macro_blocks(self) -&gt; [MacroBlock]:
+        &#34;&#34;&#34;Returns the list of macro blocks (eg: &#34;pos&#34;, &#34;line&#34;, &#34;col&#34;, &#34;square&#34; for sudoku)&#34;&#34;&#34;
+        return list(set(self._list_blocks.values()))
+
+    def list_macro_block_names(self) -&gt; [str]:
+        &#34;&#34;&#34;Returns the list of block names&#34;&#34;&#34;
+        # return list(set(b.name_associated_constraint() for b in self.list_elementary_blocks()))
+        return list(self._list_blocks.keys())
+
+    def get_mb(self, name) -&gt; MacroBlock:
+        return self._list_blocks[name]
+
+    def has_mb(self, name) -&gt; bool:
+        return name in self._list_blocks
+
+    def has_constant_block(self, idx: int):
+        return idx in self._dict_constant_constraints
+
+    def get_constant_block(self, idx: int) -&gt; ConstantConstraint:
+        &#34;&#34;&#34;Converts from constraint to id&#34;&#34;&#34;
+        return self._dict_constant_constraints[idx]
+
+    def get_usual_block(self, idx: int) -&gt; UsualConstraint:
+        &#34;&#34;&#34;Converts from constraint to id&#34;&#34;&#34;
+        return self._dict_usual_constraints[idx]
+
+    def define_as_unamovible(self, name: str, **dict_dimensions):
+        &#34;&#34;&#34;Remembers that some constraints cannot be touched&#34;&#34;&#34;
+        if name not in self.list_macro_block_names():
+            logger.info(&#34;Le bloc de contraintes {} n&#39;existe pas dans notre modèle&#34;.format(name))
+            return
+        else:
+            ma_liste = self._list_blocks[name].project_on_dimensions(dict_dimensions)
+            is_true_constraint = self._list_blocks[name].is_true_constraint()
+
+            if is_true_constraint:
+                for elt in ma_liste:
+                    idx = elt.list_idx()
+                    if idx not in self._unmovable_usual_constraints:
+                        self._unmovable_usual_constraints.append(idx)
+            else:
+                for elt in ma_liste:
+                    idx = elt.list_idx()
+                    if idx not in self._unmovable_constant_constraints:
+                        self._unmovable_constant_constraints.append(idx)
+
+    def reset_unamovible(self):
+        &#34;&#34;&#34;Resets the entire list of unamovible constraints&#34;&#34;&#34;
+        self._unmovable_usual_constraints.clear()
+        self._unmovable_constant_constraints.clear()
+
+    def define_as_amovible(self, name: str, **dict_dimensions):
+        &#34;&#34;&#34;Removes the indication that one constraint cannot be touched&#34;&#34;&#34;
+        if name not in self.list_macro_block_names():
+            logger.info(&#34;Le bloc de contraintes {} n&#39;existe pas dans notre modèle&#34;.format(name))
+            return
+        else:
+            ma_liste = self._list_blocks[name].project_on_dimensions(dict_dimensions)
+            is_true_constraint = self._list_blocks[name].is_true_constraint()
+
+            if is_true_constraint:
+                for elt in ma_liste:
+                    idx = elt.list_idx()
+                    if idx in self._unmovable_usual_constraints:
+                        self._unmovable_usual_constraints.remove(idx)
+            else:
+                for elt in ma_liste:
+                    idx = elt.list_idx()
+                    if idx in self._unmovable_constant_constraints:
+                        self._unmovable_constant_constraints.remove(idx)
+
+    def get_list_usual_inamovible(self):
+        return self._unmovable_usual_constraints
+
+    def get_list_constant_inamovible(self):
+        return self._unmovable_constant_constraints
+
+    def return_all_blocks_as_named(self) -&gt; [NamedBlock]:
+        return [b.to_named_block() for b in self.list_all_macro_blocks()]
+
+    def print(self):
+        print(&#34;Mes blocs de contraintes : &#34;)
+        for b in self._list_blocks.values():
+            print(&#39;-- &#39; + str(b))</code></pre>
+</details>
+<h3>Methods</h3>
+<dl>
+<dt id="ortools_explain.model_indexation.constraints.DictIndexConstraints.add_constant_constraint"><code class="name flex">
+<span>def <span class="ident">add_constant_constraint</span></span>(<span>self, block: <a title="ortools_explain.model_indexation.constraints.ConstantConstraint" href="#ortools_explain.model_indexation.constraints.ConstantConstraint">ConstantConstraint</a>, constraint_idx: int)</span>
+</code></dt>
+<dd>
+<div class="desc"><p>Function that is called when the model is being created
+Associates a block to an OR-TOOLS id
+Updates the list of blocks within the model
+Function that associates to a block the OR-TOOLS constraint "constraint_idx"
+:param block: a single constraint
+:param constraint_idx: index of the constraint in the OR-Tools proto</p></div>
+<details class="source">
+<summary>
+<span>Expand source code</span>
+</summary>
+<pre><code class="python">def add_constant_constraint(self, block: ConstantConstraint, constraint_idx: int):
+    &#34;&#34;&#34;
+    Function that is called when the model is being created
+    Associates a block to an OR-TOOLS id
+    Updates the list of blocks within the model
+    Function that associates to a block the OR-TOOLS constraint &#34;constraint_idx&#34;
+    :param block: a single constraint
+    :param constraint_idx: index of the constraint in the OR-Tools proto
+    &#34;&#34;&#34;
+    # Updates the list of blocs
+    name_set = block.name_macroblock()
+    if name_set not in self._list_blocks:
+        self._list_blocks[name_set] = MacroBlock(name_set, block, False)
+    else:
+        block = self._list_blocks[name_set].ajoute_ec(block)
+
+    self._dict_constant_constraints[constraint_idx] = block</code></pre>
+</details>
+</dd>
+<dt id="ortools_explain.model_indexation.constraints.DictIndexConstraints.add_usual_constraint"><code class="name flex">
+<span>def <span class="ident">add_usual_constraint</span></span>(<span>self, block: <a title="ortools_explain.model_indexation.constraints.UsualConstraint" href="#ortools_explain.model_indexation.constraints.UsualConstraint">UsualConstraint</a>, constraint_idx: int)</span>
+</code></dt>
+<dd>
+<div class="desc"><p>Function that is called when the model is being created
+Associates a block to an OR-TOOLS id
+Updates the list of blocks within the model
+:param block: constraint that must be added
+:param constraint_idx: id of the constraints</p></div>
+<details class="source">
+<summary>
+<span>Expand source code</span>
+</summary>
+<pre><code class="python">def add_usual_constraint(self, block: UsualConstraint, constraint_idx: int):
+    &#34;&#34;&#34;
+    Function that is called when the model is being created
+    Associates a block to an OR-TOOLS id
+    Updates the list of blocks within the model
+    :param block: constraint that must be added
+    :param constraint_idx: id of the constraints
+    &#34;&#34;&#34;
+    # Looks whether this constraint has already been defined
+    name_set = block.name_macroblock()
+    if name_set not in self._list_blocks:
+        self._list_blocks[name_set] = MacroBlock(name_set, block, True)
+    else:
+        block = self._list_blocks[name_set].ajoute_ec(block)
+
+    # Keeps in memory the link between the elementary constraint and the idx
+    self._dict_usual_constraints[constraint_idx] = block</code></pre>
+</details>
+</dd>
+<dt id="ortools_explain.model_indexation.constraints.DictIndexConstraints.add_variable"><code class="name flex">
+<span>def <span class="ident">add_variable</span></span>(<span>self, variable, variable_idx: int)</span>
+</code></dt>
+<dd>
+<div class="desc"><p>Remembers a given variable, so that if later we define it as a constant, we know where it is in our Proto</p></div>
+<details class="source">
+<summary>
+<span>Expand source code</span>
+</summary>
+<pre><code class="python">def add_variable(self, variable, variable_idx: int):
+    &#34;&#34;&#34;Remembers a given variable, so that if later we define it as a constant, we know where it is in our Proto
+    &#34;&#34;&#34;
+    self._dict_variables[variable] = variable_idx</code></pre>
+</details>
+</dd>
+<dt id="ortools_explain.model_indexation.constraints.DictIndexConstraints.define_as_amovible"><code class="name flex">
+<span>def <span class="ident">define_as_amovible</span></span>(<span>self, name: str, **dict_dimensions)</span>
+</code></dt>
+<dd>
+<div class="desc"><p>Removes the indication that one constraint cannot be touched</p></div>
+<details class="source">
+<summary>
+<span>Expand source code</span>
+</summary>
+<pre><code class="python">def define_as_amovible(self, name: str, **dict_dimensions):
+    &#34;&#34;&#34;Removes the indication that one constraint cannot be touched&#34;&#34;&#34;
+    if name not in self.list_macro_block_names():
+        logger.info(&#34;Le bloc de contraintes {} n&#39;existe pas dans notre modèle&#34;.format(name))
+        return
+    else:
+        ma_liste = self._list_blocks[name].project_on_dimensions(dict_dimensions)
+        is_true_constraint = self._list_blocks[name].is_true_constraint()
+
+        if is_true_constraint:
+            for elt in ma_liste:
+                idx = elt.list_idx()
+                if idx in self._unmovable_usual_constraints:
+                    self._unmovable_usual_constraints.remove(idx)
+        else:
+            for elt in ma_liste:
+                idx = elt.list_idx()
+                if idx in self._unmovable_constant_constraints:
+                    self._unmovable_constant_constraints.remove(idx)</code></pre>
+</details>
+</dd>
+<dt id="ortools_explain.model_indexation.constraints.DictIndexConstraints.define_as_unamovible"><code class="name flex">
+<span>def <span class="ident">define_as_unamovible</span></span>(<span>self, name: str, **dict_dimensions)</span>
+</code></dt>
+<dd>
+<div class="desc"><p>Remembers that some constraints cannot be touched</p></div>
+<details class="source">
+<summary>
+<span>Expand source code</span>
+</summary>
+<pre><code class="python">def define_as_unamovible(self, name: str, **dict_dimensions):
+    &#34;&#34;&#34;Remembers that some constraints cannot be touched&#34;&#34;&#34;
+    if name not in self.list_macro_block_names():
+        logger.info(&#34;Le bloc de contraintes {} n&#39;existe pas dans notre modèle&#34;.format(name))
+        return
+    else:
+        ma_liste = self._list_blocks[name].project_on_dimensions(dict_dimensions)
+        is_true_constraint = self._list_blocks[name].is_true_constraint()
+
+        if is_true_constraint:
+            for elt in ma_liste:
+                idx = elt.list_idx()
+                if idx not in self._unmovable_usual_constraints:
+                    self._unmovable_usual_constraints.append(idx)
+        else:
+            for elt in ma_liste:
+                idx = elt.list_idx()
+                if idx not in self._unmovable_constant_constraints:
+                    self._unmovable_constant_constraints.append(idx)</code></pre>
+</details>
+</dd>
+<dt id="ortools_explain.model_indexation.constraints.DictIndexConstraints.get_constant_block"><code class="name flex">
+<span>def <span class="ident">get_constant_block</span></span>(<span>self, idx: int) ‑> <a title="ortools_explain.model_indexation.constraints.ConstantConstraint" href="#ortools_explain.model_indexation.constraints.ConstantConstraint">ConstantConstraint</a></span>
+</code></dt>
+<dd>
+<div class="desc"><p>Converts from constraint to id</p></div>
+<details class="source">
+<summary>
+<span>Expand source code</span>
+</summary>
+<pre><code class="python">def get_constant_block(self, idx: int) -&gt; ConstantConstraint:
+    &#34;&#34;&#34;Converts from constraint to id&#34;&#34;&#34;
+    return self._dict_constant_constraints[idx]</code></pre>
+</details>
+</dd>
+<dt id="ortools_explain.model_indexation.constraints.DictIndexConstraints.get_list_constant_inamovible"><code class="name flex">
+<span>def <span class="ident">get_list_constant_inamovible</span></span>(<span>self)</span>
+</code></dt>
+<dd>
+<div class="desc"></div>
+<details class="source">
+<summary>
+<span>Expand source code</span>
+</summary>
+<pre><code class="python">def get_list_constant_inamovible(self):
+    return self._unmovable_constant_constraints</code></pre>
+</details>
+</dd>
+<dt id="ortools_explain.model_indexation.constraints.DictIndexConstraints.get_list_usual_inamovible"><code class="name flex">
+<span>def <span class="ident">get_list_usual_inamovible</span></span>(<span>self)</span>
+</code></dt>
+<dd>
+<div class="desc"></div>
+<details class="source">
+<summary>
+<span>Expand source code</span>
+</summary>
+<pre><code class="python">def get_list_usual_inamovible(self):
+    return self._unmovable_usual_constraints</code></pre>
+</details>
+</dd>
+<dt id="ortools_explain.model_indexation.constraints.DictIndexConstraints.get_list_variables"><code class="name flex">
+<span>def <span class="ident">get_list_variables</span></span>(<span>self)</span>
+</code></dt>
+<dd>
+<div class="desc"></div>
+<details class="source">
+<summary>
+<span>Expand source code</span>
+</summary>
+<pre><code class="python">def get_list_variables(self):
+    return self._dict_variables.keys()</code></pre>
+</details>
+</dd>
+<dt id="ortools_explain.model_indexation.constraints.DictIndexConstraints.get_mb"><code class="name flex">
+<span>def <span class="ident">get_mb</span></span>(<span>self, name) ‑> <a title="ortools_explain.model_indexation.constraints.MacroBlock" href="#ortools_explain.model_indexation.constraints.MacroBlock">MacroBlock</a></span>
+</code></dt>
+<dd>
+<div class="desc"></div>
+<details class="source">
+<summary>
+<span>Expand source code</span>
+</summary>
+<pre><code class="python">def get_mb(self, name) -&gt; MacroBlock:
+    return self._list_blocks[name]</code></pre>
+</details>
+</dd>
+<dt id="ortools_explain.model_indexation.constraints.DictIndexConstraints.get_usual_block"><code class="name flex">
+<span>def <span class="ident">get_usual_block</span></span>(<span>self, idx: int) ‑> <a title="ortools_explain.model_indexation.constraints.UsualConstraint" href="#ortools_explain.model_indexation.constraints.UsualConstraint">UsualConstraint</a></span>
+</code></dt>
+<dd>
+<div class="desc"><p>Converts from constraint to id</p></div>
+<details class="source">
+<summary>
+<span>Expand source code</span>
+</summary>
+<pre><code class="python">def get_usual_block(self, idx: int) -&gt; UsualConstraint:
+    &#34;&#34;&#34;Converts from constraint to id&#34;&#34;&#34;
+    return self._dict_usual_constraints[idx]</code></pre>
+</details>
+</dd>
+<dt id="ortools_explain.model_indexation.constraints.DictIndexConstraints.get_variable_idx"><code class="name flex">
+<span>def <span class="ident">get_variable_idx</span></span>(<span>self, variable)</span>
+</code></dt>
+<dd>
+<div class="desc"><p>Returns the idx of a variable in the Proto. Returns -1 if it does not exist.</p></div>
+<details class="source">
+<summary>
+<span>Expand source code</span>
+</summary>
+<pre><code class="python">def get_variable_idx(self, variable):
+    &#34;&#34;&#34;Returns the idx of a variable in the Proto. Returns -1 if it does not exist.&#34;&#34;&#34;
+    if variable in self._dict_variables:
+        return self._dict_variables[variable]
+    return -1</code></pre>
+</details>
+</dd>
+<dt id="ortools_explain.model_indexation.constraints.DictIndexConstraints.has_constant_block"><code class="name flex">
+<span>def <span class="ident">has_constant_block</span></span>(<span>self, idx: int)</span>
+</code></dt>
+<dd>
+<div class="desc"></div>
+<details class="source">
+<summary>
+<span>Expand source code</span>
+</summary>
+<pre><code class="python">def has_constant_block(self, idx: int):
+    return idx in self._dict_constant_constraints</code></pre>
+</details>
+</dd>
+<dt id="ortools_explain.model_indexation.constraints.DictIndexConstraints.has_mb"><code class="name flex">
+<span>def <span class="ident">has_mb</span></span>(<span>self, name) ‑> bool</span>
+</code></dt>
+<dd>
+<div class="desc"></div>
+<details class="source">
+<summary>
+<span>Expand source code</span>
+</summary>
+<pre><code class="python">def has_mb(self, name) -&gt; bool:
+    return name in self._list_blocks</code></pre>
+</details>
+</dd>
+<dt id="ortools_explain.model_indexation.constraints.DictIndexConstraints.list_all_macro_blocks"><code class="name flex">
+<span>def <span class="ident">list_all_macro_blocks</span></span>(<span>self) ‑> [<class '<a title="ortools_explain.model_indexation.constraints.MacroBlock" href="#ortools_explain.model_indexation.constraints.MacroBlock">MacroBlock</a>'>]</span>
+</code></dt>
+<dd>
+<div class="desc"><p>Returns the list of macro blocks (eg: "pos", "line", "col", "square" for sudoku)</p></div>
+<details class="source">
+<summary>
+<span>Expand source code</span>
+</summary>
+<pre><code class="python">def list_all_macro_blocks(self) -&gt; [MacroBlock]:
+    &#34;&#34;&#34;Returns the list of macro blocks (eg: &#34;pos&#34;, &#34;line&#34;, &#34;col&#34;, &#34;square&#34; for sudoku)&#34;&#34;&#34;
+    return list(set(self._list_blocks.values()))</code></pre>
+</details>
+</dd>
+<dt id="ortools_explain.model_indexation.constraints.DictIndexConstraints.list_constant_constraints"><code class="name flex">
+<span>def <span class="ident">list_constant_constraints</span></span>(<span>self) ‑> [<class '<a title="ortools_explain.model_indexation.constraints.ConstantConstraint" href="#ortools_explain.model_indexation.constraints.ConstantConstraint">ConstantConstraint</a>'>]</span>
+</code></dt>
+<dd>
+<div class="desc"></div>
+<details class="source">
+<summary>
+<span>Expand source code</span>
+</summary>
+<pre><code class="python">def list_constant_constraints(self) -&gt; [ConstantConstraint]:
+    res = []
+    for mb in self.list_all_macro_blocks():
+        if not mb.is_true_constraint():
+            res = res + mb.contenu()
+    return res</code></pre>
+</details>
+</dd>
+<dt id="ortools_explain.model_indexation.constraints.DictIndexConstraints.list_macro_block_names"><code class="name flex">
+<span>def <span class="ident">list_macro_block_names</span></span>(<span>self) ‑> [<class 'str'>]</span>
+</code></dt>
+<dd>
+<div class="desc"><p>Returns the list of block names</p></div>
+<details class="source">
+<summary>
+<span>Expand source code</span>
+</summary>
+<pre><code class="python">def list_macro_block_names(self) -&gt; [str]:
+    &#34;&#34;&#34;Returns the list of block names&#34;&#34;&#34;
+    # return list(set(b.name_associated_constraint() for b in self.list_elementary_blocks()))
+    return list(self._list_blocks.keys())</code></pre>
+</details>
+</dd>
+<dt id="ortools_explain.model_indexation.constraints.DictIndexConstraints.list_usual_constraints"><code class="name flex">
+<span>def <span class="ident">list_usual_constraints</span></span>(<span>self) ‑> [<class '<a title="ortools_explain.model_indexation.constraints.UsualConstraint" href="#ortools_explain.model_indexation.constraints.UsualConstraint">UsualConstraint</a>'>]</span>
+</code></dt>
+<dd>
+<div class="desc"></div>
+<details class="source">
+<summary>
+<span>Expand source code</span>
+</summary>
+<pre><code class="python">def list_usual_constraints(self) -&gt; [UsualConstraint]:
+    return list(self._dict_usual_constraints.values())</code></pre>
+</details>
+</dd>
+<dt id="ortools_explain.model_indexation.constraints.DictIndexConstraints.print"><code class="name flex">
+<span>def <span class="ident">print</span></span>(<span>self)</span>
+</code></dt>
+<dd>
+<div class="desc"></div>
+<details class="source">
+<summary>
+<span>Expand source code</span>
+</summary>
+<pre><code class="python">def print(self):
+    print(&#34;Mes blocs de contraintes : &#34;)
+    for b in self._list_blocks.values():
+        print(&#39;-- &#39; + str(b))</code></pre>
+</details>
+</dd>
+<dt id="ortools_explain.model_indexation.constraints.DictIndexConstraints.print_status"><code class="name flex">
+<span>def <span class="ident">print_status</span></span>(<span>self)</span>
+</code></dt>
+<dd>
+<div class="desc"></div>
+<details class="source">
+<summary>
+<span>Expand source code</span>
+</summary>
+<pre><code class="python">def print_status(self):
+    print(&#39;{} contraintes constantes&#39;.format(len(self._dict_constant_constraints.keys())))
+    for cc in self._dict_constant_constraints.values():
+        print(cc.print_specifique())
+    print(&#39;{} contraintes usuelles&#39;.format(len(self._dict_usual_constraints.keys())))
+    for uc in self._dict_usual_constraints.values():
+        print(uc)</code></pre>
+</details>
+</dd>
+<dt id="ortools_explain.model_indexation.constraints.DictIndexConstraints.reset_unamovible"><code class="name flex">
+<span>def <span class="ident">reset_unamovible</span></span>(<span>self)</span>
+</code></dt>
+<dd>
+<div class="desc"><p>Resets the entire list of unamovible constraints</p></div>
+<details class="source">
+<summary>
+<span>Expand source code</span>
+</summary>
+<pre><code class="python">def reset_unamovible(self):
+    &#34;&#34;&#34;Resets the entire list of unamovible constraints&#34;&#34;&#34;
+    self._unmovable_usual_constraints.clear()
+    self._unmovable_constant_constraints.clear()</code></pre>
+</details>
+</dd>
+<dt id="ortools_explain.model_indexation.constraints.DictIndexConstraints.return_all_blocks_as_named"><code class="name flex">
+<span>def <span class="ident">return_all_blocks_as_named</span></span>(<span>self) ‑> [<class '<a title="ortools_explain.model_indexation.constraints.NamedBlock" href="#ortools_explain.model_indexation.constraints.NamedBlock">NamedBlock</a>'>]</span>
+</code></dt>
+<dd>
+<div class="desc"></div>
+<details class="source">
+<summary>
+<span>Expand source code</span>
+</summary>
+<pre><code class="python">def return_all_blocks_as_named(self) -&gt; [NamedBlock]:
+    return [b.to_named_block() for b in self.list_all_macro_blocks()]</code></pre>
+</details>
+</dd>
+</dl>
+</dd>
+<dt id="ortools_explain.model_indexation.constraints.ElementaryConstraint"><code class="flex name class">
+<span>class <span class="ident">ElementaryConstraint</span></span>
+<span>(</span><span>constraint, idx, **dict_dimensions)</span>
+</code></dt>
+<dd>
+<div class="desc"><p>Class defining the smallest possible constraint for the model.</p>
+<p>An Elementary Constraint can encompass several actual constraints, but these constraints will always be enforced or relaxed as a set
+(at any given time, they are either all relaxed or all enforced)</p>
+<p>It contains :</p>
+<p><strong>constraint</strong>: the name of the general type of constraint</p>
+<p><strong>dict_dimensions</strong>: the dimensions of the constraint block (dimension key and value on this dimension)</p></div>
+<details class="source">
+<summary>
+<span>Expand source code</span>
+</summary>
+<pre><code class="python">class ElementaryConstraint (ABC):
+    &#34;&#34;&#34;
+    Class defining the smallest possible constraint for the model.
+
+    An Elementary Constraint can encompass several actual constraints, but these constraints will always be enforced or relaxed as a set
+    (at any given time, they are either all relaxed or all enforced)
+
+    It contains :
+
+    **constraint**: the name of the general type of constraint
+
+    **dict_dimensions**: the dimensions of the constraint block (dimension key and value on this dimension)
+    &#34;&#34;&#34;
+
+    def __init__(self, constraint, idx, **dict_dimensions):
+        &#34;&#34;&#34;
+        &#34;&#34;&#34;
+        self._constraint = constraint
+        self._dict_dimensions = dict_dimensions
+        self._dimensions = sorted(list(dict_dimensions.keys()))
+        self._first_id = idx
+
+    def dimensions(self):
+        return self._dimensions
+
+    def name_macroblock(self):
+        return self._constraint
+
+    def dim_value(self, dimension):
+        return self._dict_dimensions[dimension]
+
+    def __str__(self):
+        if not self._dimensions:
+            return self._constraint
+        else:
+            return (
+                    self._constraint + &#34;(&#34;
+                    + &#34;, &#34;.join([&#34;%s = %s&#34; % (k, str(self._dict_dimensions[k])) for k in self._dimensions]) + &#34;)&#34;
+            )
+
+    def __lt__(self, other):
+        # First we sort by name
+        if self.name_macroblock() != other.name_macroblock():
+            return self.name_macroblock() &lt; other.name_macroblock()
+        # If they have the same name then they have the same dimensions
+        for d in self.dimensions():
+            if self.dim_value(d) != other.dim_value(d):
+                return self.dim_value(d) &lt; other.dim_value(d)
+
+    def __hash__(self):
+        return hash(str(self))
+
+    def __eq__(self, other):
+        return hash(self) == hash(other)
+
+    def __repr__(self):
+        return str(self)
+
+    def first_id(self) -&gt; int:
+        return self._first_id
+
+    @abstractmethod
+    def list_idx(self) -&gt; List[int]:
+        pass
+
+    def size(self) -&gt; int:
+        return len(self.list_idx())</code></pre>
+</details>
+<h3>Ancestors</h3>
+<ul class="hlist">
+<li>abc.ABC</li>
+</ul>
+<h3>Subclasses</h3>
+<ul class="hlist">
+<li><a title="ortools_explain.model_indexation.constraints.ConstantConstraint" href="#ortools_explain.model_indexation.constraints.ConstantConstraint">ConstantConstraint</a></li>
+<li><a title="ortools_explain.model_indexation.constraints.UsualConstraint" href="#ortools_explain.model_indexation.constraints.UsualConstraint">UsualConstraint</a></li>
+</ul>
+<h3>Methods</h3>
+<dl>
+<dt id="ortools_explain.model_indexation.constraints.ElementaryConstraint.dim_value"><code class="name flex">
+<span>def <span class="ident">dim_value</span></span>(<span>self, dimension)</span>
+</code></dt>
+<dd>
+<div class="desc"></div>
+<details class="source">
+<summary>
+<span>Expand source code</span>
+</summary>
+<pre><code class="python">def dim_value(self, dimension):
+    return self._dict_dimensions[dimension]</code></pre>
+</details>
+</dd>
+<dt id="ortools_explain.model_indexation.constraints.ElementaryConstraint.dimensions"><code class="name flex">
+<span>def <span class="ident">dimensions</span></span>(<span>self)</span>
+</code></dt>
+<dd>
+<div class="desc"></div>
+<details class="source">
+<summary>
+<span>Expand source code</span>
+</summary>
+<pre><code class="python">def dimensions(self):
+    return self._dimensions</code></pre>
+</details>
+</dd>
+<dt id="ortools_explain.model_indexation.constraints.ElementaryConstraint.first_id"><code class="name flex">
+<span>def <span class="ident">first_id</span></span>(<span>self) ‑> int</span>
+</code></dt>
+<dd>
+<div class="desc"></div>
+<details class="source">
+<summary>
+<span>Expand source code</span>
+</summary>
+<pre><code class="python">def first_id(self) -&gt; int:
+    return self._first_id</code></pre>
+</details>
+</dd>
+<dt id="ortools_explain.model_indexation.constraints.ElementaryConstraint.list_idx"><code class="name flex">
+<span>def <span class="ident">list_idx</span></span>(<span>self) ‑> List[int]</span>
+</code></dt>
+<dd>
+<div class="desc"></div>
+<details class="source">
+<summary>
+<span>Expand source code</span>
+</summary>
+<pre><code class="python">@abstractmethod
+def list_idx(self) -&gt; List[int]:
+    pass</code></pre>
+</details>
+</dd>
+<dt id="ortools_explain.model_indexation.constraints.ElementaryConstraint.name_macroblock"><code class="name flex">
+<span>def <span class="ident">name_macroblock</span></span>(<span>self)</span>
+</code></dt>
+<dd>
+<div class="desc"></div>
+<details class="source">
+<summary>
+<span>Expand source code</span>
+</summary>
+<pre><code class="python">def name_macroblock(self):
+    return self._constraint</code></pre>
+</details>
+</dd>
+<dt id="ortools_explain.model_indexation.constraints.ElementaryConstraint.size"><code class="name flex">
+<span>def <span class="ident">size</span></span>(<span>self) ‑> int</span>
+</code></dt>
+<dd>
+<div class="desc"></div>
+<details class="source">
+<summary>
+<span>Expand source code</span>
+</summary>
+<pre><code class="python">def size(self) -&gt; int:
+    return len(self.list_idx())</code></pre>
+</details>
+</dd>
+</dl>
+</dd>
+<dt id="ortools_explain.model_indexation.constraints.MacroBlock"><code class="flex name class">
+<span>class <span class="ident">MacroBlock</span></span>
+<span>(</span><span>name, firstConstraint: <a title="ortools_explain.model_indexation.constraints.ElementaryConstraint" href="#ortools_explain.model_indexation.constraints.ElementaryConstraint">ElementaryConstraint</a>, is_constraint)</span>
+</code></dt>
+<dd>
+<div class="desc"><p>Class defining a set of elementary constraints (eg. pos)
+It contains a set of BlocElementaryConstraint
+A bloc can be projected on various dimensions</p></div>
+<details class="source">
+<summary>
+<span>Expand source code</span>
+</summary>
+<pre><code class="python">class MacroBlock:
+    &#34;&#34;&#34;
+    Class defining a set of elementary constraints (eg. pos)
+    It contains a set of BlocElementaryConstraint
+    A bloc can be projected on various dimensions
+    &#34;&#34;&#34;
+
+    def __init__(self, name, firstConstraint: ElementaryConstraint, is_constraint):
+        self._name = name
+        self._dimensions = firstConstraint.dimensions()
+        if not self._dimensions:
+            self._dimensions = []
+        if len(self._dimensions) == 0:
+            clef = &#34;&#34;
+        else:
+            clef = tuple([firstConstraint.dim_value(d) for d in self.dimensions()])
+        self.list_ec = {clef: firstConstraint}
+        self._is_true_constraint = is_constraint  # True if true constraint, False if constant
+        self._explanations = dict()
+        self._dim_a_ignorer = []
+
+    def contenu(self) -&gt; [ElementaryConstraint]:
+        return list(self.list_ec.values())
+
+    def to_named_block(self):
+        dim_peut_split = [d for d in self.dimensions() if d not in self._dim_a_ignorer]
+        return NamedBlock(self, [], dim_peut_split, list(self.list_ec.values()), self._is_true_constraint)
+
+    def name(self) -&gt; str:
+        return self._name
+
+    def dimensions(self) -&gt; [str]:
+        return self._dimensions
+
+    def do_not_split_on(self, *dim):
+        &#34;&#34;&#34;Indicates that we must not split on this dimension because it does not mean anything for the user&#34;&#34;&#34;
+        for d in dim:
+            if d in self.dimensions() and d not in self._dim_a_ignorer:
+                self._dim_a_ignorer.append(d)
+
+    def size(self) -&gt; int:
+        return sum(ec.size() for ec in self.list_ec.values())
+
+    def is_true_constraint(self):
+        return self._is_true_constraint
+
+    def __repr__(self):
+        if self.is_true_constraint():
+            return &#34;{} -- dim: {} -- size: {}&#34;.format(self.name(), self.dimensions(), self.size())
+        else:
+            return &#34;{} (CONSTANTES) -- dim: {} -- size: {}&#34;.format(self.name(), self.dimensions(), self.size())
+
+    def ajoute_ec(self, nouvelleContrainte: ElementaryConstraint) -&gt; ElementaryConstraint:
+        &#34;&#34;&#34;
+        Adds a new constraint to the block after checking that the model is consistent
+        &#34;&#34;&#34;
+        # Raises an error if is_true_constraint is not consistent
+        if self.is_true_constraint() and isinstance(nouvelleContrainte, ConstantConstraint):
+            raise ModelisationError(&#34;Le nom {} est utilisé à la fois pour des contraintes et des constantes&#34;.format(self.name()))
+        if not self.is_true_constraint() and isinstance(nouvelleContrainte, UsualConstraint):
+            raise ModelisationError(&#34;Le nom {} est utilisé à la fois pour des contraintes et des constantes&#34;.format(self.name()))
+
+        # Raises an error if dimensions are not consistent throughout the model for the same block name
+        if nouvelleContrainte.dimensions() != self.dimensions():
+            raise ModelisationError(&#34;Erreur de cohérence sur les dimensions de la contrainte {}. Le modèle a rencontré {} puis {}&#34;.format(self.name(),
+                                                                                                                                          self.dimensions(), nouvelleContrainte.dimensions()))
+
+        # Overloads the existing constraint if it exists with the same dimensions
+        clef = tuple([nouvelleContrainte.dim_value(d) for d in self.dimensions()])
+        if clef in self.list_ec:
+            vieilleContrainte = self.list_ec[clef]
+            if isinstance(vieilleContrainte, UsualConstraint):
+                vieilleContrainte.add_id(nouvelleContrainte.first_id())
+                return vieilleContrainte
+            elif isinstance(vieilleContrainte, ConstantConstraint):
+                assert isinstance(nouvelleContrainte, ConstantConstraint)
+                new_id = nouvelleContrainte.first_id()
+                new_val = nouvelleContrainte.def_value(new_id)
+                new_range = nouvelleContrainte.def_range(new_id)
+                vieilleContrainte.add_id(new_id, new_val, new_range)
+                return vieilleContrainte
+            # raise ModelisationError(&#34;La contrainte {} pour les dimensions {} est définie deux fois.&#34;.format(self.name(), clef))
+        else:
+            self.list_ec[clef] = nouvelleContrainte
+            return nouvelleContrainte
+
+    def project_on_dimensions(self, **dimensions) -&gt; [ElementaryConstraint]:
+        &#34;&#34;&#34;Returns the list of BlocKElementaryConstraints that match the given dimensions&#34;&#34;&#34;
+        if len(dimensions.keys()) == 0:
+            return [ec for ec in self.list_ec.values()]
+
+        for k in dimensions.keys():
+            if k not in self._dimensions:
+                logger.info(&#34;La dimension {} n&#39;existe pas. Les dimensions existantes sont {}.&#34;.format(k, self._dimensions))
+                return []
+
+        ma_liste = []
+        for ec in self.list_ec.values():
+            on_garde = True
+            for (k, v) in dimensions.items():
+                if ec.dim_value(k) != v:
+                    on_garde = False
+                    pass
+                if on_garde:
+                    ma_liste.append(ec)
+        return ma_liste
+
+    def add_explanations(self, *sentences):
+        &#34;&#34;&#34;
+        Adds explanations to the macroblock in natural language
+        &#34;&#34;&#34;
+        for s in sentences:
+            dimensions_utilisees = []
+            for d in self.dimensions():
+                clef = &#39;{&#39; + d + &#39;}&#39;
+                if clef in s:
+                    dimensions_utilisees.append(d)
+            mes_dim = &#39;-&#39;
+            for d in sorted(dimensions_utilisees):
+                mes_dim = mes_dim + d + &#39;-&#39;
+            self._explanations[mes_dim] = s
+
+    def get_explanation_for_key(self, key):
+        if key in self._explanations:
+            return self._explanations[key]
+        else:
+            return None</code></pre>
+</details>
+<h3>Methods</h3>
+<dl>
+<dt id="ortools_explain.model_indexation.constraints.MacroBlock.add_explanations"><code class="name flex">
+<span>def <span class="ident">add_explanations</span></span>(<span>self, *sentences)</span>
+</code></dt>
+<dd>
+<div class="desc"><p>Adds explanations to the macroblock in natural language</p></div>
+<details class="source">
+<summary>
+<span>Expand source code</span>
+</summary>
+<pre><code class="python">def add_explanations(self, *sentences):
+    &#34;&#34;&#34;
+    Adds explanations to the macroblock in natural language
+    &#34;&#34;&#34;
+    for s in sentences:
+        dimensions_utilisees = []
+        for d in self.dimensions():
+            clef = &#39;{&#39; + d + &#39;}&#39;
+            if clef in s:
+                dimensions_utilisees.append(d)
+        mes_dim = &#39;-&#39;
+        for d in sorted(dimensions_utilisees):
+            mes_dim = mes_dim + d + &#39;-&#39;
+        self._explanations[mes_dim] = s</code></pre>
+</details>
+</dd>
+<dt id="ortools_explain.model_indexation.constraints.MacroBlock.ajoute_ec"><code class="name flex">
+<span>def <span class="ident">ajoute_ec</span></span>(<span>self, nouvelleContrainte: <a title="ortools_explain.model_indexation.constraints.ElementaryConstraint" href="#ortools_explain.model_indexation.constraints.ElementaryConstraint">ElementaryConstraint</a>) ‑> <a title="ortools_explain.model_indexation.constraints.ElementaryConstraint" href="#ortools_explain.model_indexation.constraints.ElementaryConstraint">ElementaryConstraint</a></span>
+</code></dt>
+<dd>
+<div class="desc"><p>Adds a new constraint to the block after checking that the model is consistent</p></div>
+<details class="source">
+<summary>
+<span>Expand source code</span>
+</summary>
+<pre><code class="python">def ajoute_ec(self, nouvelleContrainte: ElementaryConstraint) -&gt; ElementaryConstraint:
+    &#34;&#34;&#34;
+    Adds a new constraint to the block after checking that the model is consistent
+    &#34;&#34;&#34;
+    # Raises an error if is_true_constraint is not consistent
+    if self.is_true_constraint() and isinstance(nouvelleContrainte, ConstantConstraint):
+        raise ModelisationError(&#34;Le nom {} est utilisé à la fois pour des contraintes et des constantes&#34;.format(self.name()))
+    if not self.is_true_constraint() and isinstance(nouvelleContrainte, UsualConstraint):
+        raise ModelisationError(&#34;Le nom {} est utilisé à la fois pour des contraintes et des constantes&#34;.format(self.name()))
+
+    # Raises an error if dimensions are not consistent throughout the model for the same block name
+    if nouvelleContrainte.dimensions() != self.dimensions():
+        raise ModelisationError(&#34;Erreur de cohérence sur les dimensions de la contrainte {}. Le modèle a rencontré {} puis {}&#34;.format(self.name(),
+                                                                                                                                      self.dimensions(), nouvelleContrainte.dimensions()))
+
+    # Overloads the existing constraint if it exists with the same dimensions
+    clef = tuple([nouvelleContrainte.dim_value(d) for d in self.dimensions()])
+    if clef in self.list_ec:
+        vieilleContrainte = self.list_ec[clef]
+        if isinstance(vieilleContrainte, UsualConstraint):
+            vieilleContrainte.add_id(nouvelleContrainte.first_id())
+            return vieilleContrainte
+        elif isinstance(vieilleContrainte, ConstantConstraint):
+            assert isinstance(nouvelleContrainte, ConstantConstraint)
+            new_id = nouvelleContrainte.first_id()
+            new_val = nouvelleContrainte.def_value(new_id)
+            new_range = nouvelleContrainte.def_range(new_id)
+            vieilleContrainte.add_id(new_id, new_val, new_range)
+            return vieilleContrainte
+        # raise ModelisationError(&#34;La contrainte {} pour les dimensions {} est définie deux fois.&#34;.format(self.name(), clef))
+    else:
+        self.list_ec[clef] = nouvelleContrainte
+        return nouvelleContrainte</code></pre>
+</details>
+</dd>
+<dt id="ortools_explain.model_indexation.constraints.MacroBlock.contenu"><code class="name flex">
+<span>def <span class="ident">contenu</span></span>(<span>self) ‑> [<class '<a title="ortools_explain.model_indexation.constraints.ElementaryConstraint" href="#ortools_explain.model_indexation.constraints.ElementaryConstraint">ElementaryConstraint</a>'>]</span>
+</code></dt>
+<dd>
+<div class="desc"></div>
+<details class="source">
+<summary>
+<span>Expand source code</span>
+</summary>
+<pre><code class="python">def contenu(self) -&gt; [ElementaryConstraint]:
+    return list(self.list_ec.values())</code></pre>
+</details>
+</dd>
+<dt id="ortools_explain.model_indexation.constraints.MacroBlock.dimensions"><code class="name flex">
+<span>def <span class="ident">dimensions</span></span>(<span>self) ‑> [<class 'str'>]</span>
+</code></dt>
+<dd>
+<div class="desc"></div>
+<details class="source">
+<summary>
+<span>Expand source code</span>
+</summary>
+<pre><code class="python">def dimensions(self) -&gt; [str]:
+    return self._dimensions</code></pre>
+</details>
+</dd>
+<dt id="ortools_explain.model_indexation.constraints.MacroBlock.do_not_split_on"><code class="name flex">
+<span>def <span class="ident">do_not_split_on</span></span>(<span>self, *dim)</span>
+</code></dt>
+<dd>
+<div class="desc"><p>Indicates that we must not split on this dimension because it does not mean anything for the user</p></div>
+<details class="source">
+<summary>
+<span>Expand source code</span>
+</summary>
+<pre><code class="python">def do_not_split_on(self, *dim):
+    &#34;&#34;&#34;Indicates that we must not split on this dimension because it does not mean anything for the user&#34;&#34;&#34;
+    for d in dim:
+        if d in self.dimensions() and d not in self._dim_a_ignorer:
+            self._dim_a_ignorer.append(d)</code></pre>
+</details>
+</dd>
+<dt id="ortools_explain.model_indexation.constraints.MacroBlock.get_explanation_for_key"><code class="name flex">
+<span>def <span class="ident">get_explanation_for_key</span></span>(<span>self, key)</span>
+</code></dt>
+<dd>
+<div class="desc"></div>
+<details class="source">
+<summary>
+<span>Expand source code</span>
+</summary>
+<pre><code class="python">def get_explanation_for_key(self, key):
+    if key in self._explanations:
+        return self._explanations[key]
+    else:
+        return None</code></pre>
+</details>
+</dd>
+<dt id="ortools_explain.model_indexation.constraints.MacroBlock.is_true_constraint"><code class="name flex">
+<span>def <span class="ident">is_true_constraint</span></span>(<span>self)</span>
+</code></dt>
+<dd>
+<div class="desc"></div>
+<details class="source">
+<summary>
+<span>Expand source code</span>
+</summary>
+<pre><code class="python">def is_true_constraint(self):
+    return self._is_true_constraint</code></pre>
+</details>
+</dd>
+<dt id="ortools_explain.model_indexation.constraints.MacroBlock.name"><code class="name flex">
+<span>def <span class="ident">name</span></span>(<span>self) ‑> str</span>
+</code></dt>
+<dd>
+<div class="desc"></div>
+<details class="source">
+<summary>
+<span>Expand source code</span>
+</summary>
+<pre><code class="python">def name(self) -&gt; str:
+    return self._name</code></pre>
+</details>
+</dd>
+<dt id="ortools_explain.model_indexation.constraints.MacroBlock.project_on_dimensions"><code class="name flex">
+<span>def <span class="ident">project_on_dimensions</span></span>(<span>self, **dimensions) ‑> [<class '<a title="ortools_explain.model_indexation.constraints.ElementaryConstraint" href="#ortools_explain.model_indexation.constraints.ElementaryConstraint">ElementaryConstraint</a>'>]</span>
+</code></dt>
+<dd>
+<div class="desc"><p>Returns the list of BlocKElementaryConstraints that match the given dimensions</p></div>
+<details class="source">
+<summary>
+<span>Expand source code</span>
+</summary>
+<pre><code class="python">def project_on_dimensions(self, **dimensions) -&gt; [ElementaryConstraint]:
+    &#34;&#34;&#34;Returns the list of BlocKElementaryConstraints that match the given dimensions&#34;&#34;&#34;
+    if len(dimensions.keys()) == 0:
+        return [ec for ec in self.list_ec.values()]
+
+    for k in dimensions.keys():
+        if k not in self._dimensions:
+            logger.info(&#34;La dimension {} n&#39;existe pas. Les dimensions existantes sont {}.&#34;.format(k, self._dimensions))
+            return []
+
+    ma_liste = []
+    for ec in self.list_ec.values():
+        on_garde = True
+        for (k, v) in dimensions.items():
+            if ec.dim_value(k) != v:
+                on_garde = False
+                pass
+            if on_garde:
+                ma_liste.append(ec)
+    return ma_liste</code></pre>
+</details>
+</dd>
+<dt id="ortools_explain.model_indexation.constraints.MacroBlock.size"><code class="name flex">
+<span>def <span class="ident">size</span></span>(<span>self) ‑> int</span>
+</code></dt>
+<dd>
+<div class="desc"></div>
+<details class="source">
+<summary>
+<span>Expand source code</span>
+</summary>
+<pre><code class="python">def size(self) -&gt; int:
+    return sum(ec.size() for ec in self.list_ec.values())</code></pre>
+</details>
+</dd>
+<dt id="ortools_explain.model_indexation.constraints.MacroBlock.to_named_block"><code class="name flex">
+<span>def <span class="ident">to_named_block</span></span>(<span>self)</span>
+</code></dt>
+<dd>
+<div class="desc"></div>
+<details class="source">
+<summary>
+<span>Expand source code</span>
+</summary>
+<pre><code class="python">def to_named_block(self):
+    dim_peut_split = [d for d in self.dimensions() if d not in self._dim_a_ignorer]
+    return NamedBlock(self, [], dim_peut_split, list(self.list_ec.values()), self._is_true_constraint)</code></pre>
+</details>
+</dd>
+</dl>
+</dd>
+<dt id="ortools_explain.model_indexation.constraints.ModelisationError"><code class="flex name class">
+<span>class <span class="ident">ModelisationError</span></span>
+<span>(</span><span>*args, **kwargs)</span>
+</code></dt>
+<dd>
+<div class="desc"><p>Raised when the user makes a mistake while creating a ModelWithIndexing</p></div>
+<details class="source">
+<summary>
+<span>Expand source code</span>
+</summary>
+<pre><code class="python">class ModelisationError(Exception):
+    &#34;&#34;&#34;Raised when the user makes a mistake while creating a ModelWithIndexing&#34;&#34;&#34;
+    pass</code></pre>
+</details>
+<h3>Ancestors</h3>
+<ul class="hlist">
+<li>builtins.Exception</li>
+<li>builtins.BaseException</li>
+</ul>
+</dd>
+<dt id="ortools_explain.model_indexation.constraints.NamedBlock"><code class="flex name class">
+<span>class <span class="ident">NamedBlock</span></span>
+<span>(</span><span>mon_macro_block, dim_already_split: [<class 'str'>], dim_not_yet_split: [<class 'str'>], contenu: [<class '<a title="ortools_explain.model_indexation.constraints.ElementaryConstraint" href="#ortools_explain.model_indexation.constraints.ElementaryConstraint">ElementaryConstraint</a>'>], is_true_constraint)</span>
+</code></dt>
+<dd>
+<div class="desc"><p>Class which contains a list of elementary constraints
+The main interest of this class is to be able to name easily this list
+NamedBlock can have different granularities (from entire macroblock to single elementary constraint)</p></div>
+<details class="source">
+<summary>
+<span>Expand source code</span>
+</summary>
+<pre><code class="python">class NamedBlock:
+    &#34;&#34;&#34;
+    Class which contains a list of elementary constraints
+    The main interest of this class is to be able to name easily this list
+    NamedBlock can have different granularities (from entire macroblock to single elementary constraint)
+    &#34;&#34;&#34;
+
+    def __init__(self, mon_macro_block, dim_already_split: [str], dim_not_yet_split: [str], contenu: [ElementaryConstraint], is_true_constraint):
+        self._macro_bloc = mon_macro_block
+        self._type_bloc = mon_macro_block.name()
+        self._dim_already_split = dim_already_split
+        self._dim_not_yet_split = dim_not_yet_split
+        self._contenu = contenu
+        self._is_true_constraint = is_true_constraint  # True if true constraint, False if constant
+
+    def __lt__(self, other):
+        # First we sort by name
+        if self.type_bloc() != other.type_bloc():
+            return self.type_bloc() &lt; other.type_bloc()
+        # Then we sort on how precise they have
+        if len(self.dimensions()) != len(other.dimensions()):
+            return self.dimensions() &lt; other.dimensions()
+        # Then we split on the sentence
+        return self.elegant_name() &lt; other.elegant_name()
+
+    def __hash__(self):
+        return hash(self.name())
+
+    def name(self):
+        if len(self.contenu()) == 0:
+            return &#39;Bloc vide&#39;
+        if len(self._dim_already_split) == 0:
+            return self.type_bloc()
+        ec = self.contenu()[0]
+        key = None
+        for d in self._dim_already_split:
+            if key:
+                key = &#34;{}, {} = {}&#34;.format(key, d, ec.dim_value(d))
+            else:
+                key = &#34;{} = {}&#34;.format(d, ec.dim_value(d))
+        return &#34;{} ({})&#34;.format(self.type_bloc(), key)
+
+    def contenu(self) -&gt; [ElementaryConstraint]:
+        return self._contenu
+
+    def type_bloc(self):
+        return self._type_bloc
+
+    def dimensions(self):
+        return self._dim_already_split
+
+    def size(self):
+        return sum(ec.size() for ec in self._contenu)
+
+    def is_true_constraint(self):
+        return self._is_true_constraint
+
+    def can_be_split(self) -&gt; bool:
+        return len(self._dim_not_yet_split) &gt; 0
+
+    def to_dict(self) -&gt; Dict:
+        &#34;&#34;&#34;Used for returning a dictionary instead of a NamedBlock object&#34;&#34;&#34;
+        my_dimensions = {}
+        example = self.contenu()[0]
+        for d in self._dim_already_split:
+            my_dimensions[d] = example.dim_value(d)
+        return {&#34;sentence&#34;: self.elegant_name(),
+                &#34;type&#34;: self._type_bloc,
+                &#34;dimensions&#34;: my_dimensions}
+
+    def elegant_name(self):
+        if DEBUG_EXPLAINATIONS:
+            return &#39;{} ({})&#39;.format(self.name(), self.size())
+
+        if len(self.contenu()) == 0:
+            return &#39;Bloc vide&#39;
+        example = self.contenu()[0]
+        mes_dim_actuelles = {}
+        for d in self._dim_already_split:
+            mes_dim_actuelles[d] = example.dim_value(d)
+        ma_clef = &#39;-&#39;
+        for d in sorted(list(mes_dim_actuelles.keys())):
+            ma_clef = ma_clef + d + &#39;-&#39;
+
+        my_sentence = self._macro_bloc.get_explanation_for_key(ma_clef)
+        if not my_sentence:
+            return self.name()
+
+        for d in mes_dim_actuelles:
+            dim_key = &#39;{&#39; + d + &#39;}&#39;
+            my_sentence = my_sentence.replace(dim_key, str(mes_dim_actuelles[d]))
+
+        return my_sentence
+
+    def __repr__(self):
+        # return self.name()
+        # return &#39;{} ({})&#39;.format(self._name, self.size())
+        return self.elegant_name()
+
+    def remove_dim_to_split(self):
+        self._dim_not_yet_split = [c for c in self._dim_not_yet_split[1:]]
+
+    def split_on_next_dimension(self):
+        &#34;&#34;&#34;
+        Returns this block split in several blocks with smaller granularity
+        &#34;&#34;&#34;
+        if len(self._dim_not_yet_split) == 0:
+            return None
+
+        nouv_dim = self._dim_not_yet_split[0]
+        logger.info(&#39;On scinde {} sur la dimension {}&#39;.format(self.name(), nouv_dim))
+        dimensions = [d for d in self._dim_already_split] + [nouv_dim]
+        remaining_dim = [d for d in self._dim_not_yet_split if d != nouv_dim]
+
+        dico_val = {}
+        for ec in self.contenu():
+            assert isinstance(ec, ElementaryConstraint)
+            key = None
+            for d in dimensions:
+                if key:
+                    key = &#34;{}, {} = {}&#34;.format(key, d, ec.dim_value(d))
+                else:
+                    key = &#34;{} = {}&#34;.format(d, ec.dim_value(d))
+
+            if key in dico_val:
+                dico_val[key].append(ec)
+            else:
+                dico_val[key] = [ec]
+
+        liste_blocks_res = []
+        for key in dico_val:
+            b = NamedBlock(self._macro_bloc, dimensions, remaining_dim, dico_val[key], self._is_true_constraint)
+            liste_blocks_res.append(b)
+
+        return liste_blocks_res</code></pre>
+</details>
+<h3>Methods</h3>
+<dl>
+<dt id="ortools_explain.model_indexation.constraints.NamedBlock.can_be_split"><code class="name flex">
+<span>def <span class="ident">can_be_split</span></span>(<span>self) ‑> bool</span>
+</code></dt>
+<dd>
+<div class="desc"></div>
+<details class="source">
+<summary>
+<span>Expand source code</span>
+</summary>
+<pre><code class="python">def can_be_split(self) -&gt; bool:
+    return len(self._dim_not_yet_split) &gt; 0</code></pre>
+</details>
+</dd>
+<dt id="ortools_explain.model_indexation.constraints.NamedBlock.contenu"><code class="name flex">
+<span>def <span class="ident">contenu</span></span>(<span>self) ‑> [<class '<a title="ortools_explain.model_indexation.constraints.ElementaryConstraint" href="#ortools_explain.model_indexation.constraints.ElementaryConstraint">ElementaryConstraint</a>'>]</span>
+</code></dt>
+<dd>
+<div class="desc"></div>
+<details class="source">
+<summary>
+<span>Expand source code</span>
+</summary>
+<pre><code class="python">def contenu(self) -&gt; [ElementaryConstraint]:
+    return self._contenu</code></pre>
+</details>
+</dd>
+<dt id="ortools_explain.model_indexation.constraints.NamedBlock.dimensions"><code class="name flex">
+<span>def <span class="ident">dimensions</span></span>(<span>self)</span>
+</code></dt>
+<dd>
+<div class="desc"></div>
+<details class="source">
+<summary>
+<span>Expand source code</span>
+</summary>
+<pre><code class="python">def dimensions(self):
+    return self._dim_already_split</code></pre>
+</details>
+</dd>
+<dt id="ortools_explain.model_indexation.constraints.NamedBlock.elegant_name"><code class="name flex">
+<span>def <span class="ident">elegant_name</span></span>(<span>self)</span>
+</code></dt>
+<dd>
+<div class="desc"></div>
+<details class="source">
+<summary>
+<span>Expand source code</span>
+</summary>
+<pre><code class="python">def elegant_name(self):
+    if DEBUG_EXPLAINATIONS:
+        return &#39;{} ({})&#39;.format(self.name(), self.size())
+
+    if len(self.contenu()) == 0:
+        return &#39;Bloc vide&#39;
+    example = self.contenu()[0]
+    mes_dim_actuelles = {}
+    for d in self._dim_already_split:
+        mes_dim_actuelles[d] = example.dim_value(d)
+    ma_clef = &#39;-&#39;
+    for d in sorted(list(mes_dim_actuelles.keys())):
+        ma_clef = ma_clef + d + &#39;-&#39;
+
+    my_sentence = self._macro_bloc.get_explanation_for_key(ma_clef)
+    if not my_sentence:
+        return self.name()
+
+    for d in mes_dim_actuelles:
+        dim_key = &#39;{&#39; + d + &#39;}&#39;
+        my_sentence = my_sentence.replace(dim_key, str(mes_dim_actuelles[d]))
+
+    return my_sentence</code></pre>
+</details>
+</dd>
+<dt id="ortools_explain.model_indexation.constraints.NamedBlock.is_true_constraint"><code class="name flex">
+<span>def <span class="ident">is_true_constraint</span></span>(<span>self)</span>
+</code></dt>
+<dd>
+<div class="desc"></div>
+<details class="source">
+<summary>
+<span>Expand source code</span>
+</summary>
+<pre><code class="python">def is_true_constraint(self):
+    return self._is_true_constraint</code></pre>
+</details>
+</dd>
+<dt id="ortools_explain.model_indexation.constraints.NamedBlock.name"><code class="name flex">
+<span>def <span class="ident">name</span></span>(<span>self)</span>
+</code></dt>
+<dd>
+<div class="desc"></div>
+<details class="source">
+<summary>
+<span>Expand source code</span>
+</summary>
+<pre><code class="python">def name(self):
+    if len(self.contenu()) == 0:
+        return &#39;Bloc vide&#39;
+    if len(self._dim_already_split) == 0:
+        return self.type_bloc()
+    ec = self.contenu()[0]
+    key = None
+    for d in self._dim_already_split:
+        if key:
+            key = &#34;{}, {} = {}&#34;.format(key, d, ec.dim_value(d))
+        else:
+            key = &#34;{} = {}&#34;.format(d, ec.dim_value(d))
+    return &#34;{} ({})&#34;.format(self.type_bloc(), key)</code></pre>
+</details>
+</dd>
+<dt id="ortools_explain.model_indexation.constraints.NamedBlock.remove_dim_to_split"><code class="name flex">
+<span>def <span class="ident">remove_dim_to_split</span></span>(<span>self)</span>
+</code></dt>
+<dd>
+<div class="desc"></div>
+<details class="source">
+<summary>
+<span>Expand source code</span>
+</summary>
+<pre><code class="python">def remove_dim_to_split(self):
+    self._dim_not_yet_split = [c for c in self._dim_not_yet_split[1:]]</code></pre>
+</details>
+</dd>
+<dt id="ortools_explain.model_indexation.constraints.NamedBlock.size"><code class="name flex">
+<span>def <span class="ident">size</span></span>(<span>self)</span>
+</code></dt>
+<dd>
+<div class="desc"></div>
+<details class="source">
+<summary>
+<span>Expand source code</span>
+</summary>
+<pre><code class="python">def size(self):
+    return sum(ec.size() for ec in self._contenu)</code></pre>
+</details>
+</dd>
+<dt id="ortools_explain.model_indexation.constraints.NamedBlock.split_on_next_dimension"><code class="name flex">
+<span>def <span class="ident">split_on_next_dimension</span></span>(<span>self)</span>
+</code></dt>
+<dd>
+<div class="desc"><p>Returns this block split in several blocks with smaller granularity</p></div>
+<details class="source">
+<summary>
+<span>Expand source code</span>
+</summary>
+<pre><code class="python">def split_on_next_dimension(self):
+    &#34;&#34;&#34;
+    Returns this block split in several blocks with smaller granularity
+    &#34;&#34;&#34;
+    if len(self._dim_not_yet_split) == 0:
+        return None
+
+    nouv_dim = self._dim_not_yet_split[0]
+    logger.info(&#39;On scinde {} sur la dimension {}&#39;.format(self.name(), nouv_dim))
+    dimensions = [d for d in self._dim_already_split] + [nouv_dim]
+    remaining_dim = [d for d in self._dim_not_yet_split if d != nouv_dim]
+
+    dico_val = {}
+    for ec in self.contenu():
+        assert isinstance(ec, ElementaryConstraint)
+        key = None
+        for d in dimensions:
+            if key:
+                key = &#34;{}, {} = {}&#34;.format(key, d, ec.dim_value(d))
+            else:
+                key = &#34;{} = {}&#34;.format(d, ec.dim_value(d))
+
+        if key in dico_val:
+            dico_val[key].append(ec)
+        else:
+            dico_val[key] = [ec]
+
+    liste_blocks_res = []
+    for key in dico_val:
+        b = NamedBlock(self._macro_bloc, dimensions, remaining_dim, dico_val[key], self._is_true_constraint)
+        liste_blocks_res.append(b)
+
+    return liste_blocks_res</code></pre>
+</details>
+</dd>
+<dt id="ortools_explain.model_indexation.constraints.NamedBlock.to_dict"><code class="name flex">
+<span>def <span class="ident">to_dict</span></span>(<span>self) ‑> Dict[~KT, ~VT]</span>
+</code></dt>
+<dd>
+<div class="desc"><p>Used for returning a dictionary instead of a NamedBlock object</p></div>
+<details class="source">
+<summary>
+<span>Expand source code</span>
+</summary>
+<pre><code class="python">def to_dict(self) -&gt; Dict:
+    &#34;&#34;&#34;Used for returning a dictionary instead of a NamedBlock object&#34;&#34;&#34;
+    my_dimensions = {}
+    example = self.contenu()[0]
+    for d in self._dim_already_split:
+        my_dimensions[d] = example.dim_value(d)
+    return {&#34;sentence&#34;: self.elegant_name(),
+            &#34;type&#34;: self._type_bloc,
+            &#34;dimensions&#34;: my_dimensions}</code></pre>
+</details>
+</dd>
+<dt id="ortools_explain.model_indexation.constraints.NamedBlock.type_bloc"><code class="name flex">
+<span>def <span class="ident">type_bloc</span></span>(<span>self)</span>
+</code></dt>
+<dd>
+<div class="desc"></div>
+<details class="source">
+<summary>
+<span>Expand source code</span>
+</summary>
+<pre><code class="python">def type_bloc(self):
+    return self._type_bloc</code></pre>
+</details>
+</dd>
+</dl>
+</dd>
+<dt id="ortools_explain.model_indexation.constraints.UsualConstraint"><code class="flex name class">
+<span>class <span class="ident">UsualConstraint</span></span>
+<span>(</span><span>constraint, idx, **dict_dimensions)</span>
+</code></dt>
+<dd>
+<div class="desc"><p>Class defining a single constraint
+The constraint is of the usual type (eg. model.Add(x + y &lt; 2))</p></div>
+<details class="source">
+<summary>
+<span>Expand source code</span>
+</summary>
+<pre><code class="python">class UsualConstraint(ElementaryConstraint):
+    &#34;&#34;&#34;
+    Class defining a single constraint
+    The constraint is of the usual type (eg. model.Add(x + y &lt; 2))
+    &#34;&#34;&#34;
+
+    def __init__(self, constraint, idx, **dict_dimensions):
+        super().__init__(constraint, idx, **dict_dimensions)
+        self._idx = [idx]
+
+    def add_id(self, idx):
+        self._idx.append(idx)
+
+    def list_idx(self) -&gt; List[int]:
+        return self._idx</code></pre>
+</details>
+<h3>Ancestors</h3>
+<ul class="hlist">
+<li><a title="ortools_explain.model_indexation.constraints.ElementaryConstraint" href="#ortools_explain.model_indexation.constraints.ElementaryConstraint">ElementaryConstraint</a></li>
+<li>abc.ABC</li>
+</ul>
+<h3>Methods</h3>
+<dl>
+<dt id="ortools_explain.model_indexation.constraints.UsualConstraint.add_id"><code class="name flex">
+<span>def <span class="ident">add_id</span></span>(<span>self, idx)</span>
+</code></dt>
+<dd>
+<div class="desc"></div>
+<details class="source">
+<summary>
+<span>Expand source code</span>
+</summary>
+<pre><code class="python">def add_id(self, idx):
+    self._idx.append(idx)</code></pre>
+</details>
+</dd>
+<dt id="ortools_explain.model_indexation.constraints.UsualConstraint.list_idx"><code class="name flex">
+<span>def <span class="ident">list_idx</span></span>(<span>self) ‑> List[int]</span>
+</code></dt>
+<dd>
+<div class="desc"></div>
+<details class="source">
+<summary>
+<span>Expand source code</span>
+</summary>
+<pre><code class="python">def list_idx(self) -&gt; List[int]:
+    return self._idx</code></pre>
+</details>
+</dd>
+</dl>
+</dd>
+</dl>
+</section>
+</article>
+<nav id="sidebar">
+<h1>Index</h1>
+<div class="toc">
+<ul></ul>
+</div>
+<ul id="index">
+<li><h3>Super-module</h3>
+<ul>
+<li><code><a title="ortools_explain.model_indexation" href="index.html">ortools_explain.model_indexation</a></code></li>
+</ul>
+</li>
+<li><h3><a href="#header-classes">Classes</a></h3>
+<ul>
+<li>
+<h4><code><a title="ortools_explain.model_indexation.constraints.ConstantConstraint" href="#ortools_explain.model_indexation.constraints.ConstantConstraint">ConstantConstraint</a></code></h4>
+<ul class="">
+<li><code><a title="ortools_explain.model_indexation.constraints.ConstantConstraint.add_id" href="#ortools_explain.model_indexation.constraints.ConstantConstraint.add_id">add_id</a></code></li>
+<li><code><a title="ortools_explain.model_indexation.constraints.ConstantConstraint.def_range" href="#ortools_explain.model_indexation.constraints.ConstantConstraint.def_range">def_range</a></code></li>
+<li><code><a title="ortools_explain.model_indexation.constraints.ConstantConstraint.def_value" href="#ortools_explain.model_indexation.constraints.ConstantConstraint.def_value">def_value</a></code></li>
+<li><code><a title="ortools_explain.model_indexation.constraints.ConstantConstraint.list_idx" href="#ortools_explain.model_indexation.constraints.ConstantConstraint.list_idx">list_idx</a></code></li>
+<li><code><a title="ortools_explain.model_indexation.constraints.ConstantConstraint.print_specifique" href="#ortools_explain.model_indexation.constraints.ConstantConstraint.print_specifique">print_specifique</a></code></li>
+</ul>
+</li>
+<li>
+<h4><code><a title="ortools_explain.model_indexation.constraints.DictIndexConstraints" href="#ortools_explain.model_indexation.constraints.DictIndexConstraints">DictIndexConstraints</a></code></h4>
+<ul class="">
+<li><code><a title="ortools_explain.model_indexation.constraints.DictIndexConstraints.add_constant_constraint" href="#ortools_explain.model_indexation.constraints.DictIndexConstraints.add_constant_constraint">add_constant_constraint</a></code></li>
+<li><code><a title="ortools_explain.model_indexation.constraints.DictIndexConstraints.add_usual_constraint" href="#ortools_explain.model_indexation.constraints.DictIndexConstraints.add_usual_constraint">add_usual_constraint</a></code></li>
+<li><code><a title="ortools_explain.model_indexation.constraints.DictIndexConstraints.add_variable" href="#ortools_explain.model_indexation.constraints.DictIndexConstraints.add_variable">add_variable</a></code></li>
+<li><code><a title="ortools_explain.model_indexation.constraints.DictIndexConstraints.define_as_amovible" href="#ortools_explain.model_indexation.constraints.DictIndexConstraints.define_as_amovible">define_as_amovible</a></code></li>
+<li><code><a title="ortools_explain.model_indexation.constraints.DictIndexConstraints.define_as_unamovible" href="#ortools_explain.model_indexation.constraints.DictIndexConstraints.define_as_unamovible">define_as_unamovible</a></code></li>
+<li><code><a title="ortools_explain.model_indexation.constraints.DictIndexConstraints.get_constant_block" href="#ortools_explain.model_indexation.constraints.DictIndexConstraints.get_constant_block">get_constant_block</a></code></li>
+<li><code><a title="ortools_explain.model_indexation.constraints.DictIndexConstraints.get_list_constant_inamovible" href="#ortools_explain.model_indexation.constraints.DictIndexConstraints.get_list_constant_inamovible">get_list_constant_inamovible</a></code></li>
+<li><code><a title="ortools_explain.model_indexation.constraints.DictIndexConstraints.get_list_usual_inamovible" href="#ortools_explain.model_indexation.constraints.DictIndexConstraints.get_list_usual_inamovible">get_list_usual_inamovible</a></code></li>
+<li><code><a title="ortools_explain.model_indexation.constraints.DictIndexConstraints.get_list_variables" href="#ortools_explain.model_indexation.constraints.DictIndexConstraints.get_list_variables">get_list_variables</a></code></li>
+<li><code><a title="ortools_explain.model_indexation.constraints.DictIndexConstraints.get_mb" href="#ortools_explain.model_indexation.constraints.DictIndexConstraints.get_mb">get_mb</a></code></li>
+<li><code><a title="ortools_explain.model_indexation.constraints.DictIndexConstraints.get_usual_block" href="#ortools_explain.model_indexation.constraints.DictIndexConstraints.get_usual_block">get_usual_block</a></code></li>
+<li><code><a title="ortools_explain.model_indexation.constraints.DictIndexConstraints.get_variable_idx" href="#ortools_explain.model_indexation.constraints.DictIndexConstraints.get_variable_idx">get_variable_idx</a></code></li>
+<li><code><a title="ortools_explain.model_indexation.constraints.DictIndexConstraints.has_constant_block" href="#ortools_explain.model_indexation.constraints.DictIndexConstraints.has_constant_block">has_constant_block</a></code></li>
+<li><code><a title="ortools_explain.model_indexation.constraints.DictIndexConstraints.has_mb" href="#ortools_explain.model_indexation.constraints.DictIndexConstraints.has_mb">has_mb</a></code></li>
+<li><code><a title="ortools_explain.model_indexation.constraints.DictIndexConstraints.list_all_macro_blocks" href="#ortools_explain.model_indexation.constraints.DictIndexConstraints.list_all_macro_blocks">list_all_macro_blocks</a></code></li>
+<li><code><a title="ortools_explain.model_indexation.constraints.DictIndexConstraints.list_constant_constraints" href="#ortools_explain.model_indexation.constraints.DictIndexConstraints.list_constant_constraints">list_constant_constraints</a></code></li>
+<li><code><a title="ortools_explain.model_indexation.constraints.DictIndexConstraints.list_macro_block_names" href="#ortools_explain.model_indexation.constraints.DictIndexConstraints.list_macro_block_names">list_macro_block_names</a></code></li>
+<li><code><a title="ortools_explain.model_indexation.constraints.DictIndexConstraints.list_usual_constraints" href="#ortools_explain.model_indexation.constraints.DictIndexConstraints.list_usual_constraints">list_usual_constraints</a></code></li>
+<li><code><a title="ortools_explain.model_indexation.constraints.DictIndexConstraints.print" href="#ortools_explain.model_indexation.constraints.DictIndexConstraints.print">print</a></code></li>
+<li><code><a title="ortools_explain.model_indexation.constraints.DictIndexConstraints.print_status" href="#ortools_explain.model_indexation.constraints.DictIndexConstraints.print_status">print_status</a></code></li>
+<li><code><a title="ortools_explain.model_indexation.constraints.DictIndexConstraints.reset_unamovible" href="#ortools_explain.model_indexation.constraints.DictIndexConstraints.reset_unamovible">reset_unamovible</a></code></li>
+<li><code><a title="ortools_explain.model_indexation.constraints.DictIndexConstraints.return_all_blocks_as_named" href="#ortools_explain.model_indexation.constraints.DictIndexConstraints.return_all_blocks_as_named">return_all_blocks_as_named</a></code></li>
+</ul>
+</li>
+<li>
+<h4><code><a title="ortools_explain.model_indexation.constraints.ElementaryConstraint" href="#ortools_explain.model_indexation.constraints.ElementaryConstraint">ElementaryConstraint</a></code></h4>
+<ul class="two-column">
+<li><code><a title="ortools_explain.model_indexation.constraints.ElementaryConstraint.dim_value" href="#ortools_explain.model_indexation.constraints.ElementaryConstraint.dim_value">dim_value</a></code></li>
+<li><code><a title="ortools_explain.model_indexation.constraints.ElementaryConstraint.dimensions" href="#ortools_explain.model_indexation.constraints.ElementaryConstraint.dimensions">dimensions</a></code></li>
+<li><code><a title="ortools_explain.model_indexation.constraints.ElementaryConstraint.first_id" href="#ortools_explain.model_indexation.constraints.ElementaryConstraint.first_id">first_id</a></code></li>
+<li><code><a title="ortools_explain.model_indexation.constraints.ElementaryConstraint.list_idx" href="#ortools_explain.model_indexation.constraints.ElementaryConstraint.list_idx">list_idx</a></code></li>
+<li><code><a title="ortools_explain.model_indexation.constraints.ElementaryConstraint.name_macroblock" href="#ortools_explain.model_indexation.constraints.ElementaryConstraint.name_macroblock">name_macroblock</a></code></li>
+<li><code><a title="ortools_explain.model_indexation.constraints.ElementaryConstraint.size" href="#ortools_explain.model_indexation.constraints.ElementaryConstraint.size">size</a></code></li>
+</ul>
+</li>
+<li>
+<h4><code><a title="ortools_explain.model_indexation.constraints.MacroBlock" href="#ortools_explain.model_indexation.constraints.MacroBlock">MacroBlock</a></code></h4>
+<ul class="">
+<li><code><a title="ortools_explain.model_indexation.constraints.MacroBlock.add_explanations" href="#ortools_explain.model_indexation.constraints.MacroBlock.add_explanations">add_explanations</a></code></li>
+<li><code><a title="ortools_explain.model_indexation.constraints.MacroBlock.ajoute_ec" href="#ortools_explain.model_indexation.constraints.MacroBlock.ajoute_ec">ajoute_ec</a></code></li>
+<li><code><a title="ortools_explain.model_indexation.constraints.MacroBlock.contenu" href="#ortools_explain.model_indexation.constraints.MacroBlock.contenu">contenu</a></code></li>
+<li><code><a title="ortools_explain.model_indexation.constraints.MacroBlock.dimensions" href="#ortools_explain.model_indexation.constraints.MacroBlock.dimensions">dimensions</a></code></li>
+<li><code><a title="ortools_explain.model_indexation.constraints.MacroBlock.do_not_split_on" href="#ortools_explain.model_indexation.constraints.MacroBlock.do_not_split_on">do_not_split_on</a></code></li>
+<li><code><a title="ortools_explain.model_indexation.constraints.MacroBlock.get_explanation_for_key" href="#ortools_explain.model_indexation.constraints.MacroBlock.get_explanation_for_key">get_explanation_for_key</a></code></li>
+<li><code><a title="ortools_explain.model_indexation.constraints.MacroBlock.is_true_constraint" href="#ortools_explain.model_indexation.constraints.MacroBlock.is_true_constraint">is_true_constraint</a></code></li>
+<li><code><a title="ortools_explain.model_indexation.constraints.MacroBlock.name" href="#ortools_explain.model_indexation.constraints.MacroBlock.name">name</a></code></li>
+<li><code><a title="ortools_explain.model_indexation.constraints.MacroBlock.project_on_dimensions" href="#ortools_explain.model_indexation.constraints.MacroBlock.project_on_dimensions">project_on_dimensions</a></code></li>
+<li><code><a title="ortools_explain.model_indexation.constraints.MacroBlock.size" href="#ortools_explain.model_indexation.constraints.MacroBlock.size">size</a></code></li>
+<li><code><a title="ortools_explain.model_indexation.constraints.MacroBlock.to_named_block" href="#ortools_explain.model_indexation.constraints.MacroBlock.to_named_block">to_named_block</a></code></li>
+</ul>
+</li>
+<li>
+<h4><code><a title="ortools_explain.model_indexation.constraints.ModelisationError" href="#ortools_explain.model_indexation.constraints.ModelisationError">ModelisationError</a></code></h4>
+</li>
+<li>
+<h4><code><a title="ortools_explain.model_indexation.constraints.NamedBlock" href="#ortools_explain.model_indexation.constraints.NamedBlock">NamedBlock</a></code></h4>
+<ul class="">
+<li><code><a title="ortools_explain.model_indexation.constraints.NamedBlock.can_be_split" href="#ortools_explain.model_indexation.constraints.NamedBlock.can_be_split">can_be_split</a></code></li>
+<li><code><a title="ortools_explain.model_indexation.constraints.NamedBlock.contenu" href="#ortools_explain.model_indexation.constraints.NamedBlock.contenu">contenu</a></code></li>
+<li><code><a title="ortools_explain.model_indexation.constraints.NamedBlock.dimensions" href="#ortools_explain.model_indexation.constraints.NamedBlock.dimensions">dimensions</a></code></li>
+<li><code><a title="ortools_explain.model_indexation.constraints.NamedBlock.elegant_name" href="#ortools_explain.model_indexation.constraints.NamedBlock.elegant_name">elegant_name</a></code></li>
+<li><code><a title="ortools_explain.model_indexation.constraints.NamedBlock.is_true_constraint" href="#ortools_explain.model_indexation.constraints.NamedBlock.is_true_constraint">is_true_constraint</a></code></li>
+<li><code><a title="ortools_explain.model_indexation.constraints.NamedBlock.name" href="#ortools_explain.model_indexation.constraints.NamedBlock.name">name</a></code></li>
+<li><code><a title="ortools_explain.model_indexation.constraints.NamedBlock.remove_dim_to_split" href="#ortools_explain.model_indexation.constraints.NamedBlock.remove_dim_to_split">remove_dim_to_split</a></code></li>
+<li><code><a title="ortools_explain.model_indexation.constraints.NamedBlock.size" href="#ortools_explain.model_indexation.constraints.NamedBlock.size">size</a></code></li>
+<li><code><a title="ortools_explain.model_indexation.constraints.NamedBlock.split_on_next_dimension" href="#ortools_explain.model_indexation.constraints.NamedBlock.split_on_next_dimension">split_on_next_dimension</a></code></li>
+<li><code><a title="ortools_explain.model_indexation.constraints.NamedBlock.to_dict" href="#ortools_explain.model_indexation.constraints.NamedBlock.to_dict">to_dict</a></code></li>
+<li><code><a title="ortools_explain.model_indexation.constraints.NamedBlock.type_bloc" href="#ortools_explain.model_indexation.constraints.NamedBlock.type_bloc">type_bloc</a></code></li>
+</ul>
+</li>
+<li>
+<h4><code><a title="ortools_explain.model_indexation.constraints.UsualConstraint" href="#ortools_explain.model_indexation.constraints.UsualConstraint">UsualConstraint</a></code></h4>
+<ul class="">
+<li><code><a title="ortools_explain.model_indexation.constraints.UsualConstraint.add_id" href="#ortools_explain.model_indexation.constraints.UsualConstraint.add_id">add_id</a></code></li>
+<li><code><a title="ortools_explain.model_indexation.constraints.UsualConstraint.list_idx" href="#ortools_explain.model_indexation.constraints.UsualConstraint.list_idx">list_idx</a></code></li>
+</ul>
+</li>
+</ul>
+</li>
+</ul>
+</nav>
+</main>
+<footer id="footer">
+<p>Generated by <a href="https://pdoc3.github.io/pdoc" title="pdoc: Python API documentation generator"><cite>pdoc</cite> 0.10.0</a>.</p>
+</footer>
+</body>
+</html>

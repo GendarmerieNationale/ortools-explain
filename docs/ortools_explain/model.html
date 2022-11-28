@@ -1,0 +1,1759 @@
+<!doctype html>
+<html lang="en">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1, minimum-scale=1" />
+<meta name="generator" content="pdoc 0.10.0" />
+<title>ortools_explain.model API documentation</title>
+<meta name="description" content="Defines a SuperModel class that overrides cp_model and enables you to name constraints, add relaxable constraints, define
+multiple objectives..." />
+<link rel="preload stylesheet" as="style" href="https://cdnjs.cloudflare.com/ajax/libs/10up-sanitize.css/11.0.1/sanitize.min.css" integrity="sha256-PK9q560IAAa6WVRRh76LtCaI8pjTJ2z11v0miyNNjrs=" crossorigin>
+<link rel="preload stylesheet" as="style" href="https://cdnjs.cloudflare.com/ajax/libs/10up-sanitize.css/11.0.1/typography.min.css" integrity="sha256-7l/o7C8jubJiy74VsKTidCy1yBkRtiUGbVkYBylBqUg=" crossorigin>
+<link rel="stylesheet preload" as="style" href="https://cdnjs.cloudflare.com/ajax/libs/highlight.js/10.1.1/styles/github.min.css" crossorigin>
+<style>:root{--highlight-color:#fe9}.flex{display:flex !important}body{line-height:1.5em}#content{padding:20px}#sidebar{padding:30px;overflow:hidden}#sidebar > *:last-child{margin-bottom:2cm}.http-server-breadcrumbs{font-size:130%;margin:0 0 15px 0}#footer{font-size:.75em;padding:5px 30px;border-top:1px solid #ddd;text-align:right}#footer p{margin:0 0 0 1em;display:inline-block}#footer p:last-child{margin-right:30px}h1,h2,h3,h4,h5{font-weight:300}h1{font-size:2.5em;line-height:1.1em}h2{font-size:1.75em;margin:1em 0 .50em 0}h3{font-size:1.4em;margin:25px 0 10px 0}h4{margin:0;font-size:105%}h1:target,h2:target,h3:target,h4:target,h5:target,h6:target{background:var(--highlight-color);padding:.2em 0}a{color:#058;text-decoration:none;transition:color .3s ease-in-out}a:hover{color:#e82}.title code{font-weight:bold}h2[id^="header-"]{margin-top:2em}.ident{color:#900}pre code{background:#f8f8f8;font-size:.8em;line-height:1.4em}code{background:#f2f2f1;padding:1px 4px;overflow-wrap:break-word}h1 code{background:transparent}pre{background:#f8f8f8;border:0;border-top:1px solid #ccc;border-bottom:1px solid #ccc;margin:1em 0;padding:1ex}#http-server-module-list{display:flex;flex-flow:column}#http-server-module-list div{display:flex}#http-server-module-list dt{min-width:10%}#http-server-module-list p{margin-top:0}.toc ul,#index{list-style-type:none;margin:0;padding:0}#index code{background:transparent}#index h3{border-bottom:1px solid #ddd}#index ul{padding:0}#index h4{margin-top:.6em;font-weight:bold}@media (min-width:200ex){#index .two-column{column-count:2}}@media (min-width:300ex){#index .two-column{column-count:3}}dl{margin-bottom:2em}dl dl:last-child{margin-bottom:4em}dd{margin:0 0 1em 3em}#header-classes + dl > dd{margin-bottom:3em}dd dd{margin-left:2em}dd p{margin:10px 0}.name{background:#eee;font-weight:bold;font-size:.85em;padding:5px 10px;display:inline-block;min-width:40%}.name:hover{background:#e0e0e0}dt:target .name{background:var(--highlight-color)}.name > span:first-child{white-space:nowrap}.name.class > span:nth-child(2){margin-left:.4em}.inherited{color:#999;border-left:5px solid #eee;padding-left:1em}.inheritance em{font-style:normal;font-weight:bold}.desc h2{font-weight:400;font-size:1.25em}.desc h3{font-size:1em}.desc dt code{background:inherit}.source summary,.git-link-div{color:#666;text-align:right;font-weight:400;font-size:.8em;text-transform:uppercase}.source summary > *{white-space:nowrap;cursor:pointer}.git-link{color:inherit;margin-left:1em}.source pre{max-height:500px;overflow:auto;margin:0}.source pre code{font-size:12px;overflow:visible}.hlist{list-style:none}.hlist li{display:inline}.hlist li:after{content:',\2002'}.hlist li:last-child:after{content:none}.hlist .hlist{display:inline;padding-left:1em}img{max-width:100%}td{padding:0 .5em}.admonition{padding:.1em .5em;margin-bottom:1em}.admonition-title{font-weight:bold}.admonition.note,.admonition.info,.admonition.important{background:#aef}.admonition.todo,.admonition.versionadded,.admonition.tip,.admonition.hint{background:#dfd}.admonition.warning,.admonition.versionchanged,.admonition.deprecated{background:#fd4}.admonition.error,.admonition.danger,.admonition.caution{background:lightpink}</style>
+<style media="screen and (min-width: 700px)">@media screen and (min-width:700px){#sidebar{width:30%;height:100vh;overflow:auto;position:sticky;top:0}#content{width:70%;max-width:100ch;padding:3em 4em;border-left:1px solid #ddd}pre code{font-size:1em}.item .name{font-size:1em}main{display:flex;flex-direction:row-reverse;justify-content:flex-end}.toc ul ul,#index ul{padding-left:1.5em}.toc > ul > li{margin-top:.5em}}</style>
+<style media="print">@media print{#sidebar h1{page-break-before:always}.source{display:none}}@media print{*{background:transparent !important;color:#000 !important;box-shadow:none !important;text-shadow:none !important}a[href]:after{content:" (" attr(href) ")";font-size:90%}a[href][title]:after{content:none}abbr[title]:after{content:" (" attr(title) ")"}.ir a:after,a[href^="javascript:"]:after,a[href^="#"]:after{content:""}pre,blockquote{border:1px solid #999;page-break-inside:avoid}thead{display:table-header-group}tr,img{page-break-inside:avoid}img{max-width:100% !important}@page{margin:0.5cm}p,h2,h3{orphans:3;widows:3}h1,h2,h3,h4,h5,h6{page-break-after:avoid}}</style>
+<script defer src="https://cdnjs.cloudflare.com/ajax/libs/highlight.js/10.1.1/highlight.min.js" integrity="sha256-Uv3H6lx7dJmRfRvH8TH6kJD1TSK1aFcwgx+mdg3epi8=" crossorigin></script>
+<script>window.addEventListener('DOMContentLoaded', () => hljs.initHighlighting())</script>
+</head>
+<body>
+<main>
+<article id="content">
+<header>
+<h1 class="title">Module <code>ortools_explain.model</code></h1>
+</header>
+<section id="section-intro">
+<p>Defines a SuperModel class that overrides cp_model and enables you to name constraints, add relaxable constraints, define
+multiple objectives&hellip;</p>
+<details class="source">
+<summary>
+<span>Expand source code</span>
+</summary>
+<pre><code class="python">&#34;&#34;&#34;
+Defines a SuperModel class that overrides cp_model and enables you to name constraints, add relaxable constraints, define
+multiple objectives...
+&#34;&#34;&#34;
+import logging
+
+from typing import *
+
+from ortools.sat.python.cp_model import BoundedLinearExpression, IntVar
+from ortools.sat.python import cp_model
+
+from ortools_explain.model_indexation.constraints import (
+    DictIndexConstraints,
+    ConstantConstraint,
+    ModelisationError,
+    UsualConstraint,
+)
+from ortools_explain.model_indexation.obvious_conflict import ObviousConflictConstant, ObviousConflictBackground, ObviousConflict, ObviousConflictRaiseError
+from ortools_explain.model_indexation.objective import Objective, MinObjective, MaxObjective, BonusConstraint
+
+from .metric import Metric
+
+logger = logging.getLogger(__name__)
+
+
+class SuperModel(cp_model.CpModel):
+    &#34;&#34;&#34;
+
+    # Summary
+
+    This class is an overlayer of ortools cp_model which enables us to name constraints (useful for negative explainability) and
+    define multiple objectives, including ones consisting of allowing or not the relaxation of a constraint.
+
+    # Negative explainability
+
+    ## *Add* and *AddConstant*
+
+    Functions *Add* and *AddConstant* are called while constructing the model.
+    They will give the module an idea of the structure of the problem so that the module can return which parts of the problem
+    are in conflict if the problem is infeasible.
+
+    Constraints are declared in the following fashion:
+
+    ```
+    model.Add(X[i, j1] + X[i, j2] == 1, &#34;uniqueness_of_job&#34;, person=i)
+    ```
+
+    where &#34;uniqueness_of_job&#34; is the **general type** of the constraint, and &#34;person=i&#34; is the only **dimension**, which key is &#34;person&#34;
+    and which value is i. Constraints can have 0, 1 or several dimensions.
+
+    All the examples below are correct calls of this function:
+
+    ```
+    # It is not mandatory to give type and dimensions. Such constraints are
+    # called &#34;background blocks&#34;, and can never be released
+    model.Add(X[i, j1] + X[i, j2] == 1)
+
+    # Dimensions are not mandatory
+    model.Add(X[i, j1] + X[i, j2] == 1, &#34;uniqueness_of_job&#34;)
+
+    model.Add(X[i, j1] + X[i, j2] == 1, &#34;uniqueness_of_job&#34;, person=i)
+    model.Add(X[i, j1] + X[i, j2] == 1, &#34;uniqueness_of_job&#34;, person=i, first_day=j1)
+    model.Add(X[i, j1] + X[i, j2] == 1, &#34;uniqueness_of_job&#34;, person=i, first_day=j1, second_day=j2)
+    model.Add(X[i, j1] + X[i, j2] == 1, &#34;uniqueness_of_job&#34;, person=i, days=(&#39;{}-{}&#39;.format(j1, j2)))
+    model.Add(X[i, j1] + X[i, j2] == 1, &#34;uniqueness_of_job&#34;, person=i+1)
+    model.Add(X[i, j1] + X[i, j2] == 1, &#34;uniqueness_of_job&#34;, person=&#39;person with id %d&#39;%1)
+    ```
+
+    Constants are specific kinds of constraints. In the basic OR Tools module, constants are defined
+    with *model.NewConstant(value)*.
+
+    In our module, constants are defined in a way that is in most aspects similar to the other constraints, with the *AddConstant* method.
+    Constants that are defined with AddConstant must always be declared as variables beforehand:
+
+    ```
+    X[i, j, k] = model.NewBoolVar(&#39;assignment_{}_{}_{}&#39;.format(i, j, k))
+    model.AddConstant(X[i, j, k], 0, &#34;initial_assignment&#34;, person=i, mission=j)
+    ```
+
+    ## Correct and incorrect implementations
+
+    ```
+    # --- CONSTANTS ---
+
+    # CORRECT - constants can also be defined as background blocks (without general type and dimensions)
+    model.AddConstant(x[i, j], 0)
+
+    # BAD PRACTICE - the implementation below will work but may lead to less precise explanations for infeasible problems
+    # Use implementation above instead
+    x[i, j] = model.NewConstant(0)
+
+    # --- DEFINITION OF DIMENSIONS ---
+
+    # INCORRECT - it is incorrect to give dimensions without a general type
+    model.Add(X[i, j1] + X[i, j2] == 1, person=i)
+
+    # INCORRECT - dimension values cannot contain &#39;{&#39; or &#39;}&#39;
+    model.Add(X[i, j1] + X[i, j2] == 1, &#34;my_type&#34;, my_dimension = &#34;}stupid_value{&#34;)
+
+    # INCORRECT - dimension values must be of hashable type (eg. str, int) and therefore cannot be modifiable objects such as list or dict
+    model.Add(X[i, j1] + X[i, j2] == 1, &#34;my_type&#34;, my_dimension = &#34;[j1, j2]&#34;)
+
+    # CORRECT - dimension values can be anything hashable
+    model.Add(X[i, j1] + X[i, j2] == 1, &#34;my_type&#34;, my_dimension = &#34;(j1, j2)&#34;)
+
+    # --- COMBINATION OF CONSTRAINTS ---
+
+    # CORRECT - several constraints can be given the same type and the same dimensions
+    model.Add(a + b &gt; 0, &#34;sum&#34;, id=a)
+    model.Add(a + c &gt; 0, &#34;sum&#34;, id=a)
+
+    # CORRECT - a variable can be assigned as a constant twice with different values.
+    # (This type of problem is obviously infeasible but the modelization itself is correct)
+    model.AddConstant(pos[0, 0, 1], 1, &#34;position_to_1&#34;)
+    model.AddConstant(pos[0, 0, 1], 0, &#34;position_to_0&#34;)
+
+    # CORRECT - several constants can be declared with the same general type and the same dimensions even if the value is not the same
+    model.AddConstant(pos[0, 0, 1], 1, &#34;position&#34;, x=0, y=0)
+    model.AddConstant(pos[0, 0, 2], 0, &#34;position&#34;, x=0, y=0)
+
+    # INCORRECT - constraints with the same general type must have homogeneous dimensions (same keys)
+    model.Add(a == b, &#34;my_type&#34;)
+    model.Add(c == d, &#34;my_type&#34;, dim1=c)
+
+    # INCORRECT - the same type cannot be given to a usual type of constraint (declared with *Add*) and a constant one (declared with *AddConstant*)
+    model.Add(a == b, &#34;my_type&#34;)
+    model.AddConstant(var, value, &#34;my_type&#34;)
+    ```
+
+    ## *AddExplanation*
+
+    AddExplanation enables you to link a constraint to a natural language explanation that a user can understand.
+
+    Considering the set of constraints:
+    ```
+    for i in list_persons:
+        for j in list_days:
+            model.Add(X[i, j, k1] + X[i, j, k2] &lt;= 1, &#34;no_more_than_one_job&#34;, person=i, day=j)
+    ```
+
+    Depending on the situation, the solver for infeasibility may for instance return one of the following:
+    ```
+    &gt;&gt; &#34;no_more_than_one_job&#34;
+    &gt;&gt; &#34;no_more_than_one_job&#34; (person= p1)
+    &gt;&gt; &#34;no_more_than_one_job&#34; (day= d2)
+    &gt;&gt; &#34;no_more_than_one_job&#34; (person= p1, day= d2)
+    ```
+
+    Which may not be easy to understand.
+
+    By adding the following lines:
+    ```
+    model.AddExplanation(&#34;no_more_than_one_job&#34;,
+    &#34;A person can have no more than one job at any given day&#34;,
+    &#34;{person} can have no more than one job at any given day&#34;,
+    &#34;People can have no more than one job on day {day}&#34;,
+    &#34;{person} can have no more than one job on day {day})
+    ```
+
+    The explanations produced will now be:
+    ```
+    &gt;&gt; &#34;A person can have no more than one job at any given day&#34;
+    &gt;&gt; &#34;p1 can have no more than one job at any given day&#34;
+    &gt;&gt; &#34;People can have no more than one job on day d2&#34;
+    &gt;&gt; &#34;p1 can have no more than one job on day d2&#34;
+    ```
+
+    # Multi-objective modelization
+
+    The module enables you to implement several objectives in an optimization problem, where OR Tools only allows for one.
+
+    Partial objectives are defined with the following functions.
+
+    ```
+    # Adds a constraint that is not mandatory, but will increase the optimization value (here by 50 points) if respected
+    model.AddRelaxableConstraint(assignment[i_1, j] + assignment[i_2, j] == 1, idx= &#34;ops_need&#34;, coef= 50, priority= 1)
+
+    # Adds an objective that must be maximized
+    model.AddMaximumObjective(goal_1, idx= &#34;first goal&#34;, priority= 2)
+
+    # Adds an objective that must be minimized
+    model.AddMinimumObjective(2 * goal_2, idx= &#34;second goal&#34;, priority= 2)
+    ```
+
+    The module will process optimization by increasing rank of priority. Several objectives can be defined for the same priority,
+    in which case they will be combined.
+
+    ## Correct and Incorrect implementations
+
+    ```
+    # INCORRECT - coef must be a positive integer
+    model.AddRelaxableConstraint(x[i_1, j] + x[i_2, j] == 2, idx= &#34;punish combination&#34;, coef= -50, priority= 1)
+    # POSSIBLE CORRECTION:
+    model.AddRelaxableConstraint(x[i_1, j] + x[i_2, j] != 2, idx= &#34;reward no combination&#34;, coef= 50, priority= 1)
+
+    # ALL INCORRECT - priority must be a positive integer
+    model.AddMaximumObjective(my_sum, idx= &#34;combination&#34;, priority= 0)
+    model.AddMaximumObjective(my_sum, idx= &#34;combination&#34;, priority= 0.5)
+    model.AddMaximumObjective(my_sum, idx= &#34;combination&#34;, priority= -1)
+
+    # INCORRECT - Idx must all be distinct with one exception (see next example)
+    model.AddRelaxableConstraint(x[0, 1] + x[0, 2] == 2, idx= &#34;combination&#34;, coef= 50, priority= 1)
+    model.AddMaximumObjective(my_sum, idx= &#34;combination&#34;, priority= 1)
+
+    # CORRECT - Two relaxable constraints can be given the same idx, only if they have same coef and priority
+    model.AddRelaxableConstraint(x[0, 1] + x[0, 2] == 2, idx= &#34;combination&#34;, coef= 50, priority= 1)
+    model.AddRelaxableConstraint(x[1, 1] + x[1, 2] == 2, idx= &#34;combination&#34;, coef= 50, priority= 1)
+
+    # INCORRECT - Same idx and different priorities
+    model.AddRelaxableConstraint(x[0, 1] + x[0, 2] == 2, idx= &#34;combination&#34;, coef= 50, priority= 1)
+    model.AddRelaxableConstraint(x[1, 1] + x[1, 2] == 2, idx= &#34;combination&#34;, coef= 50, priority= 2)
+
+    # INCORRECT - Same idx and different coef
+    model.AddRelaxableConstraint(x[0, 1] + x[0, 2] == 2, idx= &#34;combination&#34;, coef= 50, priority= 1)
+    model.AddRelaxableConstraint(x[1, 1] + x[1, 2] == 2, idx= &#34;combination&#34;, coef= 80, priority= 1)
+    ```
+
+    &#34;&#34;&#34;
+
+    def __init__(self):
+        super().__init__()
+        self._dict_indexing = DictIndexConstraints()
+        self._objective = Objective()
+        self._dico_bool_variables = dict()
+        self._dico_int_variables = dict()
+        self._inner_conflicts = []
+        self._my_metrics = []
+
+    def has_obvious_conflicts(self) -&gt; bool:
+        &#34;&#34;&#34;
+        An *obvious conflict* is a conflict that can be detected during the generation of the model,
+        or just before solving with the *RaiseErrorIf* function.
+
+        *Example:*
+
+        If both the lines below are met while constructing the model, the module will detect the conflict and store it internally.
+        ```
+        model.AddConstant(x[i,j], 1)
+        model.AddConstant(x[i,j], 0)
+        ```
+        &#34;&#34;&#34;
+        return len(self._inner_conflicts) &gt; 0
+
+    def list_obvious_conflicts(self) -&gt; List[ObviousConflict]:
+        &#34;&#34;&#34;
+        Returns the list of obvious conflicts that have been found at this stage
+        &#34;&#34;&#34;
+        return self._inner_conflicts
+
+    def objective(self) -&gt; Objective:
+        &#34;&#34;&#34;
+        ** For internal use only **
+
+        Returns an *Objective* object, which is used for multi-objective optimization and also for local positive explainability
+        &#34;&#34;&#34;
+        return self._objective
+
+    def dict_indexing(self) -&gt; DictIndexConstraints:
+        &#34;&#34;&#34;
+        ** For internal use only **
+
+        Returns the DictIndexConstraints object which is used for negative explainability
+        &#34;&#34;&#34;
+        return self._dict_indexing
+
+    def get_variable(self, id_var) -&gt; Union[IntVar, None]:
+        &#34;&#34;&#34;
+        ** For internal use only **
+
+        Returns the variable at given position in the Proto, for instance to define it as a constant
+        &#34;&#34;&#34;
+        if id_var in self._dico_bool_variables:
+            return self._dico_bool_variables[id_var]
+        if id_var in self._dico_int_variables:
+            return self._dico_int_variables[id_var]
+        return None
+
+    def VarList(self) -&gt; List[IntVar]:
+        &#34;&#34;&#34;
+        ** For internal use only **
+
+        Returns the list of variables currently in the model
+        &#34;&#34;&#34;
+        return list(self._dico_bool_variables.values()) + list(self._dico_int_variables.values())
+
+    def NewBoolVar(self, name):
+        &#34;&#34;&#34;
+        Overlay of cp_model.NewBoolVar that enables us to index the variable
+        &#34;&#34;&#34;
+        x = super().NewBoolVar(name)
+        self.dict_indexing().add_variable(x, len(self.Proto().variables) - 1)
+        self._dico_bool_variables[name] = x
+        return x
+
+    def NewIntVar(self, lb, ub, name):
+        &#34;&#34;&#34;
+        Overlay of cp_model.NewIntVar that enables us to index the variable
+        &#34;&#34;&#34;
+        x = super().NewIntVar(lb, ub, name)
+        self.dict_indexing().add_variable(x, len(self.Proto().variables) - 1)
+        self._dico_int_variables[name] = x
+        return x
+
+    def Add(self, ct: BoundedLinearExpression, name: str = None, **dimensions):
+        &#34;&#34;&#34;
+        Overlay of cp_model.Add that enables you to link a constraint with a name and a dimension.
+
+        **name**: the &#34;general type&#34; of this constraint
+
+        **dict_dimensions**: the dimensions of the constraint block (dictionary containing both keys and values)
+
+        **See top of the file for examples and additional information**
+        &#34;&#34;&#34;
+        if dimensions and not name:
+            raise ModelisationError(&#34;You cannot assign dimensions to a constraint without a general type&#34;)
+
+        if name:
+            self._check_valid_dim(**dimensions)
+
+            my_idx = len(self.Proto().constraints)
+            block = UsualConstraint(name, my_idx, **dimensions)
+            self._dict_indexing.add_usual_constraint(block, my_idx)
+        return super().Add(ct)
+
+    def AddConstant(self, variable: IntVar, default_value: int, name=None, **dimensions) -&gt; None:
+        &#34;&#34;&#34;
+        Method that replaces *model.NewConstant()* and enables you to declare a constant with a name and dimension
+
+        **variable**: variable that will be set to a constant value
+
+        **default_value**: this value
+
+        **name**: the &#34;general type&#34; of this constraint
+
+        **dict_dimensions**: the dimensions of the constraint block (dictionary containing both keys and values)
+
+        **See top of the file for examples and additional information**
+        &#34;&#34;&#34;
+        if dimensions and not name:
+            raise ModelisationError(&#34;You cannot assign dimensions to a constraint without a general type&#34;)
+
+        if name:
+            self._check_valid_dim(**dimensions)
+
+        idx = self.dict_indexing().get_variable_idx(variable)
+        if idx == -1:
+            raise ModelisationError(&#34;Constant {} must be declared as a variable before it is declared as a constant&#34;.format(variable))
+
+        val_bas = self.Proto().variables[idx].domain[0]
+        val_haut = self.Proto().variables[idx].domain[1]
+
+        # We have already set the same variable to a constant value
+        if val_bas == val_haut:
+            val = val_bas
+
+            # We have defined it twice with the same value - no problem but no more work to do
+            if val == default_value:
+                logger.debug(&#34;Variable {} has already been set to the constant value {}&#34;.format(variable, val))
+                return
+            # We have defined it twice with different values - this is an obvious conflict, we record it
+            else:
+                ancienne_cc = None
+                if self.dict_indexing().has_constant_block(idx):
+                    ancienne_cc = self.dict_indexing().get_constant_block(idx)
+
+                if ancienne_cc and name:
+                    cc = ConstantConstraint(name, idx, default_value, (0, 0), **dimensions)
+                    self._inner_conflicts.append(ObviousConflictConstant(ancienne_cc, cc))
+                elif ancienne_cc and not name:
+                    self._inner_conflicts.append(ObviousConflictConstant(ancienne_cc))
+                elif not ancienne_cc and name:
+                    cc = ConstantConstraint(name, idx, default_value, (0, 0), **dimensions)
+                    self._inner_conflicts.append(ObviousConflictConstant(cc))
+                else:
+                    self._inner_conflicts.append(ObviousConflictBackground(variable, val, default_value))
+                return
+
+        else:
+            # On implémente réellement le fait que c&#39;est actuellement une constante
+            default_range = (self.Proto().variables[idx].domain[0], self.Proto().variables[idx].domain[1])
+            self.Proto().variables[idx].domain[:] = [default_value, default_value]
+
+            if name:
+                c = ConstantConstraint(name, idx, default_value, default_range, **dimensions)
+                self._dict_indexing.add_constant_constraint(c, idx)
+
+    def AddExplanation(self, gnl_type, *sentences):
+        &#34;&#34;&#34;Enables you to write an explanation in natural language for users to understand
+
+        **gnl_type**: general type of constraints for which these explanations will be produced
+
+        **sentences**: list of explanations
+
+        **See top of the file for examples and additional information**
+        &#34;&#34;&#34;
+        if gnl_type in self.dict_indexing().list_macro_block_names():
+            self.dict_indexing().get_mb(gnl_type).add_explanations(*sentences)
+        else:
+            logger.info(&#34;The type of constraints \&#34;{}\&#34; does not exist in our model&#34;.format(gnl_type))
+
+    def RaiseErrorIf(self, equation, sentence: str) -&gt; None:
+        &#34;&#34;&#34;Enables us to perform basic checks before launching the solver
+
+        **equation**: If this is true, then we believe the model is always infeasible and we will not even proceed to trying to launch it
+
+        **sentence**: Natural language explanation to produce if an error is lifted at this point
+
+        *RaiseErrorIf* should be called after creating the model and before launching the actual Solve.
+
+        *Example:*
+        ```
+        model.RaiseErrorIf(nb_hours_needed_week &gt; 40 * nb_people_available,
+            sentence= &#34;{} hours are needed this week which is not compatible with a 40h-a-week limit&#34;.format(nb_hours_needed_week))
+        ```
+        &#34;&#34;&#34;
+        if equation:
+            conflict = ObviousConflictRaiseError(equation, sentence)
+            if conflict not in self._inner_conflicts:
+                self._inner_conflicts.append(conflict)
+
+    def AddMetric(self, metric: Metric):
+        &#34;&#34;&#34;
+        Enables you to define metrics you want to compute with every resolution of the problem
+        &#34;&#34;&#34;
+        self._my_metrics.append(metric)
+
+    def Metrics(self) -&gt; List[Metric]:
+        &#34;&#34;&#34;Returns the list of metrics currently stored in the model&#34;&#34;&#34;
+        return self._my_metrics
+
+    def AddRelaxableConstraint(self, expression, idx: str, coef: int, priority: int, must_be_optimal=False):
+        &#34;&#34;&#34;
+        Enables you to define a constraint that is not mandatory but will award points if respected
+
+        **expression**: This constraint
+
+        **idx**: Identifier for this constraint. Idx may not be unique but the same idx
+        can only be given to relaxable constraints of same coef and priority
+
+        **coef**: Bonus that respecting this constraint will grant you
+
+        **priority**: Rank at which this constraint will be decided on
+
+        **must_be_optimal**: If False, the module will enable optimization at the next rank even if the absolute
+        optimum has not be reached, so as to return a result in reasonable time
+
+        **See top of the file for examples and additional information**
+        &#34;&#34;&#34;
+        if coef &lt;= 0:
+            raise ModelisationError(&#34;Coef must be a strictly positive integer&#34;)
+        if priority &lt;= 0:
+            raise ModelisationError(&#34;Priority must be a strictly positive integer&#34;)
+
+        already_built = self.objective().get_id(idx)
+        if already_built:
+            if not isinstance(already_built, BonusConstraint):
+                raise ModelisationError(&#34;The id {} is given both to a relaxable constraint and to another type of objective&#34;.format(idx))
+            old_prio = already_built.priority()
+            old_coef = already_built.coef
+            if old_prio != priority:
+                raise ModelisationError(&#34;Relaxable constraint {} is defined twice with the same name but with different priorities&#34;.format(idx))
+            if old_coef != coef:
+                raise ModelisationError(&#34;Relaxable constraint {} is defined twice with the same name but with different coefficients&#34;.format(idx))
+            already_built.add(self, expression)
+        else:
+            self.objective().add_part_objective(idx, BonusConstraint(self, expression, idx, coef, priority), max_must_be_absolute=must_be_optimal)
+
+    def AddMinimumObjective(self, expression, idx: str, priority: int, must_be_optimal=False):
+        &#34;&#34;&#34;Enables you to define a linear expression as one of the objectives of your model
+
+        **expression**: The expression to minimize
+
+        **idx**: Unique identifier of this partial objective
+
+        **priority**: Rank at which this objective will be minimized
+
+        **must_be_optimal**: If False, the module will enable optimization at the next rank even if the absolute
+        optimum has not be reached, so as to return a result in reasonable time
+
+        **See top of the file for examples and additional information**
+        &#34;&#34;&#34;
+        if priority &lt;= 0:
+            raise ModelisationError(&#34;Priority must be a strictly positive integer&#34;)
+        if self.objective().get_id(idx):
+            raise ModelisationError(&#34;The id {} is given to two different types of objective&#34;.format(idx))
+        self._objective.add_part_objective(idx, MinObjective(expression, idx, priority), max_must_be_absolute=must_be_optimal)
+
+    def AddMaximumObjective(self, expression, idx: str, priority: int, must_be_optimal=False):
+        &#34;&#34;&#34;Enables you to define a linear expression as one of the objectives of your model
+
+        **expression**: The expression to maximize
+
+        **idx**: Unique identifier of this partial objective
+
+        **priority**: Rank at which this objective will be maximized
+
+        **must_be_optimal**: If False, the module will enable optimization at the next rank even if the absolute
+        optimum has not be reached, so as to return a result in reasonable time
+
+        **See top of the file for examples and additional information**
+        &#34;&#34;&#34;
+        if priority &lt;= 0:
+            raise ModelisationError(&#34;Priority must be a strictly positive integer&#34;)
+        if self.objective().get_id(idx):
+            raise ModelisationError(&#34;The id {} is given to two different types of objective&#34;.format(idx))
+        self._objective.add_part_objective(idx, MaxObjective(expression, idx, priority), max_must_be_absolute=must_be_optimal)
+
+    @staticmethod
+    def _check_valid_dim(**dimensions):
+        for d in dimensions.keys():
+            if &#34;{&#34; in d or &#34;}&#34; in d:
+                raise ModelisationError(&#34;Dimension names cannot contain { or }&#34;)
+            val = dimensions[d]
+            if not val.__hash__:
+                raise ModelisationError(&#34;{} is not an acceptable dimension value type&#34;.format(type(val)))</code></pre>
+</details>
+</section>
+<section>
+</section>
+<section>
+</section>
+<section>
+</section>
+<section>
+<h2 class="section-title" id="header-classes">Classes</h2>
+<dl>
+<dt id="ortools_explain.model.SuperModel"><code class="flex name class">
+<span>class <span class="ident">SuperModel</span></span>
+</code></dt>
+<dd>
+<div class="desc"><h1 id="summary">Summary</h1>
+<p>This class is an overlayer of ortools cp_model which enables us to name constraints (useful for negative explainability) and
+define multiple objectives, including ones consisting of allowing or not the relaxation of a constraint.</p>
+<h1 id="negative-explainability">Negative explainability</h1>
+<h2 id="add-and-addconstant"><em>Add</em> and <em>AddConstant</em></h2>
+<p>Functions <em>Add</em> and <em>AddConstant</em> are called while constructing the model.
+They will give the module an idea of the structure of the problem so that the module can return which parts of the problem
+are in conflict if the problem is infeasible.</p>
+<p>Constraints are declared in the following fashion:</p>
+<pre><code>model.Add(X[i, j1] + X[i, j2] == 1, &quot;uniqueness_of_job&quot;, person=i)
+</code></pre>
+<p>where "uniqueness_of_job" is the <strong>general type</strong> of the constraint, and "person=i" is the only <strong>dimension</strong>, which key is "person"
+and which value is i. Constraints can have 0, 1 or several dimensions.</p>
+<p>All the examples below are correct calls of this function:</p>
+<pre><code># It is not mandatory to give type and dimensions. Such constraints are
+# called &quot;background blocks&quot;, and can never be released
+model.Add(X[i, j1] + X[i, j2] == 1)
+
+# Dimensions are not mandatory
+model.Add(X[i, j1] + X[i, j2] == 1, &quot;uniqueness_of_job&quot;)
+
+model.Add(X[i, j1] + X[i, j2] == 1, &quot;uniqueness_of_job&quot;, person=i)
+model.Add(X[i, j1] + X[i, j2] == 1, &quot;uniqueness_of_job&quot;, person=i, first_day=j1)
+model.Add(X[i, j1] + X[i, j2] == 1, &quot;uniqueness_of_job&quot;, person=i, first_day=j1, second_day=j2)
+model.Add(X[i, j1] + X[i, j2] == 1, &quot;uniqueness_of_job&quot;, person=i, days=('{}-{}'.format(j1, j2)))
+model.Add(X[i, j1] + X[i, j2] == 1, &quot;uniqueness_of_job&quot;, person=i+1)
+model.Add(X[i, j1] + X[i, j2] == 1, &quot;uniqueness_of_job&quot;, person='person with id %d'%1)
+</code></pre>
+<p>Constants are specific kinds of constraints. In the basic OR Tools module, constants are defined
+with <em>model.NewConstant(value)</em>.</p>
+<p>In our module, constants are defined in a way that is in most aspects similar to the other constraints, with the <em>AddConstant</em> method.
+Constants that are defined with AddConstant must always be declared as variables beforehand:</p>
+<pre><code>X[i, j, k] = model.NewBoolVar('assignment_{}_{}_{}'.format(i, j, k))
+model.AddConstant(X[i, j, k], 0, &quot;initial_assignment&quot;, person=i, mission=j)
+</code></pre>
+<h2 id="correct-and-incorrect-implementations">Correct and incorrect implementations</h2>
+<pre><code># --- CONSTANTS ---
+
+# CORRECT - constants can also be defined as background blocks (without general type and dimensions)
+model.AddConstant(x[i, j], 0)
+
+# BAD PRACTICE - the implementation below will work but may lead to less precise explanations for infeasible problems
+# Use implementation above instead
+x[i, j] = model.NewConstant(0)
+
+# --- DEFINITION OF DIMENSIONS ---
+
+# INCORRECT - it is incorrect to give dimensions without a general type
+model.Add(X[i, j1] + X[i, j2] == 1, person=i)
+
+# INCORRECT - dimension values cannot contain '{' or '}'
+model.Add(X[i, j1] + X[i, j2] == 1, &quot;my_type&quot;, my_dimension = &quot;}stupid_value{&quot;)
+
+# INCORRECT - dimension values must be of hashable type (eg. str, int) and therefore cannot be modifiable objects such as list or dict
+model.Add(X[i, j1] + X[i, j2] == 1, &quot;my_type&quot;, my_dimension = &quot;[j1, j2]&quot;)
+
+# CORRECT - dimension values can be anything hashable
+model.Add(X[i, j1] + X[i, j2] == 1, &quot;my_type&quot;, my_dimension = &quot;(j1, j2)&quot;)
+
+# --- COMBINATION OF CONSTRAINTS ---
+
+# CORRECT - several constraints can be given the same type and the same dimensions
+model.Add(a + b &gt; 0, &quot;sum&quot;, id=a)
+model.Add(a + c &gt; 0, &quot;sum&quot;, id=a)
+
+# CORRECT - a variable can be assigned as a constant twice with different values.
+# (This type of problem is obviously infeasible but the modelization itself is correct)
+model.AddConstant(pos[0, 0, 1], 1, &quot;position_to_1&quot;)
+model.AddConstant(pos[0, 0, 1], 0, &quot;position_to_0&quot;)
+
+# CORRECT - several constants can be declared with the same general type and the same dimensions even if the value is not the same
+model.AddConstant(pos[0, 0, 1], 1, &quot;position&quot;, x=0, y=0)
+model.AddConstant(pos[0, 0, 2], 0, &quot;position&quot;, x=0, y=0)
+
+# INCORRECT - constraints with the same general type must have homogeneous dimensions (same keys)
+model.Add(a == b, &quot;my_type&quot;)
+model.Add(c == d, &quot;my_type&quot;, dim1=c)
+
+# INCORRECT - the same type cannot be given to a usual type of constraint (declared with *Add*) and a constant one (declared with *AddConstant*)
+model.Add(a == b, &quot;my_type&quot;)
+model.AddConstant(var, value, &quot;my_type&quot;)
+</code></pre>
+<h2 id="addexplanation"><em>AddExplanation</em></h2>
+<p>AddExplanation enables you to link a constraint to a natural language explanation that a user can understand.</p>
+<p>Considering the set of constraints:</p>
+<pre><code>for i in list_persons:
+    for j in list_days:
+        model.Add(X[i, j, k1] + X[i, j, k2] &lt;= 1, &quot;no_more_than_one_job&quot;, person=i, day=j)
+</code></pre>
+<p>Depending on the situation, the solver for infeasibility may for instance return one of the following:</p>
+<pre><code>&gt;&gt; &quot;no_more_than_one_job&quot;
+&gt;&gt; &quot;no_more_than_one_job&quot; (person= p1)
+&gt;&gt; &quot;no_more_than_one_job&quot; (day= d2)
+&gt;&gt; &quot;no_more_than_one_job&quot; (person= p1, day= d2)
+</code></pre>
+<p>Which may not be easy to understand.</p>
+<p>By adding the following lines:</p>
+<pre><code>model.AddExplanation(&quot;no_more_than_one_job&quot;,
+&quot;A person can have no more than one job at any given day&quot;,
+&quot;{person} can have no more than one job at any given day&quot;,
+&quot;People can have no more than one job on day {day}&quot;,
+&quot;{person} can have no more than one job on day {day})
+</code></pre>
+<p>The explanations produced will now be:</p>
+<pre><code>&gt;&gt; &quot;A person can have no more than one job at any given day&quot;
+&gt;&gt; &quot;p1 can have no more than one job at any given day&quot;
+&gt;&gt; &quot;People can have no more than one job on day d2&quot;
+&gt;&gt; &quot;p1 can have no more than one job on day d2&quot;
+</code></pre>
+<h1 id="multi-objective-modelization">Multi-objective modelization</h1>
+<p>The module enables you to implement several objectives in an optimization problem, where OR Tools only allows for one.</p>
+<p>Partial objectives are defined with the following functions.</p>
+<pre><code># Adds a constraint that is not mandatory, but will increase the optimization value (here by 50 points) if respected
+model.AddRelaxableConstraint(assignment[i_1, j] + assignment[i_2, j] == 1, idx= &quot;ops_need&quot;, coef= 50, priority= 1)
+
+# Adds an objective that must be maximized
+model.AddMaximumObjective(goal_1, idx= &quot;first goal&quot;, priority= 2)
+
+# Adds an objective that must be minimized
+model.AddMinimumObjective(2 * goal_2, idx= &quot;second goal&quot;, priority= 2)
+</code></pre>
+<p>The module will process optimization by increasing rank of priority. Several objectives can be defined for the same priority,
+in which case they will be combined.</p>
+<h2 id="correct-and-incorrect-implementations_1">Correct and Incorrect implementations</h2>
+<pre><code># INCORRECT - coef must be a positive integer
+model.AddRelaxableConstraint(x[i_1, j] + x[i_2, j] == 2, idx= &quot;punish combination&quot;, coef= -50, priority= 1)
+# POSSIBLE CORRECTION:
+model.AddRelaxableConstraint(x[i_1, j] + x[i_2, j] != 2, idx= &quot;reward no combination&quot;, coef= 50, priority= 1)
+
+# ALL INCORRECT - priority must be a positive integer
+model.AddMaximumObjective(my_sum, idx= &quot;combination&quot;, priority= 0)
+model.AddMaximumObjective(my_sum, idx= &quot;combination&quot;, priority= 0.5)
+model.AddMaximumObjective(my_sum, idx= &quot;combination&quot;, priority= -1)
+
+# INCORRECT - Idx must all be distinct with one exception (see next example)
+model.AddRelaxableConstraint(x[0, 1] + x[0, 2] == 2, idx= &quot;combination&quot;, coef= 50, priority= 1)
+model.AddMaximumObjective(my_sum, idx= &quot;combination&quot;, priority= 1)
+
+# CORRECT - Two relaxable constraints can be given the same idx, only if they have same coef and priority
+model.AddRelaxableConstraint(x[0, 1] + x[0, 2] == 2, idx= &quot;combination&quot;, coef= 50, priority= 1)
+model.AddRelaxableConstraint(x[1, 1] + x[1, 2] == 2, idx= &quot;combination&quot;, coef= 50, priority= 1)
+
+# INCORRECT - Same idx and different priorities
+model.AddRelaxableConstraint(x[0, 1] + x[0, 2] == 2, idx= &quot;combination&quot;, coef= 50, priority= 1)
+model.AddRelaxableConstraint(x[1, 1] + x[1, 2] == 2, idx= &quot;combination&quot;, coef= 50, priority= 2)
+
+# INCORRECT - Same idx and different coef
+model.AddRelaxableConstraint(x[0, 1] + x[0, 2] == 2, idx= &quot;combination&quot;, coef= 50, priority= 1)
+model.AddRelaxableConstraint(x[1, 1] + x[1, 2] == 2, idx= &quot;combination&quot;, coef= 80, priority= 1)
+</code></pre></div>
+<details class="source">
+<summary>
+<span>Expand source code</span>
+</summary>
+<pre><code class="python">class SuperModel(cp_model.CpModel):
+    &#34;&#34;&#34;
+
+    # Summary
+
+    This class is an overlayer of ortools cp_model which enables us to name constraints (useful for negative explainability) and
+    define multiple objectives, including ones consisting of allowing or not the relaxation of a constraint.
+
+    # Negative explainability
+
+    ## *Add* and *AddConstant*
+
+    Functions *Add* and *AddConstant* are called while constructing the model.
+    They will give the module an idea of the structure of the problem so that the module can return which parts of the problem
+    are in conflict if the problem is infeasible.
+
+    Constraints are declared in the following fashion:
+
+    ```
+    model.Add(X[i, j1] + X[i, j2] == 1, &#34;uniqueness_of_job&#34;, person=i)
+    ```
+
+    where &#34;uniqueness_of_job&#34; is the **general type** of the constraint, and &#34;person=i&#34; is the only **dimension**, which key is &#34;person&#34;
+    and which value is i. Constraints can have 0, 1 or several dimensions.
+
+    All the examples below are correct calls of this function:
+
+    ```
+    # It is not mandatory to give type and dimensions. Such constraints are
+    # called &#34;background blocks&#34;, and can never be released
+    model.Add(X[i, j1] + X[i, j2] == 1)
+
+    # Dimensions are not mandatory
+    model.Add(X[i, j1] + X[i, j2] == 1, &#34;uniqueness_of_job&#34;)
+
+    model.Add(X[i, j1] + X[i, j2] == 1, &#34;uniqueness_of_job&#34;, person=i)
+    model.Add(X[i, j1] + X[i, j2] == 1, &#34;uniqueness_of_job&#34;, person=i, first_day=j1)
+    model.Add(X[i, j1] + X[i, j2] == 1, &#34;uniqueness_of_job&#34;, person=i, first_day=j1, second_day=j2)
+    model.Add(X[i, j1] + X[i, j2] == 1, &#34;uniqueness_of_job&#34;, person=i, days=(&#39;{}-{}&#39;.format(j1, j2)))
+    model.Add(X[i, j1] + X[i, j2] == 1, &#34;uniqueness_of_job&#34;, person=i+1)
+    model.Add(X[i, j1] + X[i, j2] == 1, &#34;uniqueness_of_job&#34;, person=&#39;person with id %d&#39;%1)
+    ```
+
+    Constants are specific kinds of constraints. In the basic OR Tools module, constants are defined
+    with *model.NewConstant(value)*.
+
+    In our module, constants are defined in a way that is in most aspects similar to the other constraints, with the *AddConstant* method.
+    Constants that are defined with AddConstant must always be declared as variables beforehand:
+
+    ```
+    X[i, j, k] = model.NewBoolVar(&#39;assignment_{}_{}_{}&#39;.format(i, j, k))
+    model.AddConstant(X[i, j, k], 0, &#34;initial_assignment&#34;, person=i, mission=j)
+    ```
+
+    ## Correct and incorrect implementations
+
+    ```
+    # --- CONSTANTS ---
+
+    # CORRECT - constants can also be defined as background blocks (without general type and dimensions)
+    model.AddConstant(x[i, j], 0)
+
+    # BAD PRACTICE - the implementation below will work but may lead to less precise explanations for infeasible problems
+    # Use implementation above instead
+    x[i, j] = model.NewConstant(0)
+
+    # --- DEFINITION OF DIMENSIONS ---
+
+    # INCORRECT - it is incorrect to give dimensions without a general type
+    model.Add(X[i, j1] + X[i, j2] == 1, person=i)
+
+    # INCORRECT - dimension values cannot contain &#39;{&#39; or &#39;}&#39;
+    model.Add(X[i, j1] + X[i, j2] == 1, &#34;my_type&#34;, my_dimension = &#34;}stupid_value{&#34;)
+
+    # INCORRECT - dimension values must be of hashable type (eg. str, int) and therefore cannot be modifiable objects such as list or dict
+    model.Add(X[i, j1] + X[i, j2] == 1, &#34;my_type&#34;, my_dimension = &#34;[j1, j2]&#34;)
+
+    # CORRECT - dimension values can be anything hashable
+    model.Add(X[i, j1] + X[i, j2] == 1, &#34;my_type&#34;, my_dimension = &#34;(j1, j2)&#34;)
+
+    # --- COMBINATION OF CONSTRAINTS ---
+
+    # CORRECT - several constraints can be given the same type and the same dimensions
+    model.Add(a + b &gt; 0, &#34;sum&#34;, id=a)
+    model.Add(a + c &gt; 0, &#34;sum&#34;, id=a)
+
+    # CORRECT - a variable can be assigned as a constant twice with different values.
+    # (This type of problem is obviously infeasible but the modelization itself is correct)
+    model.AddConstant(pos[0, 0, 1], 1, &#34;position_to_1&#34;)
+    model.AddConstant(pos[0, 0, 1], 0, &#34;position_to_0&#34;)
+
+    # CORRECT - several constants can be declared with the same general type and the same dimensions even if the value is not the same
+    model.AddConstant(pos[0, 0, 1], 1, &#34;position&#34;, x=0, y=0)
+    model.AddConstant(pos[0, 0, 2], 0, &#34;position&#34;, x=0, y=0)
+
+    # INCORRECT - constraints with the same general type must have homogeneous dimensions (same keys)
+    model.Add(a == b, &#34;my_type&#34;)
+    model.Add(c == d, &#34;my_type&#34;, dim1=c)
+
+    # INCORRECT - the same type cannot be given to a usual type of constraint (declared with *Add*) and a constant one (declared with *AddConstant*)
+    model.Add(a == b, &#34;my_type&#34;)
+    model.AddConstant(var, value, &#34;my_type&#34;)
+    ```
+
+    ## *AddExplanation*
+
+    AddExplanation enables you to link a constraint to a natural language explanation that a user can understand.
+
+    Considering the set of constraints:
+    ```
+    for i in list_persons:
+        for j in list_days:
+            model.Add(X[i, j, k1] + X[i, j, k2] &lt;= 1, &#34;no_more_than_one_job&#34;, person=i, day=j)
+    ```
+
+    Depending on the situation, the solver for infeasibility may for instance return one of the following:
+    ```
+    &gt;&gt; &#34;no_more_than_one_job&#34;
+    &gt;&gt; &#34;no_more_than_one_job&#34; (person= p1)
+    &gt;&gt; &#34;no_more_than_one_job&#34; (day= d2)
+    &gt;&gt; &#34;no_more_than_one_job&#34; (person= p1, day= d2)
+    ```
+
+    Which may not be easy to understand.
+
+    By adding the following lines:
+    ```
+    model.AddExplanation(&#34;no_more_than_one_job&#34;,
+    &#34;A person can have no more than one job at any given day&#34;,
+    &#34;{person} can have no more than one job at any given day&#34;,
+    &#34;People can have no more than one job on day {day}&#34;,
+    &#34;{person} can have no more than one job on day {day})
+    ```
+
+    The explanations produced will now be:
+    ```
+    &gt;&gt; &#34;A person can have no more than one job at any given day&#34;
+    &gt;&gt; &#34;p1 can have no more than one job at any given day&#34;
+    &gt;&gt; &#34;People can have no more than one job on day d2&#34;
+    &gt;&gt; &#34;p1 can have no more than one job on day d2&#34;
+    ```
+
+    # Multi-objective modelization
+
+    The module enables you to implement several objectives in an optimization problem, where OR Tools only allows for one.
+
+    Partial objectives are defined with the following functions.
+
+    ```
+    # Adds a constraint that is not mandatory, but will increase the optimization value (here by 50 points) if respected
+    model.AddRelaxableConstraint(assignment[i_1, j] + assignment[i_2, j] == 1, idx= &#34;ops_need&#34;, coef= 50, priority= 1)
+
+    # Adds an objective that must be maximized
+    model.AddMaximumObjective(goal_1, idx= &#34;first goal&#34;, priority= 2)
+
+    # Adds an objective that must be minimized
+    model.AddMinimumObjective(2 * goal_2, idx= &#34;second goal&#34;, priority= 2)
+    ```
+
+    The module will process optimization by increasing rank of priority. Several objectives can be defined for the same priority,
+    in which case they will be combined.
+
+    ## Correct and Incorrect implementations
+
+    ```
+    # INCORRECT - coef must be a positive integer
+    model.AddRelaxableConstraint(x[i_1, j] + x[i_2, j] == 2, idx= &#34;punish combination&#34;, coef= -50, priority= 1)
+    # POSSIBLE CORRECTION:
+    model.AddRelaxableConstraint(x[i_1, j] + x[i_2, j] != 2, idx= &#34;reward no combination&#34;, coef= 50, priority= 1)
+
+    # ALL INCORRECT - priority must be a positive integer
+    model.AddMaximumObjective(my_sum, idx= &#34;combination&#34;, priority= 0)
+    model.AddMaximumObjective(my_sum, idx= &#34;combination&#34;, priority= 0.5)
+    model.AddMaximumObjective(my_sum, idx= &#34;combination&#34;, priority= -1)
+
+    # INCORRECT - Idx must all be distinct with one exception (see next example)
+    model.AddRelaxableConstraint(x[0, 1] + x[0, 2] == 2, idx= &#34;combination&#34;, coef= 50, priority= 1)
+    model.AddMaximumObjective(my_sum, idx= &#34;combination&#34;, priority= 1)
+
+    # CORRECT - Two relaxable constraints can be given the same idx, only if they have same coef and priority
+    model.AddRelaxableConstraint(x[0, 1] + x[0, 2] == 2, idx= &#34;combination&#34;, coef= 50, priority= 1)
+    model.AddRelaxableConstraint(x[1, 1] + x[1, 2] == 2, idx= &#34;combination&#34;, coef= 50, priority= 1)
+
+    # INCORRECT - Same idx and different priorities
+    model.AddRelaxableConstraint(x[0, 1] + x[0, 2] == 2, idx= &#34;combination&#34;, coef= 50, priority= 1)
+    model.AddRelaxableConstraint(x[1, 1] + x[1, 2] == 2, idx= &#34;combination&#34;, coef= 50, priority= 2)
+
+    # INCORRECT - Same idx and different coef
+    model.AddRelaxableConstraint(x[0, 1] + x[0, 2] == 2, idx= &#34;combination&#34;, coef= 50, priority= 1)
+    model.AddRelaxableConstraint(x[1, 1] + x[1, 2] == 2, idx= &#34;combination&#34;, coef= 80, priority= 1)
+    ```
+
+    &#34;&#34;&#34;
+
+    def __init__(self):
+        super().__init__()
+        self._dict_indexing = DictIndexConstraints()
+        self._objective = Objective()
+        self._dico_bool_variables = dict()
+        self._dico_int_variables = dict()
+        self._inner_conflicts = []
+        self._my_metrics = []
+
+    def has_obvious_conflicts(self) -&gt; bool:
+        &#34;&#34;&#34;
+        An *obvious conflict* is a conflict that can be detected during the generation of the model,
+        or just before solving with the *RaiseErrorIf* function.
+
+        *Example:*
+
+        If both the lines below are met while constructing the model, the module will detect the conflict and store it internally.
+        ```
+        model.AddConstant(x[i,j], 1)
+        model.AddConstant(x[i,j], 0)
+        ```
+        &#34;&#34;&#34;
+        return len(self._inner_conflicts) &gt; 0
+
+    def list_obvious_conflicts(self) -&gt; List[ObviousConflict]:
+        &#34;&#34;&#34;
+        Returns the list of obvious conflicts that have been found at this stage
+        &#34;&#34;&#34;
+        return self._inner_conflicts
+
+    def objective(self) -&gt; Objective:
+        &#34;&#34;&#34;
+        ** For internal use only **
+
+        Returns an *Objective* object, which is used for multi-objective optimization and also for local positive explainability
+        &#34;&#34;&#34;
+        return self._objective
+
+    def dict_indexing(self) -&gt; DictIndexConstraints:
+        &#34;&#34;&#34;
+        ** For internal use only **
+
+        Returns the DictIndexConstraints object which is used for negative explainability
+        &#34;&#34;&#34;
+        return self._dict_indexing
+
+    def get_variable(self, id_var) -&gt; Union[IntVar, None]:
+        &#34;&#34;&#34;
+        ** For internal use only **
+
+        Returns the variable at given position in the Proto, for instance to define it as a constant
+        &#34;&#34;&#34;
+        if id_var in self._dico_bool_variables:
+            return self._dico_bool_variables[id_var]
+        if id_var in self._dico_int_variables:
+            return self._dico_int_variables[id_var]
+        return None
+
+    def VarList(self) -&gt; List[IntVar]:
+        &#34;&#34;&#34;
+        ** For internal use only **
+
+        Returns the list of variables currently in the model
+        &#34;&#34;&#34;
+        return list(self._dico_bool_variables.values()) + list(self._dico_int_variables.values())
+
+    def NewBoolVar(self, name):
+        &#34;&#34;&#34;
+        Overlay of cp_model.NewBoolVar that enables us to index the variable
+        &#34;&#34;&#34;
+        x = super().NewBoolVar(name)
+        self.dict_indexing().add_variable(x, len(self.Proto().variables) - 1)
+        self._dico_bool_variables[name] = x
+        return x
+
+    def NewIntVar(self, lb, ub, name):
+        &#34;&#34;&#34;
+        Overlay of cp_model.NewIntVar that enables us to index the variable
+        &#34;&#34;&#34;
+        x = super().NewIntVar(lb, ub, name)
+        self.dict_indexing().add_variable(x, len(self.Proto().variables) - 1)
+        self._dico_int_variables[name] = x
+        return x
+
+    def Add(self, ct: BoundedLinearExpression, name: str = None, **dimensions):
+        &#34;&#34;&#34;
+        Overlay of cp_model.Add that enables you to link a constraint with a name and a dimension.
+
+        **name**: the &#34;general type&#34; of this constraint
+
+        **dict_dimensions**: the dimensions of the constraint block (dictionary containing both keys and values)
+
+        **See top of the file for examples and additional information**
+        &#34;&#34;&#34;
+        if dimensions and not name:
+            raise ModelisationError(&#34;You cannot assign dimensions to a constraint without a general type&#34;)
+
+        if name:
+            self._check_valid_dim(**dimensions)
+
+            my_idx = len(self.Proto().constraints)
+            block = UsualConstraint(name, my_idx, **dimensions)
+            self._dict_indexing.add_usual_constraint(block, my_idx)
+        return super().Add(ct)
+
+    def AddConstant(self, variable: IntVar, default_value: int, name=None, **dimensions) -&gt; None:
+        &#34;&#34;&#34;
+        Method that replaces *model.NewConstant()* and enables you to declare a constant with a name and dimension
+
+        **variable**: variable that will be set to a constant value
+
+        **default_value**: this value
+
+        **name**: the &#34;general type&#34; of this constraint
+
+        **dict_dimensions**: the dimensions of the constraint block (dictionary containing both keys and values)
+
+        **See top of the file for examples and additional information**
+        &#34;&#34;&#34;
+        if dimensions and not name:
+            raise ModelisationError(&#34;You cannot assign dimensions to a constraint without a general type&#34;)
+
+        if name:
+            self._check_valid_dim(**dimensions)
+
+        idx = self.dict_indexing().get_variable_idx(variable)
+        if idx == -1:
+            raise ModelisationError(&#34;Constant {} must be declared as a variable before it is declared as a constant&#34;.format(variable))
+
+        val_bas = self.Proto().variables[idx].domain[0]
+        val_haut = self.Proto().variables[idx].domain[1]
+
+        # We have already set the same variable to a constant value
+        if val_bas == val_haut:
+            val = val_bas
+
+            # We have defined it twice with the same value - no problem but no more work to do
+            if val == default_value:
+                logger.debug(&#34;Variable {} has already been set to the constant value {}&#34;.format(variable, val))
+                return
+            # We have defined it twice with different values - this is an obvious conflict, we record it
+            else:
+                ancienne_cc = None
+                if self.dict_indexing().has_constant_block(idx):
+                    ancienne_cc = self.dict_indexing().get_constant_block(idx)
+
+                if ancienne_cc and name:
+                    cc = ConstantConstraint(name, idx, default_value, (0, 0), **dimensions)
+                    self._inner_conflicts.append(ObviousConflictConstant(ancienne_cc, cc))
+                elif ancienne_cc and not name:
+                    self._inner_conflicts.append(ObviousConflictConstant(ancienne_cc))
+                elif not ancienne_cc and name:
+                    cc = ConstantConstraint(name, idx, default_value, (0, 0), **dimensions)
+                    self._inner_conflicts.append(ObviousConflictConstant(cc))
+                else:
+                    self._inner_conflicts.append(ObviousConflictBackground(variable, val, default_value))
+                return
+
+        else:
+            # On implémente réellement le fait que c&#39;est actuellement une constante
+            default_range = (self.Proto().variables[idx].domain[0], self.Proto().variables[idx].domain[1])
+            self.Proto().variables[idx].domain[:] = [default_value, default_value]
+
+            if name:
+                c = ConstantConstraint(name, idx, default_value, default_range, **dimensions)
+                self._dict_indexing.add_constant_constraint(c, idx)
+
+    def AddExplanation(self, gnl_type, *sentences):
+        &#34;&#34;&#34;Enables you to write an explanation in natural language for users to understand
+
+        **gnl_type**: general type of constraints for which these explanations will be produced
+
+        **sentences**: list of explanations
+
+        **See top of the file for examples and additional information**
+        &#34;&#34;&#34;
+        if gnl_type in self.dict_indexing().list_macro_block_names():
+            self.dict_indexing().get_mb(gnl_type).add_explanations(*sentences)
+        else:
+            logger.info(&#34;The type of constraints \&#34;{}\&#34; does not exist in our model&#34;.format(gnl_type))
+
+    def RaiseErrorIf(self, equation, sentence: str) -&gt; None:
+        &#34;&#34;&#34;Enables us to perform basic checks before launching the solver
+
+        **equation**: If this is true, then we believe the model is always infeasible and we will not even proceed to trying to launch it
+
+        **sentence**: Natural language explanation to produce if an error is lifted at this point
+
+        *RaiseErrorIf* should be called after creating the model and before launching the actual Solve.
+
+        *Example:*
+        ```
+        model.RaiseErrorIf(nb_hours_needed_week &gt; 40 * nb_people_available,
+            sentence= &#34;{} hours are needed this week which is not compatible with a 40h-a-week limit&#34;.format(nb_hours_needed_week))
+        ```
+        &#34;&#34;&#34;
+        if equation:
+            conflict = ObviousConflictRaiseError(equation, sentence)
+            if conflict not in self._inner_conflicts:
+                self._inner_conflicts.append(conflict)
+
+    def AddMetric(self, metric: Metric):
+        &#34;&#34;&#34;
+        Enables you to define metrics you want to compute with every resolution of the problem
+        &#34;&#34;&#34;
+        self._my_metrics.append(metric)
+
+    def Metrics(self) -&gt; List[Metric]:
+        &#34;&#34;&#34;Returns the list of metrics currently stored in the model&#34;&#34;&#34;
+        return self._my_metrics
+
+    def AddRelaxableConstraint(self, expression, idx: str, coef: int, priority: int, must_be_optimal=False):
+        &#34;&#34;&#34;
+        Enables you to define a constraint that is not mandatory but will award points if respected
+
+        **expression**: This constraint
+
+        **idx**: Identifier for this constraint. Idx may not be unique but the same idx
+        can only be given to relaxable constraints of same coef and priority
+
+        **coef**: Bonus that respecting this constraint will grant you
+
+        **priority**: Rank at which this constraint will be decided on
+
+        **must_be_optimal**: If False, the module will enable optimization at the next rank even if the absolute
+        optimum has not be reached, so as to return a result in reasonable time
+
+        **See top of the file for examples and additional information**
+        &#34;&#34;&#34;
+        if coef &lt;= 0:
+            raise ModelisationError(&#34;Coef must be a strictly positive integer&#34;)
+        if priority &lt;= 0:
+            raise ModelisationError(&#34;Priority must be a strictly positive integer&#34;)
+
+        already_built = self.objective().get_id(idx)
+        if already_built:
+            if not isinstance(already_built, BonusConstraint):
+                raise ModelisationError(&#34;The id {} is given both to a relaxable constraint and to another type of objective&#34;.format(idx))
+            old_prio = already_built.priority()
+            old_coef = already_built.coef
+            if old_prio != priority:
+                raise ModelisationError(&#34;Relaxable constraint {} is defined twice with the same name but with different priorities&#34;.format(idx))
+            if old_coef != coef:
+                raise ModelisationError(&#34;Relaxable constraint {} is defined twice with the same name but with different coefficients&#34;.format(idx))
+            already_built.add(self, expression)
+        else:
+            self.objective().add_part_objective(idx, BonusConstraint(self, expression, idx, coef, priority), max_must_be_absolute=must_be_optimal)
+
+    def AddMinimumObjective(self, expression, idx: str, priority: int, must_be_optimal=False):
+        &#34;&#34;&#34;Enables you to define a linear expression as one of the objectives of your model
+
+        **expression**: The expression to minimize
+
+        **idx**: Unique identifier of this partial objective
+
+        **priority**: Rank at which this objective will be minimized
+
+        **must_be_optimal**: If False, the module will enable optimization at the next rank even if the absolute
+        optimum has not be reached, so as to return a result in reasonable time
+
+        **See top of the file for examples and additional information**
+        &#34;&#34;&#34;
+        if priority &lt;= 0:
+            raise ModelisationError(&#34;Priority must be a strictly positive integer&#34;)
+        if self.objective().get_id(idx):
+            raise ModelisationError(&#34;The id {} is given to two different types of objective&#34;.format(idx))
+        self._objective.add_part_objective(idx, MinObjective(expression, idx, priority), max_must_be_absolute=must_be_optimal)
+
+    def AddMaximumObjective(self, expression, idx: str, priority: int, must_be_optimal=False):
+        &#34;&#34;&#34;Enables you to define a linear expression as one of the objectives of your model
+
+        **expression**: The expression to maximize
+
+        **idx**: Unique identifier of this partial objective
+
+        **priority**: Rank at which this objective will be maximized
+
+        **must_be_optimal**: If False, the module will enable optimization at the next rank even if the absolute
+        optimum has not be reached, so as to return a result in reasonable time
+
+        **See top of the file for examples and additional information**
+        &#34;&#34;&#34;
+        if priority &lt;= 0:
+            raise ModelisationError(&#34;Priority must be a strictly positive integer&#34;)
+        if self.objective().get_id(idx):
+            raise ModelisationError(&#34;The id {} is given to two different types of objective&#34;.format(idx))
+        self._objective.add_part_objective(idx, MaxObjective(expression, idx, priority), max_must_be_absolute=must_be_optimal)
+
+    @staticmethod
+    def _check_valid_dim(**dimensions):
+        for d in dimensions.keys():
+            if &#34;{&#34; in d or &#34;}&#34; in d:
+                raise ModelisationError(&#34;Dimension names cannot contain { or }&#34;)
+            val = dimensions[d]
+            if not val.__hash__:
+                raise ModelisationError(&#34;{} is not an acceptable dimension value type&#34;.format(type(val)))</code></pre>
+</details>
+<h3>Ancestors</h3>
+<ul class="hlist">
+<li>ortools.sat.python.cp_model.CpModel</li>
+</ul>
+<h3>Methods</h3>
+<dl>
+<dt id="ortools_explain.model.SuperModel.Add"><code class="name flex">
+<span>def <span class="ident">Add</span></span>(<span>self, ct: ortools.sat.python.cp_model.BoundedLinearExpression, name: str = None, **dimensions)</span>
+</code></dt>
+<dd>
+<div class="desc"><p>Overlay of cp_model.Add that enables you to link a constraint with a name and a dimension.</p>
+<p><strong>name</strong>: the "general type" of this constraint</p>
+<p><strong>dict_dimensions</strong>: the dimensions of the constraint block (dictionary containing both keys and values)</p>
+<p><strong>See top of the file for examples and additional information</strong></p></div>
+<details class="source">
+<summary>
+<span>Expand source code</span>
+</summary>
+<pre><code class="python">def Add(self, ct: BoundedLinearExpression, name: str = None, **dimensions):
+    &#34;&#34;&#34;
+    Overlay of cp_model.Add that enables you to link a constraint with a name and a dimension.
+
+    **name**: the &#34;general type&#34; of this constraint
+
+    **dict_dimensions**: the dimensions of the constraint block (dictionary containing both keys and values)
+
+    **See top of the file for examples and additional information**
+    &#34;&#34;&#34;
+    if dimensions and not name:
+        raise ModelisationError(&#34;You cannot assign dimensions to a constraint without a general type&#34;)
+
+    if name:
+        self._check_valid_dim(**dimensions)
+
+        my_idx = len(self.Proto().constraints)
+        block = UsualConstraint(name, my_idx, **dimensions)
+        self._dict_indexing.add_usual_constraint(block, my_idx)
+    return super().Add(ct)</code></pre>
+</details>
+</dd>
+<dt id="ortools_explain.model.SuperModel.AddConstant"><code class="name flex">
+<span>def <span class="ident">AddConstant</span></span>(<span>self, variable: ortools.sat.python.cp_model.IntVar, default_value: int, name=None, **dimensions) ‑> None</span>
+</code></dt>
+<dd>
+<div class="desc"><p>Method that replaces <em>model.NewConstant()</em> and enables you to declare a constant with a name and dimension</p>
+<p><strong>variable</strong>: variable that will be set to a constant value</p>
+<p><strong>default_value</strong>: this value</p>
+<p><strong>name</strong>: the "general type" of this constraint</p>
+<p><strong>dict_dimensions</strong>: the dimensions of the constraint block (dictionary containing both keys and values)</p>
+<p><strong>See top of the file for examples and additional information</strong></p></div>
+<details class="source">
+<summary>
+<span>Expand source code</span>
+</summary>
+<pre><code class="python">def AddConstant(self, variable: IntVar, default_value: int, name=None, **dimensions) -&gt; None:
+    &#34;&#34;&#34;
+    Method that replaces *model.NewConstant()* and enables you to declare a constant with a name and dimension
+
+    **variable**: variable that will be set to a constant value
+
+    **default_value**: this value
+
+    **name**: the &#34;general type&#34; of this constraint
+
+    **dict_dimensions**: the dimensions of the constraint block (dictionary containing both keys and values)
+
+    **See top of the file for examples and additional information**
+    &#34;&#34;&#34;
+    if dimensions and not name:
+        raise ModelisationError(&#34;You cannot assign dimensions to a constraint without a general type&#34;)
+
+    if name:
+        self._check_valid_dim(**dimensions)
+
+    idx = self.dict_indexing().get_variable_idx(variable)
+    if idx == -1:
+        raise ModelisationError(&#34;Constant {} must be declared as a variable before it is declared as a constant&#34;.format(variable))
+
+    val_bas = self.Proto().variables[idx].domain[0]
+    val_haut = self.Proto().variables[idx].domain[1]
+
+    # We have already set the same variable to a constant value
+    if val_bas == val_haut:
+        val = val_bas
+
+        # We have defined it twice with the same value - no problem but no more work to do
+        if val == default_value:
+            logger.debug(&#34;Variable {} has already been set to the constant value {}&#34;.format(variable, val))
+            return
+        # We have defined it twice with different values - this is an obvious conflict, we record it
+        else:
+            ancienne_cc = None
+            if self.dict_indexing().has_constant_block(idx):
+                ancienne_cc = self.dict_indexing().get_constant_block(idx)
+
+            if ancienne_cc and name:
+                cc = ConstantConstraint(name, idx, default_value, (0, 0), **dimensions)
+                self._inner_conflicts.append(ObviousConflictConstant(ancienne_cc, cc))
+            elif ancienne_cc and not name:
+                self._inner_conflicts.append(ObviousConflictConstant(ancienne_cc))
+            elif not ancienne_cc and name:
+                cc = ConstantConstraint(name, idx, default_value, (0, 0), **dimensions)
+                self._inner_conflicts.append(ObviousConflictConstant(cc))
+            else:
+                self._inner_conflicts.append(ObviousConflictBackground(variable, val, default_value))
+            return
+
+    else:
+        # On implémente réellement le fait que c&#39;est actuellement une constante
+        default_range = (self.Proto().variables[idx].domain[0], self.Proto().variables[idx].domain[1])
+        self.Proto().variables[idx].domain[:] = [default_value, default_value]
+
+        if name:
+            c = ConstantConstraint(name, idx, default_value, default_range, **dimensions)
+            self._dict_indexing.add_constant_constraint(c, idx)</code></pre>
+</details>
+</dd>
+<dt id="ortools_explain.model.SuperModel.AddExplanation"><code class="name flex">
+<span>def <span class="ident">AddExplanation</span></span>(<span>self, gnl_type, *sentences)</span>
+</code></dt>
+<dd>
+<div class="desc"><p>Enables you to write an explanation in natural language for users to understand</p>
+<p><strong>gnl_type</strong>: general type of constraints for which these explanations will be produced</p>
+<p><strong>sentences</strong>: list of explanations</p>
+<p><strong>See top of the file for examples and additional information</strong></p></div>
+<details class="source">
+<summary>
+<span>Expand source code</span>
+</summary>
+<pre><code class="python">def AddExplanation(self, gnl_type, *sentences):
+    &#34;&#34;&#34;Enables you to write an explanation in natural language for users to understand
+
+    **gnl_type**: general type of constraints for which these explanations will be produced
+
+    **sentences**: list of explanations
+
+    **See top of the file for examples and additional information**
+    &#34;&#34;&#34;
+    if gnl_type in self.dict_indexing().list_macro_block_names():
+        self.dict_indexing().get_mb(gnl_type).add_explanations(*sentences)
+    else:
+        logger.info(&#34;The type of constraints \&#34;{}\&#34; does not exist in our model&#34;.format(gnl_type))</code></pre>
+</details>
+</dd>
+<dt id="ortools_explain.model.SuperModel.AddMaximumObjective"><code class="name flex">
+<span>def <span class="ident">AddMaximumObjective</span></span>(<span>self, expression, idx: str, priority: int, must_be_optimal=False)</span>
+</code></dt>
+<dd>
+<div class="desc"><p>Enables you to define a linear expression as one of the objectives of your model</p>
+<p><strong>expression</strong>: The expression to maximize</p>
+<p><strong>idx</strong>: Unique identifier of this partial objective</p>
+<p><strong>priority</strong>: Rank at which this objective will be maximized</p>
+<p><strong>must_be_optimal</strong>: If False, the module will enable optimization at the next rank even if the absolute
+optimum has not be reached, so as to return a result in reasonable time</p>
+<p><strong>See top of the file for examples and additional information</strong></p></div>
+<details class="source">
+<summary>
+<span>Expand source code</span>
+</summary>
+<pre><code class="python">def AddMaximumObjective(self, expression, idx: str, priority: int, must_be_optimal=False):
+    &#34;&#34;&#34;Enables you to define a linear expression as one of the objectives of your model
+
+    **expression**: The expression to maximize
+
+    **idx**: Unique identifier of this partial objective
+
+    **priority**: Rank at which this objective will be maximized
+
+    **must_be_optimal**: If False, the module will enable optimization at the next rank even if the absolute
+    optimum has not be reached, so as to return a result in reasonable time
+
+    **See top of the file for examples and additional information**
+    &#34;&#34;&#34;
+    if priority &lt;= 0:
+        raise ModelisationError(&#34;Priority must be a strictly positive integer&#34;)
+    if self.objective().get_id(idx):
+        raise ModelisationError(&#34;The id {} is given to two different types of objective&#34;.format(idx))
+    self._objective.add_part_objective(idx, MaxObjective(expression, idx, priority), max_must_be_absolute=must_be_optimal)</code></pre>
+</details>
+</dd>
+<dt id="ortools_explain.model.SuperModel.AddMetric"><code class="name flex">
+<span>def <span class="ident">AddMetric</span></span>(<span>self, metric: <a title="ortools_explain.metric.Metric" href="metric.html#ortools_explain.metric.Metric">Metric</a>)</span>
+</code></dt>
+<dd>
+<div class="desc"><p>Enables you to define metrics you want to compute with every resolution of the problem</p></div>
+<details class="source">
+<summary>
+<span>Expand source code</span>
+</summary>
+<pre><code class="python">def AddMetric(self, metric: Metric):
+    &#34;&#34;&#34;
+    Enables you to define metrics you want to compute with every resolution of the problem
+    &#34;&#34;&#34;
+    self._my_metrics.append(metric)</code></pre>
+</details>
+</dd>
+<dt id="ortools_explain.model.SuperModel.AddMinimumObjective"><code class="name flex">
+<span>def <span class="ident">AddMinimumObjective</span></span>(<span>self, expression, idx: str, priority: int, must_be_optimal=False)</span>
+</code></dt>
+<dd>
+<div class="desc"><p>Enables you to define a linear expression as one of the objectives of your model</p>
+<p><strong>expression</strong>: The expression to minimize</p>
+<p><strong>idx</strong>: Unique identifier of this partial objective</p>
+<p><strong>priority</strong>: Rank at which this objective will be minimized</p>
+<p><strong>must_be_optimal</strong>: If False, the module will enable optimization at the next rank even if the absolute
+optimum has not be reached, so as to return a result in reasonable time</p>
+<p><strong>See top of the file for examples and additional information</strong></p></div>
+<details class="source">
+<summary>
+<span>Expand source code</span>
+</summary>
+<pre><code class="python">def AddMinimumObjective(self, expression, idx: str, priority: int, must_be_optimal=False):
+    &#34;&#34;&#34;Enables you to define a linear expression as one of the objectives of your model
+
+    **expression**: The expression to minimize
+
+    **idx**: Unique identifier of this partial objective
+
+    **priority**: Rank at which this objective will be minimized
+
+    **must_be_optimal**: If False, the module will enable optimization at the next rank even if the absolute
+    optimum has not be reached, so as to return a result in reasonable time
+
+    **See top of the file for examples and additional information**
+    &#34;&#34;&#34;
+    if priority &lt;= 0:
+        raise ModelisationError(&#34;Priority must be a strictly positive integer&#34;)
+    if self.objective().get_id(idx):
+        raise ModelisationError(&#34;The id {} is given to two different types of objective&#34;.format(idx))
+    self._objective.add_part_objective(idx, MinObjective(expression, idx, priority), max_must_be_absolute=must_be_optimal)</code></pre>
+</details>
+</dd>
+<dt id="ortools_explain.model.SuperModel.AddRelaxableConstraint"><code class="name flex">
+<span>def <span class="ident">AddRelaxableConstraint</span></span>(<span>self, expression, idx: str, coef: int, priority: int, must_be_optimal=False)</span>
+</code></dt>
+<dd>
+<div class="desc"><p>Enables you to define a constraint that is not mandatory but will award points if respected</p>
+<p><strong>expression</strong>: This constraint</p>
+<p><strong>idx</strong>: Identifier for this constraint. Idx may not be unique but the same idx
+can only be given to relaxable constraints of same coef and priority</p>
+<p><strong>coef</strong>: Bonus that respecting this constraint will grant you</p>
+<p><strong>priority</strong>: Rank at which this constraint will be decided on</p>
+<p><strong>must_be_optimal</strong>: If False, the module will enable optimization at the next rank even if the absolute
+optimum has not be reached, so as to return a result in reasonable time</p>
+<p><strong>See top of the file for examples and additional information</strong></p></div>
+<details class="source">
+<summary>
+<span>Expand source code</span>
+</summary>
+<pre><code class="python">def AddRelaxableConstraint(self, expression, idx: str, coef: int, priority: int, must_be_optimal=False):
+    &#34;&#34;&#34;
+    Enables you to define a constraint that is not mandatory but will award points if respected
+
+    **expression**: This constraint
+
+    **idx**: Identifier for this constraint. Idx may not be unique but the same idx
+    can only be given to relaxable constraints of same coef and priority
+
+    **coef**: Bonus that respecting this constraint will grant you
+
+    **priority**: Rank at which this constraint will be decided on
+
+    **must_be_optimal**: If False, the module will enable optimization at the next rank even if the absolute
+    optimum has not be reached, so as to return a result in reasonable time
+
+    **See top of the file for examples and additional information**
+    &#34;&#34;&#34;
+    if coef &lt;= 0:
+        raise ModelisationError(&#34;Coef must be a strictly positive integer&#34;)
+    if priority &lt;= 0:
+        raise ModelisationError(&#34;Priority must be a strictly positive integer&#34;)
+
+    already_built = self.objective().get_id(idx)
+    if already_built:
+        if not isinstance(already_built, BonusConstraint):
+            raise ModelisationError(&#34;The id {} is given both to a relaxable constraint and to another type of objective&#34;.format(idx))
+        old_prio = already_built.priority()
+        old_coef = already_built.coef
+        if old_prio != priority:
+            raise ModelisationError(&#34;Relaxable constraint {} is defined twice with the same name but with different priorities&#34;.format(idx))
+        if old_coef != coef:
+            raise ModelisationError(&#34;Relaxable constraint {} is defined twice with the same name but with different coefficients&#34;.format(idx))
+        already_built.add(self, expression)
+    else:
+        self.objective().add_part_objective(idx, BonusConstraint(self, expression, idx, coef, priority), max_must_be_absolute=must_be_optimal)</code></pre>
+</details>
+</dd>
+<dt id="ortools_explain.model.SuperModel.Metrics"><code class="name flex">
+<span>def <span class="ident">Metrics</span></span>(<span>self) ‑> List[<a title="ortools_explain.metric.Metric" href="metric.html#ortools_explain.metric.Metric">Metric</a>]</span>
+</code></dt>
+<dd>
+<div class="desc"><p>Returns the list of metrics currently stored in the model</p></div>
+<details class="source">
+<summary>
+<span>Expand source code</span>
+</summary>
+<pre><code class="python">def Metrics(self) -&gt; List[Metric]:
+    &#34;&#34;&#34;Returns the list of metrics currently stored in the model&#34;&#34;&#34;
+    return self._my_metrics</code></pre>
+</details>
+</dd>
+<dt id="ortools_explain.model.SuperModel.NewBoolVar"><code class="name flex">
+<span>def <span class="ident">NewBoolVar</span></span>(<span>self, name)</span>
+</code></dt>
+<dd>
+<div class="desc"><p>Overlay of cp_model.NewBoolVar that enables us to index the variable</p></div>
+<details class="source">
+<summary>
+<span>Expand source code</span>
+</summary>
+<pre><code class="python">def NewBoolVar(self, name):
+    &#34;&#34;&#34;
+    Overlay of cp_model.NewBoolVar that enables us to index the variable
+    &#34;&#34;&#34;
+    x = super().NewBoolVar(name)
+    self.dict_indexing().add_variable(x, len(self.Proto().variables) - 1)
+    self._dico_bool_variables[name] = x
+    return x</code></pre>
+</details>
+</dd>
+<dt id="ortools_explain.model.SuperModel.NewIntVar"><code class="name flex">
+<span>def <span class="ident">NewIntVar</span></span>(<span>self, lb, ub, name)</span>
+</code></dt>
+<dd>
+<div class="desc"><p>Overlay of cp_model.NewIntVar that enables us to index the variable</p></div>
+<details class="source">
+<summary>
+<span>Expand source code</span>
+</summary>
+<pre><code class="python">def NewIntVar(self, lb, ub, name):
+    &#34;&#34;&#34;
+    Overlay of cp_model.NewIntVar that enables us to index the variable
+    &#34;&#34;&#34;
+    x = super().NewIntVar(lb, ub, name)
+    self.dict_indexing().add_variable(x, len(self.Proto().variables) - 1)
+    self._dico_int_variables[name] = x
+    return x</code></pre>
+</details>
+</dd>
+<dt id="ortools_explain.model.SuperModel.RaiseErrorIf"><code class="name flex">
+<span>def <span class="ident">RaiseErrorIf</span></span>(<span>self, equation, sentence: str) ‑> None</span>
+</code></dt>
+<dd>
+<div class="desc"><p>Enables us to perform basic checks before launching the solver</p>
+<p><strong>equation</strong>: If this is true, then we believe the model is always infeasible and we will not even proceed to trying to launch it</p>
+<p><strong>sentence</strong>: Natural language explanation to produce if an error is lifted at this point</p>
+<p><em>RaiseErrorIf</em> should be called after creating the model and before launching the actual Solve.</p>
+<p><em>Example:</em></p>
+<pre><code>model.RaiseErrorIf(nb_hours_needed_week &gt; 40 * nb_people_available,
+    sentence= &quot;{} hours are needed this week which is not compatible with a 40h-a-week limit&quot;.format(nb_hours_needed_week))
+</code></pre></div>
+<details class="source">
+<summary>
+<span>Expand source code</span>
+</summary>
+<pre><code class="python">def RaiseErrorIf(self, equation, sentence: str) -&gt; None:
+    &#34;&#34;&#34;Enables us to perform basic checks before launching the solver
+
+    **equation**: If this is true, then we believe the model is always infeasible and we will not even proceed to trying to launch it
+
+    **sentence**: Natural language explanation to produce if an error is lifted at this point
+
+    *RaiseErrorIf* should be called after creating the model and before launching the actual Solve.
+
+    *Example:*
+    ```
+    model.RaiseErrorIf(nb_hours_needed_week &gt; 40 * nb_people_available,
+        sentence= &#34;{} hours are needed this week which is not compatible with a 40h-a-week limit&#34;.format(nb_hours_needed_week))
+    ```
+    &#34;&#34;&#34;
+    if equation:
+        conflict = ObviousConflictRaiseError(equation, sentence)
+        if conflict not in self._inner_conflicts:
+            self._inner_conflicts.append(conflict)</code></pre>
+</details>
+</dd>
+<dt id="ortools_explain.model.SuperModel.VarList"><code class="name flex">
+<span>def <span class="ident">VarList</span></span>(<span>self) ‑> List[ortools.sat.python.cp_model.IntVar]</span>
+</code></dt>
+<dd>
+<div class="desc"><p><strong> For internal use only </strong></p>
+<p>Returns the list of variables currently in the model</p></div>
+<details class="source">
+<summary>
+<span>Expand source code</span>
+</summary>
+<pre><code class="python">def VarList(self) -&gt; List[IntVar]:
+    &#34;&#34;&#34;
+    ** For internal use only **
+
+    Returns the list of variables currently in the model
+    &#34;&#34;&#34;
+    return list(self._dico_bool_variables.values()) + list(self._dico_int_variables.values())</code></pre>
+</details>
+</dd>
+<dt id="ortools_explain.model.SuperModel.dict_indexing"><code class="name flex">
+<span>def <span class="ident">dict_indexing</span></span>(<span>self) ‑> <a title="ortools_explain.model_indexation.constraints.DictIndexConstraints" href="model_indexation/constraints.html#ortools_explain.model_indexation.constraints.DictIndexConstraints">DictIndexConstraints</a></span>
+</code></dt>
+<dd>
+<div class="desc"><p><strong> For internal use only </strong></p>
+<p>Returns the DictIndexConstraints object which is used for negative explainability</p></div>
+<details class="source">
+<summary>
+<span>Expand source code</span>
+</summary>
+<pre><code class="python">def dict_indexing(self) -&gt; DictIndexConstraints:
+    &#34;&#34;&#34;
+    ** For internal use only **
+
+    Returns the DictIndexConstraints object which is used for negative explainability
+    &#34;&#34;&#34;
+    return self._dict_indexing</code></pre>
+</details>
+</dd>
+<dt id="ortools_explain.model.SuperModel.get_variable"><code class="name flex">
+<span>def <span class="ident">get_variable</span></span>(<span>self, id_var) ‑> Optional[ortools.sat.python.cp_model.IntVar]</span>
+</code></dt>
+<dd>
+<div class="desc"><p><strong> For internal use only </strong></p>
+<p>Returns the variable at given position in the Proto, for instance to define it as a constant</p></div>
+<details class="source">
+<summary>
+<span>Expand source code</span>
+</summary>
+<pre><code class="python">def get_variable(self, id_var) -&gt; Union[IntVar, None]:
+    &#34;&#34;&#34;
+    ** For internal use only **
+
+    Returns the variable at given position in the Proto, for instance to define it as a constant
+    &#34;&#34;&#34;
+    if id_var in self._dico_bool_variables:
+        return self._dico_bool_variables[id_var]
+    if id_var in self._dico_int_variables:
+        return self._dico_int_variables[id_var]
+    return None</code></pre>
+</details>
+</dd>
+<dt id="ortools_explain.model.SuperModel.has_obvious_conflicts"><code class="name flex">
+<span>def <span class="ident">has_obvious_conflicts</span></span>(<span>self) ‑> bool</span>
+</code></dt>
+<dd>
+<div class="desc"><p>An <em>obvious conflict</em> is a conflict that can be detected during the generation of the model,
+or just before solving with the <em>RaiseErrorIf</em> function.</p>
+<p><em>Example:</em></p>
+<p>If both the lines below are met while constructing the model, the module will detect the conflict and store it internally.</p>
+<pre><code>model.AddConstant(x[i,j], 1)
+model.AddConstant(x[i,j], 0)
+</code></pre></div>
+<details class="source">
+<summary>
+<span>Expand source code</span>
+</summary>
+<pre><code class="python">def has_obvious_conflicts(self) -&gt; bool:
+    &#34;&#34;&#34;
+    An *obvious conflict* is a conflict that can be detected during the generation of the model,
+    or just before solving with the *RaiseErrorIf* function.
+
+    *Example:*
+
+    If both the lines below are met while constructing the model, the module will detect the conflict and store it internally.
+    ```
+    model.AddConstant(x[i,j], 1)
+    model.AddConstant(x[i,j], 0)
+    ```
+    &#34;&#34;&#34;
+    return len(self._inner_conflicts) &gt; 0</code></pre>
+</details>
+</dd>
+<dt id="ortools_explain.model.SuperModel.list_obvious_conflicts"><code class="name flex">
+<span>def <span class="ident">list_obvious_conflicts</span></span>(<span>self) ‑> List[<a title="ortools_explain.model_indexation.obvious_conflict.ObviousConflict" href="model_indexation/obvious_conflict.html#ortools_explain.model_indexation.obvious_conflict.ObviousConflict">ObviousConflict</a>]</span>
+</code></dt>
+<dd>
+<div class="desc"><p>Returns the list of obvious conflicts that have been found at this stage</p></div>
+<details class="source">
+<summary>
+<span>Expand source code</span>
+</summary>
+<pre><code class="python">def list_obvious_conflicts(self) -&gt; List[ObviousConflict]:
+    &#34;&#34;&#34;
+    Returns the list of obvious conflicts that have been found at this stage
+    &#34;&#34;&#34;
+    return self._inner_conflicts</code></pre>
+</details>
+</dd>
+<dt id="ortools_explain.model.SuperModel.objective"><code class="name flex">
+<span>def <span class="ident">objective</span></span>(<span>self) ‑> <a title="ortools_explain.model_indexation.objective.Objective" href="model_indexation/objective.html#ortools_explain.model_indexation.objective.Objective">Objective</a></span>
+</code></dt>
+<dd>
+<div class="desc"><p><strong> For internal use only </strong></p>
+<p>Returns an <em>Objective</em> object, which is used for multi-objective optimization and also for local positive explainability</p></div>
+<details class="source">
+<summary>
+<span>Expand source code</span>
+</summary>
+<pre><code class="python">def objective(self) -&gt; Objective:
+    &#34;&#34;&#34;
+    ** For internal use only **
+
+    Returns an *Objective* object, which is used for multi-objective optimization and also for local positive explainability
+    &#34;&#34;&#34;
+    return self._objective</code></pre>
+</details>
+</dd>
+</dl>
+</dd>
+</dl>
+</section>
+</article>
+<nav id="sidebar">
+<h1>Index</h1>
+<div class="toc">
+<ul></ul>
+</div>
+<ul id="index">
+<li><h3>Super-module</h3>
+<ul>
+<li><code><a title="ortools_explain" href="index.html">ortools_explain</a></code></li>
+</ul>
+</li>
+<li><h3><a href="#header-classes">Classes</a></h3>
+<ul>
+<li>
+<h4><code><a title="ortools_explain.model.SuperModel" href="#ortools_explain.model.SuperModel">SuperModel</a></code></h4>
+<ul class="">
+<li><code><a title="ortools_explain.model.SuperModel.Add" href="#ortools_explain.model.SuperModel.Add">Add</a></code></li>
+<li><code><a title="ortools_explain.model.SuperModel.AddConstant" href="#ortools_explain.model.SuperModel.AddConstant">AddConstant</a></code></li>
+<li><code><a title="ortools_explain.model.SuperModel.AddExplanation" href="#ortools_explain.model.SuperModel.AddExplanation">AddExplanation</a></code></li>
+<li><code><a title="ortools_explain.model.SuperModel.AddMaximumObjective" href="#ortools_explain.model.SuperModel.AddMaximumObjective">AddMaximumObjective</a></code></li>
+<li><code><a title="ortools_explain.model.SuperModel.AddMetric" href="#ortools_explain.model.SuperModel.AddMetric">AddMetric</a></code></li>
+<li><code><a title="ortools_explain.model.SuperModel.AddMinimumObjective" href="#ortools_explain.model.SuperModel.AddMinimumObjective">AddMinimumObjective</a></code></li>
+<li><code><a title="ortools_explain.model.SuperModel.AddRelaxableConstraint" href="#ortools_explain.model.SuperModel.AddRelaxableConstraint">AddRelaxableConstraint</a></code></li>
+<li><code><a title="ortools_explain.model.SuperModel.Metrics" href="#ortools_explain.model.SuperModel.Metrics">Metrics</a></code></li>
+<li><code><a title="ortools_explain.model.SuperModel.NewBoolVar" href="#ortools_explain.model.SuperModel.NewBoolVar">NewBoolVar</a></code></li>
+<li><code><a title="ortools_explain.model.SuperModel.NewIntVar" href="#ortools_explain.model.SuperModel.NewIntVar">NewIntVar</a></code></li>
+<li><code><a title="ortools_explain.model.SuperModel.RaiseErrorIf" href="#ortools_explain.model.SuperModel.RaiseErrorIf">RaiseErrorIf</a></code></li>
+<li><code><a title="ortools_explain.model.SuperModel.VarList" href="#ortools_explain.model.SuperModel.VarList">VarList</a></code></li>
+<li><code><a title="ortools_explain.model.SuperModel.dict_indexing" href="#ortools_explain.model.SuperModel.dict_indexing">dict_indexing</a></code></li>
+<li><code><a title="ortools_explain.model.SuperModel.get_variable" href="#ortools_explain.model.SuperModel.get_variable">get_variable</a></code></li>
+<li><code><a title="ortools_explain.model.SuperModel.has_obvious_conflicts" href="#ortools_explain.model.SuperModel.has_obvious_conflicts">has_obvious_conflicts</a></code></li>
+<li><code><a title="ortools_explain.model.SuperModel.list_obvious_conflicts" href="#ortools_explain.model.SuperModel.list_obvious_conflicts">list_obvious_conflicts</a></code></li>
+<li><code><a title="ortools_explain.model.SuperModel.objective" href="#ortools_explain.model.SuperModel.objective">objective</a></code></li>
+</ul>
+</li>
+</ul>
+</li>
+</ul>
+</nav>
+</main>
+<footer id="footer">
+<p>Generated by <a href="https://pdoc3.github.io/pdoc" title="pdoc: Python API documentation generator"><cite>pdoc</cite> 0.10.0</a>.</p>
+</footer>
+</body>
+</html>

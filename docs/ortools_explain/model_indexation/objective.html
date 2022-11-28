@@ -1,0 +1,732 @@
+<!doctype html>
+<html lang="en">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1, minimum-scale=1" />
+<meta name="generator" content="pdoc 0.10.0" />
+<title>ortools_explain.model_indexation.objective API documentation</title>
+<meta name="description" content="Those classes enable us to represent a problem with multiple objectives
+Partial objectives are either maximised or minimised sequentially or combined …" />
+<link rel="preload stylesheet" as="style" href="https://cdnjs.cloudflare.com/ajax/libs/10up-sanitize.css/11.0.1/sanitize.min.css" integrity="sha256-PK9q560IAAa6WVRRh76LtCaI8pjTJ2z11v0miyNNjrs=" crossorigin>
+<link rel="preload stylesheet" as="style" href="https://cdnjs.cloudflare.com/ajax/libs/10up-sanitize.css/11.0.1/typography.min.css" integrity="sha256-7l/o7C8jubJiy74VsKTidCy1yBkRtiUGbVkYBylBqUg=" crossorigin>
+<link rel="stylesheet preload" as="style" href="https://cdnjs.cloudflare.com/ajax/libs/highlight.js/10.1.1/styles/github.min.css" crossorigin>
+<style>:root{--highlight-color:#fe9}.flex{display:flex !important}body{line-height:1.5em}#content{padding:20px}#sidebar{padding:30px;overflow:hidden}#sidebar > *:last-child{margin-bottom:2cm}.http-server-breadcrumbs{font-size:130%;margin:0 0 15px 0}#footer{font-size:.75em;padding:5px 30px;border-top:1px solid #ddd;text-align:right}#footer p{margin:0 0 0 1em;display:inline-block}#footer p:last-child{margin-right:30px}h1,h2,h3,h4,h5{font-weight:300}h1{font-size:2.5em;line-height:1.1em}h2{font-size:1.75em;margin:1em 0 .50em 0}h3{font-size:1.4em;margin:25px 0 10px 0}h4{margin:0;font-size:105%}h1:target,h2:target,h3:target,h4:target,h5:target,h6:target{background:var(--highlight-color);padding:.2em 0}a{color:#058;text-decoration:none;transition:color .3s ease-in-out}a:hover{color:#e82}.title code{font-weight:bold}h2[id^="header-"]{margin-top:2em}.ident{color:#900}pre code{background:#f8f8f8;font-size:.8em;line-height:1.4em}code{background:#f2f2f1;padding:1px 4px;overflow-wrap:break-word}h1 code{background:transparent}pre{background:#f8f8f8;border:0;border-top:1px solid #ccc;border-bottom:1px solid #ccc;margin:1em 0;padding:1ex}#http-server-module-list{display:flex;flex-flow:column}#http-server-module-list div{display:flex}#http-server-module-list dt{min-width:10%}#http-server-module-list p{margin-top:0}.toc ul,#index{list-style-type:none;margin:0;padding:0}#index code{background:transparent}#index h3{border-bottom:1px solid #ddd}#index ul{padding:0}#index h4{margin-top:.6em;font-weight:bold}@media (min-width:200ex){#index .two-column{column-count:2}}@media (min-width:300ex){#index .two-column{column-count:3}}dl{margin-bottom:2em}dl dl:last-child{margin-bottom:4em}dd{margin:0 0 1em 3em}#header-classes + dl > dd{margin-bottom:3em}dd dd{margin-left:2em}dd p{margin:10px 0}.name{background:#eee;font-weight:bold;font-size:.85em;padding:5px 10px;display:inline-block;min-width:40%}.name:hover{background:#e0e0e0}dt:target .name{background:var(--highlight-color)}.name > span:first-child{white-space:nowrap}.name.class > span:nth-child(2){margin-left:.4em}.inherited{color:#999;border-left:5px solid #eee;padding-left:1em}.inheritance em{font-style:normal;font-weight:bold}.desc h2{font-weight:400;font-size:1.25em}.desc h3{font-size:1em}.desc dt code{background:inherit}.source summary,.git-link-div{color:#666;text-align:right;font-weight:400;font-size:.8em;text-transform:uppercase}.source summary > *{white-space:nowrap;cursor:pointer}.git-link{color:inherit;margin-left:1em}.source pre{max-height:500px;overflow:auto;margin:0}.source pre code{font-size:12px;overflow:visible}.hlist{list-style:none}.hlist li{display:inline}.hlist li:after{content:',\2002'}.hlist li:last-child:after{content:none}.hlist .hlist{display:inline;padding-left:1em}img{max-width:100%}td{padding:0 .5em}.admonition{padding:.1em .5em;margin-bottom:1em}.admonition-title{font-weight:bold}.admonition.note,.admonition.info,.admonition.important{background:#aef}.admonition.todo,.admonition.versionadded,.admonition.tip,.admonition.hint{background:#dfd}.admonition.warning,.admonition.versionchanged,.admonition.deprecated{background:#fd4}.admonition.error,.admonition.danger,.admonition.caution{background:lightpink}</style>
+<style media="screen and (min-width: 700px)">@media screen and (min-width:700px){#sidebar{width:30%;height:100vh;overflow:auto;position:sticky;top:0}#content{width:70%;max-width:100ch;padding:3em 4em;border-left:1px solid #ddd}pre code{font-size:1em}.item .name{font-size:1em}main{display:flex;flex-direction:row-reverse;justify-content:flex-end}.toc ul ul,#index ul{padding-left:1.5em}.toc > ul > li{margin-top:.5em}}</style>
+<style media="print">@media print{#sidebar h1{page-break-before:always}.source{display:none}}@media print{*{background:transparent !important;color:#000 !important;box-shadow:none !important;text-shadow:none !important}a[href]:after{content:" (" attr(href) ")";font-size:90%}a[href][title]:after{content:none}abbr[title]:after{content:" (" attr(title) ")"}.ir a:after,a[href^="javascript:"]:after,a[href^="#"]:after{content:""}pre,blockquote{border:1px solid #999;page-break-inside:avoid}thead{display:table-header-group}tr,img{page-break-inside:avoid}img{max-width:100% !important}@page{margin:0.5cm}p,h2,h3{orphans:3;widows:3}h1,h2,h3,h4,h5,h6{page-break-after:avoid}}</style>
+<script defer src="https://cdnjs.cloudflare.com/ajax/libs/highlight.js/10.1.1/highlight.min.js" integrity="sha256-Uv3H6lx7dJmRfRvH8TH6kJD1TSK1aFcwgx+mdg3epi8=" crossorigin></script>
+<script>window.addEventListener('DOMContentLoaded', () => hljs.initHighlighting())</script>
+</head>
+<body>
+<main>
+<article id="content">
+<header>
+<h1 class="title">Module <code>ortools_explain.model_indexation.objective</code></h1>
+</header>
+<section id="section-intro">
+<p>Those classes enable us to represent a problem with multiple objectives
+Partial objectives are either maximised or minimised sequentially or combined with coefficients
+Objectives are looked at by increasing order of rank</p>
+<details class="source">
+<summary>
+<span>Expand source code</span>
+</summary>
+<pre><code class="python">&#34;&#34;&#34;
+Those classes enable us to represent a problem with multiple objectives
+Partial objectives are either maximised or minimised sequentially or combined with coefficients
+Objectives are looked at by increasing order of rank
+
+&#34;&#34;&#34;
+
+import logging
+
+logger = logging.getLogger(__name__)
+
+
+class PartObjective:
+    &#34;&#34;&#34;
+    Part of the objectives of the model
+    &#34;&#34;&#34;
+
+    def __init__(self, idx: str, priority: int):
+        &#34;&#34;&#34;
+        :param idx: unique (at this stage) identifier of the partial objective
+        :param priority: rank at which this objective will be looked at
+        &#34;&#34;&#34;
+        self._priority = priority
+        self._best_value = None
+        self._idx = idx
+
+    def get_id(self) -&gt; str:
+        return self._idx
+
+    def priority(self) -&gt; int:
+        return self._priority
+
+    def best_value(self) -&gt; int:
+        return self._best_value
+
+    def set_opt_value(self, val) -&gt; None:
+        self._best_value = val
+
+
+class BonusConstraint(PartObjective):
+    &#34;&#34;&#34;
+    Constraint that is not mandatory but grants a bonus if respected
+    &#34;&#34;&#34;
+    def __init__(self, model, constraint, idx: str, coef: int, priority: int):
+        super().__init__(idx, priority)
+        self.size = 1
+        self.coef = coef
+        boolvar = model.NewBoolVar(&#39;is_respected {} - {}&#39;.format(idx, self.size))
+        model.Add(constraint).OnlyEnforceIf(boolvar)
+        self._list_constraints = [(constraint, boolvar)]
+
+    def add(self, model, constraint):
+        self.size = self.size + 1
+        boolvar = model.NewBoolVar(&#39;is_respected {} - {}&#39;.format(self._idx, self.size))
+        model.Add(constraint).OnlyEnforceIf(boolvar)
+        self._list_constraints.append((constraint, boolvar))
+
+    def list_constraints(self):
+        return self._list_constraints
+
+    def size(self):
+        return self.size
+
+
+class MinObjective(PartObjective):
+    &#34;&#34;&#34;
+    Part of an objective that we want to minimize
+    &#34;&#34;&#34;
+
+    def __init__(self, expression, idx: str, priorite: int):
+        &#34;&#34;&#34;
+        param expression: Linear expression that we want to MINIMIZE (eg. sum(Xij))
+        param priorite: Rank of this objective
+        &#34;&#34;&#34;
+        super().__init__(idx, priorite)
+        self._expression = expression
+
+    def expression(self):
+        return self._expression
+
+
+class MaxObjective(PartObjective):
+    &#34;&#34;&#34;
+    Part of an objective that we want to maximize
+    &#34;&#34;&#34;
+
+    def __init__(self, expression, idx: str, priority: int):
+        &#34;&#34;&#34;
+        :param expression: Linear expression that we want to MAXIMIZE (eg. sum(Xij))
+
+        :param idx: unique identifier of this partial objective
+        &#34;&#34;&#34;
+        super().__init__(idx, priority)
+        self._expression = expression
+
+    def expression(self):
+        return self._expression
+
+
+class Objective:
+    &#34;&#34;&#34;
+    The Objective class enables us to keep in memory the different parts of optimisation
+    &#34;&#34;&#34;
+    def __init__(self):
+        self.dic_elt = dict()
+        self.dic_ids = dict()
+        self._reach_absolute_max = dict()
+
+    def get_id(self, idx):
+        if idx in self.dic_ids:
+            return self.dic_ids[idx]
+        return None
+
+    def add_part_objective(self, idx, objective: PartObjective, max_must_be_absolute: bool):
+
+        priorite = objective.priority()
+        if priorite not in self.dic_elt:
+            self.dic_elt[priorite] = [objective]
+        else:
+            self.dic_elt[priorite].append(objective)
+
+        if max_must_be_absolute:
+            self._reach_absolute_max[priorite] = True
+
+        self.dic_ids[idx] = objective
+
+    def get_list_priority(self):
+        &#34;&#34;&#34;Returns the list of priorities in decreasing order&#34;&#34;&#34;
+        return sorted(list(self.dic_elt.keys()))
+
+    def must_reach_absolute_max(self, priority):
+        &#34;&#34;&#34;Returns whether or not we must go to the end of the optimization for this specific step&#34;&#34;&#34;
+        return priority in self._reach_absolute_max
+
+    def is_empty(self):
+        return len(self.dic_elt) == 0
+
+    def get_all_obj(self):
+        return list(self.dic_ids.values())
+
+    def best_value_at_rank(self, rank):
+        &#34;&#34;&#34;Computes the current optimisation value at a given rank&#34;&#34;&#34;
+        if rank not in self.dic_elt:
+            return None
+        score = 0
+        for obj in self.dic_elt[rank]:
+            if isinstance(obj, BonusConstraint):
+                score = score + (obj.coef * obj.best_value())
+            elif isinstance(obj, MinObjective):
+                score = score - obj.best_value()
+            elif isinstance(obj, MaxObjective):
+                score = score + obj.best_value()
+        return score</code></pre>
+</details>
+</section>
+<section>
+</section>
+<section>
+</section>
+<section>
+</section>
+<section>
+<h2 class="section-title" id="header-classes">Classes</h2>
+<dl>
+<dt id="ortools_explain.model_indexation.objective.BonusConstraint"><code class="flex name class">
+<span>class <span class="ident">BonusConstraint</span></span>
+<span>(</span><span>model, constraint, idx: str, coef: int, priority: int)</span>
+</code></dt>
+<dd>
+<div class="desc"><p>Constraint that is not mandatory but grants a bonus if respected</p>
+<p>:param idx: unique (at this stage) identifier of the partial objective
+:param priority: rank at which this objective will be looked at</p></div>
+<details class="source">
+<summary>
+<span>Expand source code</span>
+</summary>
+<pre><code class="python">class BonusConstraint(PartObjective):
+    &#34;&#34;&#34;
+    Constraint that is not mandatory but grants a bonus if respected
+    &#34;&#34;&#34;
+    def __init__(self, model, constraint, idx: str, coef: int, priority: int):
+        super().__init__(idx, priority)
+        self.size = 1
+        self.coef = coef
+        boolvar = model.NewBoolVar(&#39;is_respected {} - {}&#39;.format(idx, self.size))
+        model.Add(constraint).OnlyEnforceIf(boolvar)
+        self._list_constraints = [(constraint, boolvar)]
+
+    def add(self, model, constraint):
+        self.size = self.size + 1
+        boolvar = model.NewBoolVar(&#39;is_respected {} - {}&#39;.format(self._idx, self.size))
+        model.Add(constraint).OnlyEnforceIf(boolvar)
+        self._list_constraints.append((constraint, boolvar))
+
+    def list_constraints(self):
+        return self._list_constraints
+
+    def size(self):
+        return self.size</code></pre>
+</details>
+<h3>Ancestors</h3>
+<ul class="hlist">
+<li><a title="ortools_explain.model_indexation.objective.PartObjective" href="#ortools_explain.model_indexation.objective.PartObjective">PartObjective</a></li>
+</ul>
+<h3>Methods</h3>
+<dl>
+<dt id="ortools_explain.model_indexation.objective.BonusConstraint.add"><code class="name flex">
+<span>def <span class="ident">add</span></span>(<span>self, model, constraint)</span>
+</code></dt>
+<dd>
+<div class="desc"></div>
+<details class="source">
+<summary>
+<span>Expand source code</span>
+</summary>
+<pre><code class="python">def add(self, model, constraint):
+    self.size = self.size + 1
+    boolvar = model.NewBoolVar(&#39;is_respected {} - {}&#39;.format(self._idx, self.size))
+    model.Add(constraint).OnlyEnforceIf(boolvar)
+    self._list_constraints.append((constraint, boolvar))</code></pre>
+</details>
+</dd>
+<dt id="ortools_explain.model_indexation.objective.BonusConstraint.list_constraints"><code class="name flex">
+<span>def <span class="ident">list_constraints</span></span>(<span>self)</span>
+</code></dt>
+<dd>
+<div class="desc"></div>
+<details class="source">
+<summary>
+<span>Expand source code</span>
+</summary>
+<pre><code class="python">def list_constraints(self):
+    return self._list_constraints</code></pre>
+</details>
+</dd>
+<dt id="ortools_explain.model_indexation.objective.BonusConstraint.size"><code class="name flex">
+<span>def <span class="ident">size</span></span>(<span>self)</span>
+</code></dt>
+<dd>
+<div class="desc"></div>
+<details class="source">
+<summary>
+<span>Expand source code</span>
+</summary>
+<pre><code class="python">def size(self):
+    return self.size</code></pre>
+</details>
+</dd>
+</dl>
+</dd>
+<dt id="ortools_explain.model_indexation.objective.MaxObjective"><code class="flex name class">
+<span>class <span class="ident">MaxObjective</span></span>
+<span>(</span><span>expression, idx: str, priority: int)</span>
+</code></dt>
+<dd>
+<div class="desc"><p>Part of an objective that we want to maximize</p>
+<p>:param expression: Linear expression that we want to MAXIMIZE (eg. sum(Xij))</p>
+<p>:param idx: unique identifier of this partial objective</p></div>
+<details class="source">
+<summary>
+<span>Expand source code</span>
+</summary>
+<pre><code class="python">class MaxObjective(PartObjective):
+    &#34;&#34;&#34;
+    Part of an objective that we want to maximize
+    &#34;&#34;&#34;
+
+    def __init__(self, expression, idx: str, priority: int):
+        &#34;&#34;&#34;
+        :param expression: Linear expression that we want to MAXIMIZE (eg. sum(Xij))
+
+        :param idx: unique identifier of this partial objective
+        &#34;&#34;&#34;
+        super().__init__(idx, priority)
+        self._expression = expression
+
+    def expression(self):
+        return self._expression</code></pre>
+</details>
+<h3>Ancestors</h3>
+<ul class="hlist">
+<li><a title="ortools_explain.model_indexation.objective.PartObjective" href="#ortools_explain.model_indexation.objective.PartObjective">PartObjective</a></li>
+</ul>
+<h3>Methods</h3>
+<dl>
+<dt id="ortools_explain.model_indexation.objective.MaxObjective.expression"><code class="name flex">
+<span>def <span class="ident">expression</span></span>(<span>self)</span>
+</code></dt>
+<dd>
+<div class="desc"></div>
+<details class="source">
+<summary>
+<span>Expand source code</span>
+</summary>
+<pre><code class="python">def expression(self):
+    return self._expression</code></pre>
+</details>
+</dd>
+</dl>
+</dd>
+<dt id="ortools_explain.model_indexation.objective.MinObjective"><code class="flex name class">
+<span>class <span class="ident">MinObjective</span></span>
+<span>(</span><span>expression, idx: str, priorite: int)</span>
+</code></dt>
+<dd>
+<div class="desc"><p>Part of an objective that we want to minimize</p>
+<p>param expression: Linear expression that we want to MINIMIZE (eg. sum(Xij))
+param priorite: Rank of this objective</p></div>
+<details class="source">
+<summary>
+<span>Expand source code</span>
+</summary>
+<pre><code class="python">class MinObjective(PartObjective):
+    &#34;&#34;&#34;
+    Part of an objective that we want to minimize
+    &#34;&#34;&#34;
+
+    def __init__(self, expression, idx: str, priorite: int):
+        &#34;&#34;&#34;
+        param expression: Linear expression that we want to MINIMIZE (eg. sum(Xij))
+        param priorite: Rank of this objective
+        &#34;&#34;&#34;
+        super().__init__(idx, priorite)
+        self._expression = expression
+
+    def expression(self):
+        return self._expression</code></pre>
+</details>
+<h3>Ancestors</h3>
+<ul class="hlist">
+<li><a title="ortools_explain.model_indexation.objective.PartObjective" href="#ortools_explain.model_indexation.objective.PartObjective">PartObjective</a></li>
+</ul>
+<h3>Methods</h3>
+<dl>
+<dt id="ortools_explain.model_indexation.objective.MinObjective.expression"><code class="name flex">
+<span>def <span class="ident">expression</span></span>(<span>self)</span>
+</code></dt>
+<dd>
+<div class="desc"></div>
+<details class="source">
+<summary>
+<span>Expand source code</span>
+</summary>
+<pre><code class="python">def expression(self):
+    return self._expression</code></pre>
+</details>
+</dd>
+</dl>
+</dd>
+<dt id="ortools_explain.model_indexation.objective.Objective"><code class="flex name class">
+<span>class <span class="ident">Objective</span></span>
+</code></dt>
+<dd>
+<div class="desc"><p>The Objective class enables us to keep in memory the different parts of optimisation</p></div>
+<details class="source">
+<summary>
+<span>Expand source code</span>
+</summary>
+<pre><code class="python">class Objective:
+    &#34;&#34;&#34;
+    The Objective class enables us to keep in memory the different parts of optimisation
+    &#34;&#34;&#34;
+    def __init__(self):
+        self.dic_elt = dict()
+        self.dic_ids = dict()
+        self._reach_absolute_max = dict()
+
+    def get_id(self, idx):
+        if idx in self.dic_ids:
+            return self.dic_ids[idx]
+        return None
+
+    def add_part_objective(self, idx, objective: PartObjective, max_must_be_absolute: bool):
+
+        priorite = objective.priority()
+        if priorite not in self.dic_elt:
+            self.dic_elt[priorite] = [objective]
+        else:
+            self.dic_elt[priorite].append(objective)
+
+        if max_must_be_absolute:
+            self._reach_absolute_max[priorite] = True
+
+        self.dic_ids[idx] = objective
+
+    def get_list_priority(self):
+        &#34;&#34;&#34;Returns the list of priorities in decreasing order&#34;&#34;&#34;
+        return sorted(list(self.dic_elt.keys()))
+
+    def must_reach_absolute_max(self, priority):
+        &#34;&#34;&#34;Returns whether or not we must go to the end of the optimization for this specific step&#34;&#34;&#34;
+        return priority in self._reach_absolute_max
+
+    def is_empty(self):
+        return len(self.dic_elt) == 0
+
+    def get_all_obj(self):
+        return list(self.dic_ids.values())
+
+    def best_value_at_rank(self, rank):
+        &#34;&#34;&#34;Computes the current optimisation value at a given rank&#34;&#34;&#34;
+        if rank not in self.dic_elt:
+            return None
+        score = 0
+        for obj in self.dic_elt[rank]:
+            if isinstance(obj, BonusConstraint):
+                score = score + (obj.coef * obj.best_value())
+            elif isinstance(obj, MinObjective):
+                score = score - obj.best_value()
+            elif isinstance(obj, MaxObjective):
+                score = score + obj.best_value()
+        return score</code></pre>
+</details>
+<h3>Methods</h3>
+<dl>
+<dt id="ortools_explain.model_indexation.objective.Objective.add_part_objective"><code class="name flex">
+<span>def <span class="ident">add_part_objective</span></span>(<span>self, idx, objective: <a title="ortools_explain.model_indexation.objective.PartObjective" href="#ortools_explain.model_indexation.objective.PartObjective">PartObjective</a>, max_must_be_absolute: bool)</span>
+</code></dt>
+<dd>
+<div class="desc"></div>
+<details class="source">
+<summary>
+<span>Expand source code</span>
+</summary>
+<pre><code class="python">def add_part_objective(self, idx, objective: PartObjective, max_must_be_absolute: bool):
+
+    priorite = objective.priority()
+    if priorite not in self.dic_elt:
+        self.dic_elt[priorite] = [objective]
+    else:
+        self.dic_elt[priorite].append(objective)
+
+    if max_must_be_absolute:
+        self._reach_absolute_max[priorite] = True
+
+    self.dic_ids[idx] = objective</code></pre>
+</details>
+</dd>
+<dt id="ortools_explain.model_indexation.objective.Objective.best_value_at_rank"><code class="name flex">
+<span>def <span class="ident">best_value_at_rank</span></span>(<span>self, rank)</span>
+</code></dt>
+<dd>
+<div class="desc"><p>Computes the current optimisation value at a given rank</p></div>
+<details class="source">
+<summary>
+<span>Expand source code</span>
+</summary>
+<pre><code class="python">def best_value_at_rank(self, rank):
+    &#34;&#34;&#34;Computes the current optimisation value at a given rank&#34;&#34;&#34;
+    if rank not in self.dic_elt:
+        return None
+    score = 0
+    for obj in self.dic_elt[rank]:
+        if isinstance(obj, BonusConstraint):
+            score = score + (obj.coef * obj.best_value())
+        elif isinstance(obj, MinObjective):
+            score = score - obj.best_value()
+        elif isinstance(obj, MaxObjective):
+            score = score + obj.best_value()
+    return score</code></pre>
+</details>
+</dd>
+<dt id="ortools_explain.model_indexation.objective.Objective.get_all_obj"><code class="name flex">
+<span>def <span class="ident">get_all_obj</span></span>(<span>self)</span>
+</code></dt>
+<dd>
+<div class="desc"></div>
+<details class="source">
+<summary>
+<span>Expand source code</span>
+</summary>
+<pre><code class="python">def get_all_obj(self):
+    return list(self.dic_ids.values())</code></pre>
+</details>
+</dd>
+<dt id="ortools_explain.model_indexation.objective.Objective.get_id"><code class="name flex">
+<span>def <span class="ident">get_id</span></span>(<span>self, idx)</span>
+</code></dt>
+<dd>
+<div class="desc"></div>
+<details class="source">
+<summary>
+<span>Expand source code</span>
+</summary>
+<pre><code class="python">def get_id(self, idx):
+    if idx in self.dic_ids:
+        return self.dic_ids[idx]
+    return None</code></pre>
+</details>
+</dd>
+<dt id="ortools_explain.model_indexation.objective.Objective.get_list_priority"><code class="name flex">
+<span>def <span class="ident">get_list_priority</span></span>(<span>self)</span>
+</code></dt>
+<dd>
+<div class="desc"><p>Returns the list of priorities in decreasing order</p></div>
+<details class="source">
+<summary>
+<span>Expand source code</span>
+</summary>
+<pre><code class="python">def get_list_priority(self):
+    &#34;&#34;&#34;Returns the list of priorities in decreasing order&#34;&#34;&#34;
+    return sorted(list(self.dic_elt.keys()))</code></pre>
+</details>
+</dd>
+<dt id="ortools_explain.model_indexation.objective.Objective.is_empty"><code class="name flex">
+<span>def <span class="ident">is_empty</span></span>(<span>self)</span>
+</code></dt>
+<dd>
+<div class="desc"></div>
+<details class="source">
+<summary>
+<span>Expand source code</span>
+</summary>
+<pre><code class="python">def is_empty(self):
+    return len(self.dic_elt) == 0</code></pre>
+</details>
+</dd>
+<dt id="ortools_explain.model_indexation.objective.Objective.must_reach_absolute_max"><code class="name flex">
+<span>def <span class="ident">must_reach_absolute_max</span></span>(<span>self, priority)</span>
+</code></dt>
+<dd>
+<div class="desc"><p>Returns whether or not we must go to the end of the optimization for this specific step</p></div>
+<details class="source">
+<summary>
+<span>Expand source code</span>
+</summary>
+<pre><code class="python">def must_reach_absolute_max(self, priority):
+    &#34;&#34;&#34;Returns whether or not we must go to the end of the optimization for this specific step&#34;&#34;&#34;
+    return priority in self._reach_absolute_max</code></pre>
+</details>
+</dd>
+</dl>
+</dd>
+<dt id="ortools_explain.model_indexation.objective.PartObjective"><code class="flex name class">
+<span>class <span class="ident">PartObjective</span></span>
+<span>(</span><span>idx: str, priority: int)</span>
+</code></dt>
+<dd>
+<div class="desc"><p>Part of the objectives of the model</p>
+<p>:param idx: unique (at this stage) identifier of the partial objective
+:param priority: rank at which this objective will be looked at</p></div>
+<details class="source">
+<summary>
+<span>Expand source code</span>
+</summary>
+<pre><code class="python">class PartObjective:
+    &#34;&#34;&#34;
+    Part of the objectives of the model
+    &#34;&#34;&#34;
+
+    def __init__(self, idx: str, priority: int):
+        &#34;&#34;&#34;
+        :param idx: unique (at this stage) identifier of the partial objective
+        :param priority: rank at which this objective will be looked at
+        &#34;&#34;&#34;
+        self._priority = priority
+        self._best_value = None
+        self._idx = idx
+
+    def get_id(self) -&gt; str:
+        return self._idx
+
+    def priority(self) -&gt; int:
+        return self._priority
+
+    def best_value(self) -&gt; int:
+        return self._best_value
+
+    def set_opt_value(self, val) -&gt; None:
+        self._best_value = val</code></pre>
+</details>
+<h3>Subclasses</h3>
+<ul class="hlist">
+<li><a title="ortools_explain.model_indexation.objective.BonusConstraint" href="#ortools_explain.model_indexation.objective.BonusConstraint">BonusConstraint</a></li>
+<li><a title="ortools_explain.model_indexation.objective.MaxObjective" href="#ortools_explain.model_indexation.objective.MaxObjective">MaxObjective</a></li>
+<li><a title="ortools_explain.model_indexation.objective.MinObjective" href="#ortools_explain.model_indexation.objective.MinObjective">MinObjective</a></li>
+</ul>
+<h3>Methods</h3>
+<dl>
+<dt id="ortools_explain.model_indexation.objective.PartObjective.best_value"><code class="name flex">
+<span>def <span class="ident">best_value</span></span>(<span>self) ‑> int</span>
+</code></dt>
+<dd>
+<div class="desc"></div>
+<details class="source">
+<summary>
+<span>Expand source code</span>
+</summary>
+<pre><code class="python">def best_value(self) -&gt; int:
+    return self._best_value</code></pre>
+</details>
+</dd>
+<dt id="ortools_explain.model_indexation.objective.PartObjective.get_id"><code class="name flex">
+<span>def <span class="ident">get_id</span></span>(<span>self) ‑> str</span>
+</code></dt>
+<dd>
+<div class="desc"></div>
+<details class="source">
+<summary>
+<span>Expand source code</span>
+</summary>
+<pre><code class="python">def get_id(self) -&gt; str:
+    return self._idx</code></pre>
+</details>
+</dd>
+<dt id="ortools_explain.model_indexation.objective.PartObjective.priority"><code class="name flex">
+<span>def <span class="ident">priority</span></span>(<span>self) ‑> int</span>
+</code></dt>
+<dd>
+<div class="desc"></div>
+<details class="source">
+<summary>
+<span>Expand source code</span>
+</summary>
+<pre><code class="python">def priority(self) -&gt; int:
+    return self._priority</code></pre>
+</details>
+</dd>
+<dt id="ortools_explain.model_indexation.objective.PartObjective.set_opt_value"><code class="name flex">
+<span>def <span class="ident">set_opt_value</span></span>(<span>self, val) ‑> None</span>
+</code></dt>
+<dd>
+<div class="desc"></div>
+<details class="source">
+<summary>
+<span>Expand source code</span>
+</summary>
+<pre><code class="python">def set_opt_value(self, val) -&gt; None:
+    self._best_value = val</code></pre>
+</details>
+</dd>
+</dl>
+</dd>
+</dl>
+</section>
+</article>
+<nav id="sidebar">
+<h1>Index</h1>
+<div class="toc">
+<ul></ul>
+</div>
+<ul id="index">
+<li><h3>Super-module</h3>
+<ul>
+<li><code><a title="ortools_explain.model_indexation" href="index.html">ortools_explain.model_indexation</a></code></li>
+</ul>
+</li>
+<li><h3><a href="#header-classes">Classes</a></h3>
+<ul>
+<li>
+<h4><code><a title="ortools_explain.model_indexation.objective.BonusConstraint" href="#ortools_explain.model_indexation.objective.BonusConstraint">BonusConstraint</a></code></h4>
+<ul class="">
+<li><code><a title="ortools_explain.model_indexation.objective.BonusConstraint.add" href="#ortools_explain.model_indexation.objective.BonusConstraint.add">add</a></code></li>
+<li><code><a title="ortools_explain.model_indexation.objective.BonusConstraint.list_constraints" href="#ortools_explain.model_indexation.objective.BonusConstraint.list_constraints">list_constraints</a></code></li>
+<li><code><a title="ortools_explain.model_indexation.objective.BonusConstraint.size" href="#ortools_explain.model_indexation.objective.BonusConstraint.size">size</a></code></li>
+</ul>
+</li>
+<li>
+<h4><code><a title="ortools_explain.model_indexation.objective.MaxObjective" href="#ortools_explain.model_indexation.objective.MaxObjective">MaxObjective</a></code></h4>
+<ul class="">
+<li><code><a title="ortools_explain.model_indexation.objective.MaxObjective.expression" href="#ortools_explain.model_indexation.objective.MaxObjective.expression">expression</a></code></li>
+</ul>
+</li>
+<li>
+<h4><code><a title="ortools_explain.model_indexation.objective.MinObjective" href="#ortools_explain.model_indexation.objective.MinObjective">MinObjective</a></code></h4>
+<ul class="">
+<li><code><a title="ortools_explain.model_indexation.objective.MinObjective.expression" href="#ortools_explain.model_indexation.objective.MinObjective.expression">expression</a></code></li>
+</ul>
+</li>
+<li>
+<h4><code><a title="ortools_explain.model_indexation.objective.Objective" href="#ortools_explain.model_indexation.objective.Objective">Objective</a></code></h4>
+<ul class="">
+<li><code><a title="ortools_explain.model_indexation.objective.Objective.add_part_objective" href="#ortools_explain.model_indexation.objective.Objective.add_part_objective">add_part_objective</a></code></li>
+<li><code><a title="ortools_explain.model_indexation.objective.Objective.best_value_at_rank" href="#ortools_explain.model_indexation.objective.Objective.best_value_at_rank">best_value_at_rank</a></code></li>
+<li><code><a title="ortools_explain.model_indexation.objective.Objective.get_all_obj" href="#ortools_explain.model_indexation.objective.Objective.get_all_obj">get_all_obj</a></code></li>
+<li><code><a title="ortools_explain.model_indexation.objective.Objective.get_id" href="#ortools_explain.model_indexation.objective.Objective.get_id">get_id</a></code></li>
+<li><code><a title="ortools_explain.model_indexation.objective.Objective.get_list_priority" href="#ortools_explain.model_indexation.objective.Objective.get_list_priority">get_list_priority</a></code></li>
+<li><code><a title="ortools_explain.model_indexation.objective.Objective.is_empty" href="#ortools_explain.model_indexation.objective.Objective.is_empty">is_empty</a></code></li>
+<li><code><a title="ortools_explain.model_indexation.objective.Objective.must_reach_absolute_max" href="#ortools_explain.model_indexation.objective.Objective.must_reach_absolute_max">must_reach_absolute_max</a></code></li>
+</ul>
+</li>
+<li>
+<h4><code><a title="ortools_explain.model_indexation.objective.PartObjective" href="#ortools_explain.model_indexation.objective.PartObjective">PartObjective</a></code></h4>
+<ul class="">
+<li><code><a title="ortools_explain.model_indexation.objective.PartObjective.best_value" href="#ortools_explain.model_indexation.objective.PartObjective.best_value">best_value</a></code></li>
+<li><code><a title="ortools_explain.model_indexation.objective.PartObjective.get_id" href="#ortools_explain.model_indexation.objective.PartObjective.get_id">get_id</a></code></li>
+<li><code><a title="ortools_explain.model_indexation.objective.PartObjective.priority" href="#ortools_explain.model_indexation.objective.PartObjective.priority">priority</a></code></li>
+<li><code><a title="ortools_explain.model_indexation.objective.PartObjective.set_opt_value" href="#ortools_explain.model_indexation.objective.PartObjective.set_opt_value">set_opt_value</a></code></li>
+</ul>
+</li>
+</ul>
+</li>
+</ul>
+</nav>
+</main>
+<footer id="footer">
+<p>Generated by <a href="https://pdoc3.github.io/pdoc" title="pdoc: Python API documentation generator"><cite>pdoc</cite> 0.10.0</a>.</p>
+</footer>
+</body>
+</html>

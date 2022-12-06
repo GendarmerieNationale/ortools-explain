@@ -64,7 +64,7 @@ class SuperSolver(cp_model.CpSolver):
         print("Something is obviously wrong in the model")
         my_conflicts = my_model.list_obvious_conflicts()
         for conflict in my_conflicts:
-            print(conflict.write(my_model))
+            print(conflict.write_conflict(my_model))
 
     elif status == Status.INFEASIBLE:
         print("Some conditions are conflicting within the model")
@@ -110,7 +110,7 @@ class SuperSolver(cp_model.CpSolver):
 
     ```
     # Here we define our LNS strategy
-    def LNS_Equity(LNS_Variables_Choice):
+    class LNS_Equity(LNS_Variables_Choice):
         def __init__(self, X, nb_iterations):
             self.my_variables = X
             self.nb_iterations = nb_iterations
@@ -243,10 +243,10 @@ class SuperSolver(cp_model.CpSolver):
         for i in range(nb_priority):
             rank_prio = i
             val_prio = mes_priorites[i]
-            logger.info("Score at rank {}: {}".format(rank_prio, self.res_optimization[rank_prio]))
+            logger.info("Score at rank {}: {}".format(val_prio, self.res_optimization[rank_prio]))
 
             for obj in self.model.objective().dic_elt[val_prio]:
-                logger.info("-- Value of objective {} is {}".format(obj.get_id(), obj.best_value()))
+                logger.info("-- {} = {}".format(obj.get_id(), obj.best_value()))
 
     def GetObjectiveValues(self) -> Union[None, Dict]:
         """Returns the objective values in a dictionary:
@@ -429,9 +429,9 @@ class SuperSolver(cp_model.CpSolver):
                     tab_val_par_obj[obj] = self.Value(obj.expression())
 
             if not mute:
-                logger.info("Score obtenu au rang {} : {}".format(priority, obj_value))
+                logger.info("Score at rank {}: {}".format(priority, obj_value))
                 for obj in self.model.objective().dic_elt[priority]:
-                    logger.info("-- {} vaut {}".format(obj.get_id(), tab_val_par_obj[obj]))
+                    logger.info("-- {} = {}".format(obj.get_id(), tab_val_par_obj[obj]))
 
             # We remember the current solution as a hint
             self.model.Proto().solution_hint.Clear()

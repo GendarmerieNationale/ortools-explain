@@ -252,7 +252,7 @@ elif status == Status.OBVIOUS_CONFLICT:
     print("Des conflits évidents ont été détectés dans le modèle")
     my_conflicts = my_model.list_obvious_conflicts()
     for conflict in my_conflicts:
-        print(conflict.write(my_model))
+        print(conflict.write_conflict(my_model))
 
 elif status == Status.INFEASIBLE:
     print("Il y a des conflits dans le modèle")
@@ -298,7 +298,7 @@ et les 3 personnes avec le meilleur planning, et de faire cela 10 fois de suite 
 
 ```
 # On définit ici la stratégie LNS
-def LNS_Equite(LNS_Variables_Choice):
+class LNS_Equite(LNS_Variables_Choice):
     def __init__(self, X, nb_iterations):
         self.my_variables = X
         self.nb_iterations = nb_iterations

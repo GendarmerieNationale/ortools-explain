@@ -251,7 +251,7 @@ detected in the model (for instance a variable has been set to a constant twice 
       print("Something is obviously wrong in the model")
       my_conflicts = my_model.list_obvious_conflicts()
       for conflict in my_conflicts:
-          print(conflict.write(my_model))
+          print(conflict.write_conflict(my_model))
 
   elif status == Status.INFEASIBLE:
       print("Some conditions are conflicting within the model")
@@ -297,7 +297,7 @@ such that *X[i, j, k] == 1* means that person I on day J takes job K.
 
   ```
   # Here we define our LNS strategy
-  def LNS_Equity(LNS_Variables_Choice):
+  class LNS_Equity(LNS_Variables_Choice):
       def __init__(self, X, nb_iterations):
           self.my_variables = X
           self.nb_iterations = nb_iterations

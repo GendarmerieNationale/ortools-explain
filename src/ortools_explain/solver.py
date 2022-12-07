@@ -203,8 +203,8 @@ class SuperSolver(cp_model.CpSolver):
     ```
 
     """
-    PARALLEL_SEARCH = 1,
-    QUICK_XPLAIN = 2,
+    PARALLEL_SEARCH = 1
+    QUICK_XPLAIN = 2
     SUFFICIENT_ASSUMPTION = 3
 
     def __init__(self, model: SuperModel):
@@ -268,7 +268,7 @@ class SuperSolver(cp_model.CpSolver):
             logger.info('Solver has not yet been launched successfully')
             return None
 
-        res = {"objective_values": {}, "score_by_rank": [self.res_optimization]}
+        res = {"objective_values": {}, "score_by_rank": self.res_optimization}
         for obj in self.model.objective().get_all_obj():
             res["objective_values"][obj.get_id()] = obj.best_value()
 

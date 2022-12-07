@@ -65,7 +65,7 @@ class LNS_Variables_Choice_Across_One_Dim(LNS_Variables_Choice):
             logger.info("LNS is useless with these parameters")
 
         self.iteration_courante = 0
-        self.idx_fenetre_courante = None
+        self.idx_fenetre_courante = 0
         self.idx_problem = 0
 
         self.nb_tot_pbs = nb_iterations * nb_fenetres
